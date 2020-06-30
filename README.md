@@ -5,6 +5,15 @@ Making the discord dark theme even darker.
 
 **NOTE:** This only works for the desktop app. I did not [and will not] make an extension due to ToS and security issues.
 
+<details><summary>Screen shots [6]</summary>
+<img src="https://media.discordapp.net/attachments/569698278271090728/727590717009952908/unknown.png">
+<img src="https://media.discordapp.net/attachments/569698278271090728/727590845817290773/unknown.png">
+<img src="https://media.discordapp.net/attachments/569698278271090728/727591933517496452/unknown.png">
+<img src="https://media.discordapp.net/attachments/569698278271090728/727592116011794522/unknown.png">
+<img src="https://media.discordapp.net/attachments/569698278271090728/727593120664911902/unknown.png">
+<img src="https://media.discordapp.net/attachments/569698278271090728/727593369789792346/unknown.png">
+</details>
+
 # FEATURES ;]
 - A darker Discord!
 - You can now collapse channels
