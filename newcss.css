@@ -336,7 +336,9 @@
 
 .regionSelectModal-12e-57 .regionSelectModalHeader-21khC1,
 .rtcConnectionStatusConnected-VRZDjy,
-.theme-dark .secured-1Yihly {
+.theme-dark .secured-1Yihly,
+.reactionMe-wv5HKu .reactionCount-2mvXRV,
+.reactionMe-wv5HKu:hover .reactionCount-2mvXRV {
     color: #4aa;
 }
 
@@ -376,6 +378,9 @@
 .typeCreate-1kfBMl,
 .barFill-23-gu- {
     color: #6dd;
+}
+.barFill-23-gu- {
+    background-color: #4aa;
 }
 
 .theme-dark .option-96V44q:after {
