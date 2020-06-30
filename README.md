@@ -14,7 +14,7 @@ Making the discord dark theme even darker.
 
 # INSTALLATION ;]
 *Any scripts require you to download the ZIP archive of the repo. Please extract it too.
-*Check if your version is up to date: [Releases](./releases/)
+*Check if your version is up to date: [Releases](/VoxelPrismatic/darkercord/releases/)
 ### Windows
 *You may also run `script/inst-win.bat`
 1. Copy these files into `%APPDATA\discord\`
