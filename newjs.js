@@ -39,8 +39,10 @@ function __toggle_channels(doit = true) {
 function __listen_to_emoji_click(evt = null) {
     if(evt)
         target = evt.target
-    else
-        target = document.getElementById("messages").parentElement
+    else {
+        target = document.getElementById("messages").parentElement;
+        target.onmousemove = __listen_to_emoji_click;
+    }
     if(__messages_length == target.children[0].children.length)
         return
     for(var emoji of target.getElementsByClassName("emoji")) {
@@ -59,7 +61,7 @@ function __listen_emoji(elem) {
     __emoji_timeout += 1
     if(__emoji_timeout == 3)
         window.open(elem.src);
-    window.setTimeout(() => globalThis.__emoji_timeout -= 1, 500)
+    window.setTimeout(() => globalThis.__emoji_timeout -= 1, 1000)
 }
 function __listen_to_channel_change() {
     for(var button of document.getElementsByClassName("iconWrapper-2OrFZ1 focusable-1YV_-H")) {
