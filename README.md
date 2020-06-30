@@ -10,7 +10,7 @@ Making the discord dark theme even darker.
 - You can now collapse channels
 - Removes most of the green/blurple and puts turqiose/cyan instead [nitro colors remain unchanged on purpose]
   - *Some elements are colored directly, I am working on a way to detect these elements.
-- Tripple tapping an emoji will open the emoji source
+- Triple tapping an emoji will open the emoji source
 
 # INSTALLATION ;]
 *Any scripts require you to download the ZIP archive of the repo. Please extract it too.
