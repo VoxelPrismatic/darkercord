@@ -2,8 +2,6 @@
 Making the discord dark theme even darker.
 **NOTE:** This does fuck with the light theme. If you intend to use light theme, you must uninstall it first
 
-- [INSTALLATION ;\]](#INSTALLATION---)
-
 # INSTALLATION ;]
 ### Windows
 *Unknown as of yet.
@@ -34,4 +32,5 @@ require("../../../../../newjs.js");
 ```
 3. Restart Discord
 
-###
+### macOS
+*Unknown as of yet.
