@@ -2,10 +2,23 @@ var fs = require("fs");
 
 console.log("PRIZ ;] - Loading");
 console.time("PRIZ ;] - Finished in");
-
-var newcss = fs.readFileSync("./snap/discord/current/newcss.css");
-
-document.head.innerHTML += "<style type='text/css'>" + newcss + "</style>";
+var cwd = process.cwd();
+var loadcss = "true";
+if(cwd.startsWith("C:\\")) {
+    var newcss = fs.readFileSync(cwd + "\\..\\..\\..\\Roaming\\discord\\newcss.css");
+    try {
+        var loadcss = fs.readFileSync(cwd + "\\..\\..\\..\\Roaming\\discord\\loadcss.bool");
+    } catch(err) {
+    }
+} else {
+    var newcss = fs.readFileSync("./snap/discord/current/newcss.css");
+    try {
+        loadcss = fs.readFileSync("./snap/discord/current/loadcss.bool");
+    } catch(err) {
+    }
+}
+if(loadcss.includes("true"))
+    document.head.innerHTML += "<style type='text/css'>" + newcss + "</style>";
 
 __channels_hidden = false;
 __channel_button = null;
@@ -202,5 +215,6 @@ function __guild_listen() {
         __stop_guild_listen = true;
     }
 }
-window.setTimeout(__guild_listen, 1000);
+if(loadcss.includes("true"))
+    window.setTimeout(__guild_listen, 1000);
 console.timeEnd("PRIZ ;] - Finished in");
