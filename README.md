@@ -50,6 +50,8 @@ require("../../../../../newjs.js");
 
 # UNINSTALLATION ;\[
 *Any scripts require you to download the ZIP archive of the repo. Please extract it too.
+
+*These scripts do not uninstall DARKERcord, but instead prevents the theme from loading.
 ### Windows
 *You may also run `script/rem-win.bat`
 1. Go into `%APPDATA%\discord\0.0.306\modules\discord_utils\`
