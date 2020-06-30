@@ -3,6 +3,8 @@ Making the discord dark theme even darker.
 
 **NOTE:** This does fuck with the light theme. If you intend to use light theme, you must uninstall it first
 
+**NOTE:** This only works for the desktop app. I did not [and will not] make an extension due to ToS and security issues.
+
 # FEATURES ;]
 - A darker Discord!
 - You can now collapse channels
