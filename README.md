@@ -9,6 +9,7 @@ Making the discord dark theme even darker.
   - *Some elements are colored directly, I am working on a way to detect these elements.
 
 # INSTALLATION ;]
+*Any scripts require you to download the ZIP archive of the repo. Please extract it too.
 ### Windows
 *You may also run `script/inst-win.bat`
 1. Copy these files into `%APPDATA\discord\`
