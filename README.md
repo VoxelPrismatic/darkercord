@@ -5,15 +5,6 @@ Making the discord dark theme even darker.
 
 **NOTE:** This only works for the desktop app. I did not [and will not] make an extension due to ToS and security issues.
 
-<details><summary>Screen shots [6]</summary>
-<img src="https://media.discordapp.net/attachments/569698278271090728/727590717009952908/unknown.png">
-<img src="https://media.discordapp.net/attachments/569698278271090728/727590845817290773/unknown.png">
-<img src="https://media.discordapp.net/attachments/569698278271090728/727591933517496452/unknown.png">
-<img src="https://media.discordapp.net/attachments/569698278271090728/727592116011794522/unknown.png">
-<img src="https://media.discordapp.net/attachments/569698278271090728/727593120664911902/unknown.png">
-<img src="https://media.discordapp.net/attachments/569698278271090728/727593369789792346/unknown.png">
-</details>
-
 # FEATURES ;]
 - A darker Discord!
 - You can now collapse channels
@@ -23,10 +14,7 @@ Making the discord dark theme even darker.
 
 # INSTALLATION ;]
 *Any scripts require you to download the ZIP archive of the repo. Please extract it too.
-### Check version
-Hit settings and scroll the left panel to the bottom. You should see `DARKERcord V# by PRIZ ;]`, where `#` is the version number.
-Check if your version is up to date: [Releases](https://github.com/VoxelPrismatic/darkercord/releases/)
-
+*Check if your version is up to date: [Releases](https://github.com/VoxelPrismatic/darkercord/releases/)
 ### Windows
 *You may also run `script/inst-win.bat`
 1. Copy these files into `%APPDATA\discord\`
@@ -52,8 +40,6 @@ require("../../../../../newjs.js");
 
 # UNINSTALLATION ;\[
 *Any scripts require you to download the ZIP archive of the repo. Please extract it too.
-
-*These scripts do not uninstall DARKERcord, but instead prevents the theme from loading.
 ### Windows
 *You may also run `script/rem-win.bat`
 1. Go into `%APPDATA%\discord\0.0.306\modules\discord_utils\`
