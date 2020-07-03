@@ -36,7 +36,7 @@ require("../../../../../newjs.js");
 4. Restart Discord
 
 ### macOS
-*Unknown as of yet.
+*I don't have a mac to use
 
 # UNINSTALLATION ;\[
 *Any scripts require you to download the ZIP archive of the repo. Please extract it too.
@@ -59,4 +59,4 @@ require("../../../../../newjs.js");
 3. Restart Discord
 
 ### macOS
-*Unknown as of yet.
+*I don't have a mac to use
