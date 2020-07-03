@@ -5,14 +5,22 @@ Making the discord dark theme even darker.
 
 **NOTE:** This only works for the desktop app. I did not [and will not] make an extension due to ToS and security issues.
 
-<details><summary>Screen shots [6]</summary>
-<img src="https://media.discordapp.net/attachments/569698278271090728/727590717009952908/unknown.png">
-<img src="https://media.discordapp.net/attachments/569698278271090728/727590845817290773/unknown.png">
-<img src="https://media.discordapp.net/attachments/569698278271090728/727591933517496452/unknown.png">
-<img src="https://media.discordapp.net/attachments/569698278271090728/727592116011794522/unknown.png">
-<img src="https://media.discordapp.net/attachments/569698278271090728/727593120664911902/unknown.png">
-<img src="https://media.discordapp.net/attachments/569698278271090728/727593369789792346/unknown.png">
+<details>
+  <summary>Screen shots [6]</summary>
+  <img src="https://media.discordapp.net/attachments/569698278271090728/727590717009952908/unknown.png">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/727590845817290773/unknown.png">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/727591933517496452/unknown.png">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/727592116011794522/unknown.png">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/727593120664911902/unknown.png">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/727593369789792346/unknown.png">
 </details>
+
+# #] Wait, isn't this against Discord's ToS?
+Contrary to popular belief, it isn't. Discord states that the user is not allowed to mody the Service.
+Service, in their terms, refers to the website and the app. That is why I cannot make any extension,
+I am modifying the website. However, the app is the executable, I am modifying some assets that is used
+by it. Really, only one file. On Linux, I am changing some settings because the file I'm changing is
+under the `.config/` folder, aka configuration. 
 
 # #] FEATURES ;]
 - A darker Discord!
@@ -74,3 +82,7 @@ require("../../../../../newjs.js");
 
 ### macOS
 *I don't have a mac
+
+# #] DARKERcord for macOS
+I do not own a mac, and I will not pay an exorbitant amount for a machine I will use once and never again.
+If you know how to run macOS on a VM, please let me know and provide a copy of macOS at [prizmdev@outlook.com](mailto:prizmdev@outlook.com).
