@@ -23,8 +23,8 @@ by it. Really, only one file. On Linux, I am changing some settings because the 
 under the `.config/` folder, aka configuration. 
 
 # #] Is this BetterDiscord compatible?
-Not at all. I made this theme by hand, and you can see that my code will look nothing like BD. Also,
-I'd say my theme works even better because it supports Linux, whereas BD doesn't. If you try this with
+Not at all. I made this theme by hand, and you can see that my code will look nothing like other BD themes.
+Also, I'd say my theme works even better because it supports Linux, whereas BD doesn't. If you try this with
 BD, you will have to modify the CSS first, and possible the JS.
 
 # #] FEATURES ;]
