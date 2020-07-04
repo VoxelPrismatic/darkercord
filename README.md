@@ -16,11 +16,9 @@ Making the discord dark theme even darker.
 </details>
 
 # #] Wait, isn't this against Discord's ToS?
-Contrary to popular belief, it isn't. Discord states that the user is not allowed to mody the Service.
-Service, in their terms, refers to the website and the app. That is why I cannot make any extension,
-I am modifying the website. However, the app is the executable, I am modifying some assets that is used
-by it. Really, only one file. On Linux, I am changing some settings because the file I'm changing is
-under the `.config/` folder, aka configuration. 
+Maybe. On Windows, yes. Linux, no. This is because the file being modified on linux is under the `.config`
+directory. Therefore a setting is changed. Windows has no such folder, as you can see below. **However,
+Discord will not ban you for this specific mod.**
 
 # #] Is this BetterDiscord compatible?
 Not at all. I made this theme by hand, and you can see that my code will look nothing like other BD themes.
