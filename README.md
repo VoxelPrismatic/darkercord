@@ -16,9 +16,7 @@ Making the discord dark theme even darker.
 </details>
 
 # #] Wait, isn't this against Discord's ToS?
-Maybe. On Windows, yes. Linux, no. This is because the file being modified on linux is under the `.config`
-directory. Therefore a setting is changed. Windows has no such folder, as you can see below. **However,
-Discord will not ban you for this specific mod.**
+Yes, but DIscord doesn't actively ban people BD and similar.
 
 # #] Is this BetterDiscord compatible?
 Not at all. I made this theme by hand, and you can see that my code will look nothing like other BD themes.
