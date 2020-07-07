@@ -95,6 +95,8 @@ function __toggle_channels(doit = true) {
     if(doit)
         __channels_hidden = !__channels_hidden;
 
+    __channel_button = document.getElementById("channelButton");
+    
     // Toggle visibilty
     if(__channels_hidden) {
         document.getElementsByClassName("sidebar-2K8pFh")[0].classList.add("invis");
@@ -170,7 +172,9 @@ function __listen_to_channel_change() {
     } catch(err) {
         console.error(err);
     }
+    __fix_ui();
 }
+
 function __channel_listen() {
     /* Fixes said button */
 //     console.log("__channel_listen");
@@ -289,6 +293,15 @@ function __fix_ui(evt) {
     if(info.length == 1 && info[0].children.length == 3) {
         info[0].innerHTML += `<div class="colorMuted-HdFt4q size12-3cLvbJ">DARKERcord v${__version_number} by PRIZ ;]</div>`;
     }
+    
+    var items = document.getElementsByClassName("item-3HknzM item-PXvHYJ");
+    for(var item of items) {
+        if(item.textContent == "Add Friend") {
+            item.style.backgroundColor = "#4aa";
+        }
+    }
+    
+    __toggle_channels(false);
 
     // Double check
     if(evt)
@@ -301,5 +314,6 @@ function __fix_ui(evt) {
 if(loadcss.includes("true")) {
     window.onclick = __fix_ui;
     window.setTimeout(__guild_listen, 1000);
+    window.setTimeout(__fix_ui, 1000);
 }
 console.timeEnd("PRIZ ;] - Finished in");
