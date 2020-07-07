@@ -16,7 +16,7 @@ Making the discord dark theme even darker.
 </details>
 
 # #] Wait, isn't this against Discord's ToS?
-Yes, but DIscord doesn't actively ban people BD and similar.
+Yes, but Discord doesn't actively ban people BD and similar.
 
 # #] Is this BetterDiscord compatible?
 Not at all. I made this theme by hand, and you can see that my code will look nothing like other BD themes.
