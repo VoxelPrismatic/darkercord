@@ -1,7 +1,7 @@
 # #] DARKERcord ;]
 Making the discord dark theme even darker.
 
-**NOTE:** This does fuck with the light theme. If you intend to use light theme, you must uninstall it first
+**NOTE:** This does fuck with the light theme. If you intend to use light theme, you must turn it off first.
 
 **NOTE:** This only works for the desktop app. I did not [and will not] make an extension due to ToS and security issues.
 
@@ -58,6 +58,13 @@ require("../../../../../newjs.js");
 
 ### macOS
 *I don't have a mac
+
+# #] TURN IT OFF ;|
+Just go to your app settings, and click on the corrosponding button to change DARKERcord's settings
+
+"**Linux** Settings", "**Windows** Settings", "**Mac** Settings"
+
+*I don't have a mac, don't quote me on that last one.
 
 # #] UNINSTALLATION ;\[
 *Any scripts require you to download the ZIP archive of the repo. Please extract it too.
