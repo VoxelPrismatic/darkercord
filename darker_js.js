@@ -7,27 +7,6 @@
  * whatever you like with this code *
  * -------------------------------- */
 
-/* -INIT- */
-var fs = require("fs");
-
-console.log("PRIZ ;] - Loading");
-console.time("PRIZ ;] - Finished in");
-var cwd = process.cwd();
-var loadcss = "true";
-if(cwd.startsWith("C:\\"))
-    var dir = cwd + "\\..\\..\\..\\Roaming\\discord\\";
-else
-    var dir = "./snap/discord/current/";
-var newcss = fs.readFileSync(dir + "newcss.css");
-try {
-    var loadcss = fs.readFileSync(dir + "loadcss.bool");
-} catch(err) {
-    fs.writeFileSync(dir + "loadcss.bool", "true", {flag: "w+"})
-}
-
-if(loadcss.includes("true"))
-    document.head.innerHTML += "<style type='text/css'>" + newcss + "</style>";
-
 /* -Set up vars- */
 var __channels_hidden = false;
 var __channel_button = null;
@@ -36,7 +15,53 @@ var __emoji_timeout = 0;
 var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
-var __version_number = "0.4.1";
+var __version_number = "0.5";
+
+/* -INIT- */
+var fs = require("fs");
+
+console.log("PRIZ ;] - Loading");
+console.time("PRIZ ;] - Finished in");
+var cwd = process.cwd();
+var __darker_conf = {
+    "load": true,
+    "round": true
+};
+if(cwd.startsWith("C:\\"))
+    var dir = cwd + "\\..\\..\\..\\Roaming\\discord\\";
+else
+    var dir = "./snap/discord/current/";
+try {
+    __darker_conf = JSON.parse(fs.readFileSync(dir + "darker_conf.json"));
+} catch(err) {
+    try {
+        var loadcss = fs.readFileSync(dir + "loadcss.bool").trim() == "true";
+    } catch(err) {
+        var loadcss = true
+    }
+    fs.writeFileSync(dir + "darker_conf.json", JSON.stringify(__darker_conf), {flag: "w+"})
+}
+
+console.log(__darker_conf);
+function __apply_settings() {
+    __darker_conf = JSON.parse(fs.readFileSync(dir + "darker_conf.json"));
+    if(__darker_conf["load"]) {
+        var newcss = fs.readFileSync(dir + "darker_css.css");
+        var style = document.createElement("style");
+        style.type = "text/css";
+        style.id = "__darker_theme";
+        style.innerHTML = newcss;
+        document.head.appendChild(style);
+    } else {
+        try {
+            while(document.getElementById("__darker_theme"))
+                document.getElementById("__darker_theme").remove();
+        } catch(err) {
+        }
+    }
+}
+
+__apply_settings();
 
 /* -Emoji stuff- */
 function __listen_to_emoji_click(evt = null, force = false) {
@@ -98,12 +123,20 @@ function __toggle_channels(doit = true) {
     __channel_button = document.getElementById("channelButton");
 
     // Toggle visibilty
-    if(__channels_hidden) {
-        document.getElementsByClassName("sidebar-2K8pFh")[0].classList.add("invis");
-        __channel_button.classList.remove("selected-1GqIat");
-    } else {
-        document.getElementsByClassName("sidebar-2K8pFh")[0].classList.remove("invis");
-        __channel_button.classList.add("selected-1GqIat");
+    try {
+        if(__channels_hidden) {
+            document.getElementsByClassName("sidebar-2K8pFh")[0].classList.add("invis");
+            __channel_button.classList.remove("selected-1GqIat");
+        } else {
+            document.getElementsByClassName("sidebar-2K8pFh")[0].classList.remove("invis");
+            __channel_button.classList.add("selected-1GqIat");
+        }
+    } catch(err) {
+        window.setTimeout(() => {
+            __guild_listen();
+            __channel_listen();
+            __toggle_channels(false);
+        }, 500);
     }
 }
 function __listen_to_channel_change() {
@@ -255,9 +288,57 @@ function __guild_listen() {
 }
 
 /* -More UI fixing- */
+
+function __add_info(evt) {
+    // Add info in settings
+    var info = document.getElementsByClassName("info-1VyQPT");
+    if(!info.length)
+        return;
+
+    if(info[0].children.length == 3)
+        info[0].innerHTML += `<div class="colorMuted-HdFt4q size12-3cLvbJ">DARKERcord v${__version_number} by PRIZ ;]</div>`;
+    var button = document.getElementsByClassName("item-PXvHYJ selected-3s45Ha themed-OHr7kt")[0];
+    var btn = button.parentElement.children.item(button.parentElement.childElementCount - 8);
+    if(button != btn)
+        return;
+    var main = document.getElementsByClassName("contentColumn-2hrIYH contentColumnDefault-1VQkGM")[0].children[0];
+    if(!main.textContent.includes("DARKERcord Settings") && button.textContent.search(/(Linux|Windows|Mac) Settings/) != -1) {
+        var html = fs.readFileSync(dir + "darker_settings.html");
+        html = (new DOMParser()).parseFromString(html, "text/html");
+        for(var e of html.body.children)
+            main.appendChild(e);
+        var toggles = [
+            "uid_DARKER_theme",
+            "uid_DARKER_round",
+        ];
+        for(var toggle of toggles) {
+            toggle_elem = document.getElementById(toggle);
+            toggle_elem.onclick = function() {__update_settings(this)};
+            toggle_elem.checked = __darker_conf[toggle_elem.getAttribute("data-conf")];
+            __update_settings(toggle_elem);
+        }
+    }
+}
+
+function __update_settings(elem) {
+    if(elem.checked) {
+        elem.parentElement.classList.remove("valueUnchecked-2lU_20");
+        elem.parentElement.classList.add("valueChecked-m-4IJZ");
+    } else {
+        elem.parentElement.classList.remove("valueChecked-m-4IJZ");
+        elem.parentElement.classList.add("valueUnchecked-2lU_20");
+    }
+    __darker_conf[elem.getAttribute("data-conf")] = elem.checked;
+    console.log(__darker_conf);
+    fs.writeFileSync(dir + "darker_conf.json", JSON.stringify(__darker_conf), {flag: "w+"});
+    window.setTimeout(__apply_settings, 100);
+}
+
 function __fix_ui(evt) {
     /* Fixes more UI elements */
-
+    __add_info(evt)
+    if(!__darker_conf["load"])
+        return;
     // Fix wide toggles || [(o) Option                ]
     for(var button of document.getElementsByClassName("item-26Dhrx marginBottom8-AtZOdT horizontal-2EEEnY flex-1O1GKY directionRow-3v3tfG cardPrimaryEditable-3KtE4g card-3Qj_Yx")) {
         if(button.style.borderColor == "rgb(114, 137, 218)") {
@@ -283,12 +364,6 @@ function __fix_ui(evt) {
         }
     }
 
-    // Add info in settings
-    var info = document.getElementsByClassName("info-1VyQPT");
-    if(info.length == 1 && info[0].children.length == 3) {
-        info[0].innerHTML += `<div class="colorMuted-HdFt4q size12-3cLvbJ">DARKERcord v${__version_number} by PRIZ ;]</div>`;
-    }
-
     __toggle_channels(false);
 
     // Double check
@@ -299,9 +374,9 @@ function __fix_ui(evt) {
 
 // Run script
 
-if(loadcss.includes("true")) {
-    window.onclick = __fix_ui;
+if(__darker_conf["load"]) {
     window.setTimeout(__guild_listen, 1000);
     window.setTimeout(__fix_ui, 1000);
 }
+window.onclick = __fix_ui;
 console.timeEnd("PRIZ ;] - Finished in");
