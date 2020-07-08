@@ -36,7 +36,7 @@ var __emoji_timeout = 0;
 var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
-var __version_number = "0.4";
+var __version_number = "0.4.1";
 
 /* -Emoji stuff- */
 function __listen_to_emoji_click(evt = null, force = false) {
@@ -96,7 +96,7 @@ function __toggle_channels(doit = true) {
         __channels_hidden = !__channels_hidden;
 
     __channel_button = document.getElementById("channelButton");
-    
+
     // Toggle visibilty
     if(__channels_hidden) {
         document.getElementsByClassName("sidebar-2K8pFh")[0].classList.add("invis");
@@ -282,25 +282,13 @@ function __fix_ui(evt) {
             }
         }
     }
-    for(var toggle of document.getElementsByClassName("valueChecked-m-4IJZ")) {
-        if(toggle.style.backgroundColor == "rgb(67, 181, 129)") {
-            toggle.style.backgroundColor = "#4aa";
-        }
-    }
 
     // Add info in settings
     var info = document.getElementsByClassName("info-1VyQPT");
     if(info.length == 1 && info[0].children.length == 3) {
         info[0].innerHTML += `<div class="colorMuted-HdFt4q size12-3cLvbJ">DARKERcord v${__version_number} by PRIZ ;]</div>`;
     }
-    
-    var items = document.getElementsByClassName("item-3HknzM item-PXvHYJ");
-    for(var item of items) {
-        if(item.textContent == "Add Friend") {
-            item.style.backgroundColor = "#4aa";
-        }
-    }
-    
+
     __toggle_channels(false);
 
     // Double check
