@@ -91,10 +91,14 @@ function __listen_to_emoji_click(evt = null, force = false) {
     /* Finds all emojis and allows them to be clicked */
 
     // Get messages wrapper
-    if(evt)
-        target = evt.target;
-    else
-        target = document.getElementById("messages").parentElement;
+    try {
+        if(evt)
+            target = evt.target;
+        else
+            target = document.getElementById("messages").parentElement;
+    } catch(err) {
+        return;
+    }
 
     // Ignore dupes
     if(!force && __messages_length == target.children[0].children.length)
@@ -336,12 +340,13 @@ function __add_info(evt) {
 
     if(info[0].children.length == 3)
         info[0].innerHTML += `<div class="colorMuted-HdFt4q size12-3cLvbJ">DARKERcord v${__version_number} by PRIZ ;]</div>`;
-    var button = document.getElementsByClassName("item-PXvHYJ selected-3s45Ha themed-OHr7kt")[0];
+    var buttons = document.getElementsByClassName("item-PXvHYJ selected-3s45Ha themed-OHr7kt");
+    var button = buttons.item(buttons.length - 1);
     var btn = button.parentElement.children.item(button.parentElement.childElementCount - 8);
     if(button != btn)
         return;
     var main = document.getElementsByClassName("contentColumn-2hrIYH contentColumnDefault-1VQkGM")[0].children[0];
-    if(!main.textContent.includes("DARKERcord Settings") && button.textContent.search(/(Linux|Windows|Mac) Settings/) != -1) {
+    if(!main.textContent.includes("DARKERcord Settings")) {
         var html = fs.readFileSync(dir + "darker_settings.html");
         html = (new DOMParser()).parseFromString(html, "text/html");
         for(var e of html.body.children)
@@ -360,6 +365,7 @@ function __add_info(evt) {
             __update_settings(toggle_elem);
         }
         document.getElementById("__check_for_darker_updates").onclick = __check_for_darker_updates;
+        document.getElementById("restart_app__").onclick = () => {window.location = "discord.com"};
     }
 }
 
@@ -378,7 +384,7 @@ function __update_settings(elem) {
 
 function __fix_ui(evt) {
     /* Fixes more UI elements */
-    __add_info(evt)
+    __add_info(evt);
     if(!__darker_conf["load"])
         return;
     // Fix wide toggles || [(o) Option                ]
