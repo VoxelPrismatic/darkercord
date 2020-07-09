@@ -27,14 +27,21 @@ BD, you will have to modify the CSS first, and possible the JS.
 - A darker Discord!
 - You can now collapse channels
 - Removes most of the green/blurple and puts turqiose/cyan instead [nitro colors remain unchanged on purpose]
-  - *Some elements are colored directly, I am working on a way to detect these elements.
+  - Some elements are colored directly, I am working on a way to detect these elements.
+  - Statuses for Spotify and Twitch remain unchanged
 - Triple tapping an emoji will open the emoji source
+- You can now hide the ever annoying Clyde
+- You can check for updates within the app
+- Very easy to use settings panel
+  - Discord Settings > OS Settings
 
 # #] INSTALLATION ;]
 *Any scripts require you to download the ZIP archive of the repo. Please extract it too.
-### Check version
-Hit settings and scroll the left panel to the bottom. You should see `DARKERcord V# by PRIZ ;]`, where `#` is the version number.
-Check if your version is up to date: [Releases](https://github.com/VoxelPrismatic/darkercord/releases/)
+
+### Update DARKERcord
+You can use the update checker in the DARKERcord settings panel. To update, download the
+release provided and run the corrosponding script. Alternatively, you may just update the
+files as specified below.
 
 ### Windows
 *You may also run `script/inst-win.bat`
@@ -42,7 +49,7 @@ Check if your version is up to date: [Releases](https://github.com/VoxelPrismati
 2. Go into `%APPDATA%\discord\0.0.306\modules\discord_utils\`
 3. Append the following line to the file `index.js`:
 ```js
-require("../../../newjs.js");
+require("../../../darker_js.js");
 ```
 4. Restart Discord
 
@@ -52,7 +59,7 @@ require("../../../newjs.js");
 2. Go into `~/snap/discord/current/.config/discord/0.0.10/modules/discord_utils/`
 3. Append the following line to the file `index.js`:
 ```js
-require("../../../../../newjs.js");
+require("../../../../../darker_js.js");
 ```
 4. Restart Discord
 
@@ -69,13 +76,12 @@ Just go to your app settings, and click on the corrosponding button to change DA
 # #] UNINSTALLATION ;\[
 *Any scripts require you to download the ZIP archive of the repo. Please extract it too.
 
-*These scripts do not uninstall DARKERcord, but instead prevents the theme from loading.
 ### Windows
 *You may also run `script/rem-win.bat`
 1. Go into `%APPDATA%\discord\0.0.306\modules\discord_utils\`
 2. Remove the following line from the file `index.js`:
 ```js
-require("../../../newjs.js");
+require("../../../darker_js.js");
 ```
 3. Restart Discord
 
@@ -84,7 +90,7 @@ require("../../../newjs.js");
 1. Go into `~/snap/discord/current/.config/discord/0.0.10/modules/discord_utils/`
 2. Remove the following line from `index.js`:
 ```js
-require("../../../../../newjs.js");
+require("../../../../../darker_js.js");
 ```
 3. Restart Discord
 

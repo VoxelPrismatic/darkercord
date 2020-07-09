@@ -15,7 +15,7 @@ var __emoji_timeout = 0;
 var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
-var __version_number = "0.6";
+var __version_number = "0.6.1";
 
 /* -INIT- */
 var fs = require("fs");
@@ -139,14 +139,21 @@ function __listen_emoji(elem) {
 /* -Channel stuff-*/
 function __toggle_channels(doit = true) {
     /* Toggles channel list visibilty */
+    __channel_button = document.getElementById("channelButton");
 
     // In case of channel change
     if(doit)
         __channels_hidden = !__channels_hidden;
-    if(!__darker_conf["collapse"])
-        __channels_hidden = false
-
-    __channel_button = document.getElementById("channelButton");
+    try {
+        if(!__darker_conf["collapse"]) {
+            __channels_hidden = false
+            __channel_button.classList.remove("clickable-3rdHwn")
+        } else {
+            __channel_button.classList.add("clickable-3rdHwn")
+        }
+    } catch(err) {
+        console.error(err);
+    }
 
     // Toggle visibilty
     try {
@@ -155,8 +162,7 @@ function __toggle_channels(doit = true) {
             __channel_button.classList.remove("selected-1GqIat");
         } else {
             document.getElementsByClassName("sidebar-2K8pFh")[0].classList.remove("invis");
-            if(!__darker_conf["collapse"])
-                __channel_button.classList.add("selected-1GqIat");
+            __channel_button.classList.add("selected-1GqIat");
         }
     } catch(err) {
         if(!__darker_conf["collapse"])
@@ -180,9 +186,14 @@ function __listen_to_channel_change() {
 
     // Update the button to actually be a button
     globalThis.__channel_button = button;
-    button.classList.add("clickable-3rdHwn");
+    if(__darker_conf["collapse"])
+        button.classList.add("clickable-3rdHwn");
+    else
+        button.classList.remove("clickable-3rdHwn")
     button.id = "channelButton";
     button.onmouseenter = () => {
+        if(!__darker_conf["collapse"])
+            return
         var pos = button.getClientRects()[0];
         var x = pos["x"];
         x += pos["width"] / 2;
