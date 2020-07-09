@@ -219,18 +219,22 @@
 .theme-dark .reactors-Blmlhw,
 .theme-dark .selectorSelected-1_M1WV,
 .theme-dark .container-2x5lvQ section,
-.theme-dark .emptyHintCard-2mUdMe {
+.theme-dark .emptyHintCard-2mUdMe,
+.theme-dark .addGamePopout-2RY8Ju {
     background-color: #112222; /*#36393f*/
 }
 
 .theme-dark .scrollerThemed-2oenus.themedWithTrack-q8E3vB>.scroller-2FKFPG::-webkit-scrollbar-thumb,
 .theme-dark .scrollerThemed-2oenus.themeGhostHairline-DBD-2d .scroller-2FKFPG::-webkit-scrollbar-thumb,
-.scrollerThemed-2oenus.themeGhostHairline-DBD-2d .scroller-2FKFPG::-webkit-scrollbar-thumb, .scrollerThemed-2oenus.themeGhostHairlineChannels-3G0x9_ .scroller-2FKFPG::-webkit-scrollbar-thumb {
+.scrollerThemed-2oenus.themeGhostHairline-DBD-2d .scroller-2FKFPG::-webkit-scrollbar-thumb,
+.scrollerThemed-2oenus.themeGhostHairlineChannels-3G0x9_ .scroller-2FKFPG::-webkit-scrollbar-thumb,
+.auto-Ge5KZx::-webkit-scrollbar-thumb {
     background-color: #0a0a0a; /*#202225*/
     border-color: #112222; /*#36393f*/
 }
 
-.theme-dark .scrollerThemed-2oenus.themedWithTrack-q8E3vB>.scroller-2FKFPG::-webkit-scrollbar-track-piece {
+.theme-dark .scrollerThemed-2oenus.themedWithTrack-q8E3vB>.scroller-2FKFPG::-webkit-scrollbar-track-piece,
+.auto-Ge5KZx::-webkit-scrollbar-track {
     background-color: #111515; /*#2f3136*/
     border: 5px solid #112222; /*#36393f*/
     border-width: 5px !important;
@@ -304,7 +308,8 @@
 .theme-dark .tooltipBrand-g03Nz8,
 .theme-light .tooltipBrand-g03Nz8,
 .subscribeTooltipWrapper-32-Ce8,
-.lookFilled-1Gx00P.colorBrand-3pXr91:disabled {
+.lookFilled-1Gx00P.colorBrand-3pXr91:disabled,
+.planOptionDiscount-cS8uaO {
     background-color: #088; /*#43b581*/
     background: #088;
 }
@@ -553,4 +558,13 @@
 .spinner-2OWD4A,
 .spinner-3abdbi {
     filter: hue-rotate(-47deg) brightness(0.77) saturate(200);
+}
+
+.spinner-VERSION {
+    transform: scale(0.5) translateX(-64px) translateY(64px);
+}
+
+.userSettingsSecurity-3IYeMF .lockIcon-2Hj8Tq,
+.permissionCheckmark-1SeKr2 {
+    filter: saturate(2000) hue-rotate(82deg) brightness(1.5);
 }

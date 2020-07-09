@@ -15,17 +15,21 @@ var __emoji_timeout = 0;
 var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
-var __version_number = "0.5";
+var __version_number = "0.6";
 
 /* -INIT- */
 var fs = require("fs");
+var requests = require("request");
 
 console.log("PRIZ ;] - Loading");
 console.time("PRIZ ;] - Finished in");
 var cwd = process.cwd();
 var __darker_conf = {
     "load": true,
-    "round": true
+    "round": true,
+    "clyde": true,
+    "emoji": true,
+    "collapse": true
 };
 if(cwd.startsWith("C:\\"))
     var dir = cwd + "\\..\\..\\..\\Roaming\\discord\\";
@@ -46,12 +50,14 @@ console.log(__darker_conf);
 function __apply_settings() {
     __darker_conf = JSON.parse(fs.readFileSync(dir + "darker_conf.json"));
     if(__darker_conf["load"]) {
-        var newcss = fs.readFileSync(dir + "darker_css.css");
-        var style = document.createElement("style");
-        style.type = "text/css";
-        style.id = "__darker_theme";
-        style.innerHTML = newcss;
-        document.head.appendChild(style);
+        if(!document.getElementById("__darker_theme")) {
+            var newcss = fs.readFileSync(dir + "darker_css.css");
+            var style = document.createElement("style");
+            style.type = "text/css";
+            style.id = "__darker_theme";
+            style.innerHTML = newcss;
+            document.head.appendChild(style);
+        }
     } else {
         try {
             while(document.getElementById("__darker_theme"))
@@ -59,6 +65,23 @@ function __apply_settings() {
         } catch(err) {
         }
     }
+
+    if(__darker_conf["clyde"]) {
+        try {
+            while(document.getElementById("__hide_clyde"))
+                document.getElementById("__hide_clyde").remove();
+        } catch(err) {
+        }
+    } else {
+        if(document.getElementById("__hide_clyde")) {
+            var style = document.createElement("style");
+            style.type = "text/css";
+            style.id = "__hide_clyde";
+            style.innerHTML = `.localBot-GrCgVt { display: none !important }`;
+            document.head.appendChild(style);
+        }
+    }
+    __toggle_channels(false);
 }
 
 __apply_settings();
@@ -96,9 +119,10 @@ function __listen_to_emoji_click(evt = null, force = false) {
 }
 function __listen_emoji(elem) {
     /* Called when said emoji was clicked */
-
+    if(!__darker_conf["emoji"])
+        return
     // Count
-    if(__emoji_timeout < 0)
+    if(__emoji_timeout < 0 || __emoji_timeout >= 3)
         __emoji_timeout = 0
     if(__emoji_clicked != elem) {
         __emoji_clicked = elem;
@@ -109,7 +133,7 @@ function __listen_emoji(elem) {
     // Open
     if(__emoji_timeout == 3)
         window.open(elem.src);
-    window.setTimeout(() => globalThis.__emoji_timeout -= 1, 1000)
+    window.setTimeout(() => __emoji_timeout -= 1, 1000)
 }
 
 /* -Channel stuff-*/
@@ -119,6 +143,8 @@ function __toggle_channels(doit = true) {
     // In case of channel change
     if(doit)
         __channels_hidden = !__channels_hidden;
+    if(!__darker_conf["collapse"])
+        __channels_hidden = false
 
     __channel_button = document.getElementById("channelButton");
 
@@ -129,14 +155,16 @@ function __toggle_channels(doit = true) {
             __channel_button.classList.remove("selected-1GqIat");
         } else {
             document.getElementsByClassName("sidebar-2K8pFh")[0].classList.remove("invis");
-            __channel_button.classList.add("selected-1GqIat");
+            if(!__darker_conf["collapse"])
+                __channel_button.classList.add("selected-1GqIat");
         }
     } catch(err) {
-        window.setTimeout(() => {
-            __guild_listen();
-            __channel_listen();
-            __toggle_channels(false);
-        }, 500);
+        if(!__darker_conf["collapse"])
+            window.setTimeout(() => {
+                __guild_listen();
+                __channel_listen();
+                __toggle_channels(false);
+            }, 500);
     }
 }
 function __listen_to_channel_change() {
@@ -310,6 +338,9 @@ function __add_info(evt) {
         var toggles = [
             "uid_DARKER_theme",
             "uid_DARKER_round",
+            "uid_DARKER_emoji",
+            "uid_DARKER_collapse",
+            "uid_DARKER_clyde",
         ];
         for(var toggle of toggles) {
             toggle_elem = document.getElementById(toggle);
@@ -317,6 +348,7 @@ function __add_info(evt) {
             toggle_elem.checked = __darker_conf[toggle_elem.getAttribute("data-conf")];
             __update_settings(toggle_elem);
         }
+        document.getElementById("__check_for_darker_updates").onclick = __check_for_darker_updates;
     }
 }
 
@@ -329,7 +361,6 @@ function __update_settings(elem) {
         elem.parentElement.classList.add("valueUnchecked-2lU_20");
     }
     __darker_conf[elem.getAttribute("data-conf")] = elem.checked;
-    console.log(__darker_conf);
     fs.writeFileSync(dir + "darker_conf.json", JSON.stringify(__darker_conf), {flag: "w+"});
     window.setTimeout(__apply_settings, 100);
 }
@@ -370,6 +401,39 @@ function __fix_ui(evt) {
     if(evt)
         window.setTimeout(__fix_ui, 100);
 }
+
+
+/* Check for updates */
+function __check_for_darker_updates() {
+    var main = document.getElementById("app-mount");
+    var html = fs.readFileSync(dir + "darker_update.html");
+    html = (new DOMParser()).parseFromString(html, "text/html");
+    html.getElementById("current_version__").innerHTML = __version_number;
+    var resp = requests.get("https://github.com/VoxelPrismatic/darkercord/releases/latest", (e , resp , b) => {
+        var version = resp.req.path.split("/tag/")[1];
+        document.getElementById("latest_version__").innerHTML = version;
+    });
+    for(var e of html.body.children)
+        main.appendChild(e);
+    document.getElementById("releases_button__").onclick = () => {
+        window.open('https://github.com/voxelprismatic/darkercord/releases/latest');
+        __close_updates();
+    }
+    document.getElementById("__close_updates").onclick = __close_updates;
+    window.setTimeout(() => {
+        document.getElementById("__update_bg").style.opacity = "0.85";
+        document.getElementById("__update_alert").style.opacity = "1";
+        document.getElementById("__update_alert").style.transform = "scale(1.05)";
+        window.setTimeout(() => document.getElementById("__update_alert").style.transform = "scale(1)", 100);
+    }, 50);
+}
+function __close_updates() {
+    document.getElementById("__update_bg").style.opacity = "0";
+    document.getElementById("__update_alert").style.transform = "scale(0.7)";
+    document.getElementById("__update_alert").style.opacity = "0";
+    window.setTimeout(() => {document.getElementById("update_screen__").remove()}, 100);
+}
+
 
 
 // Run script
