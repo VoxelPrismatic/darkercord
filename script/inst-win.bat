@@ -1,6 +1,8 @@
 COPY ..\darker_js.js %APPDATA%\discord\
 COPY ..\darker_css.css %APPDATA%\discord\
 COPY ..\darker_settings.html %APPDATA%\discord\
+MKDIR %APPDATA%\discord\request
+XCOPY ..\request\* %APPDATA%\discord\request /E
 
 IF (FIND "require(\"../../../newjs.js\")" %APPDATA%\discord\0.0.306\modules\discord_utils\index.js) GTR "" (
     ECHO Cleaning up after DARKERcord prior to v0.5
@@ -15,7 +17,7 @@ IF (FIND "require(\"../../../darker_js.js\")" %APPDATA%\discord\0.0.306\modules\
     ECHO To check for updates, please go to Discord Settings ^> OS Settings ^> Check for DARKERcord updates
 ) ELSE (
     ECHO. >> %APPDATA%\discord\0.0.306\modules\discord_utils\index.js
-    ECHO require^("../../../newjs.js"^); >> %APPDATA%\discord\0.0.306\modules\discord_utils\index.js
+    ECHO require^("../../../darker_js.js"^); >> %APPDATA%\discord\0.0.306\modules\discord_utils\index.js
     ECHO DARKERcord installed
 )
 PAUSE > NUL

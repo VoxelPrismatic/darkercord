@@ -139,7 +139,6 @@
 }
 .theme-dark .scrollerThemed-2oenus.themedWithTrack-q8E3vB>.scroller-2FKFPG::-webkit-scrollbar-track-piece,
 .theme-dark .tierInProgress-3mBoXq,
-.theme-dark .spoilerText-3p6IlD.hidden-HHr2R9,
 .centerButton-3CaNcJ:hover,
 .scrollerThemed-2oenus.themeDark-2cjlUp.scrollerTrack-1ZIpsv>.scroller-2FKFPG::-webkit-scrollbar-track,
 .scrollerThemed-2oenus.themeDark-2cjlUp.scrollerTrack-1ZIpsv>.scrollerStore-390omS::-webkit-scrollbar-track,
@@ -202,7 +201,8 @@
 .theme-dark .userSettingsVoice-iwdUCU .previewOverlay-2O7_KC,
 .theme-dark .scroller-1-nKid,
 .theme-dark .container-2x5lvQ .header-2C89wJ,
-.centerButton-3CaNcJ {
+.centerButton-3CaNcJ,
+.theme-dark .spoilerText-3p6IlD.hidden-HHr2R9 {
     background-color: #111515; /*#2f3136*/
 }
 
