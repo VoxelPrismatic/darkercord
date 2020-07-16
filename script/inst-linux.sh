@@ -12,14 +12,14 @@ case $(cat $indexjs) in
     }
 esac;
 
-vnum=$(cat $discord\darker_js.js | grep "__version_number" | head -n -1);
-vnum=$(echo $vnum | head -c -3 | tail -c +24);
+vnum=$(cat $discord\darker_js.js | grep "__version_number" | head -n 1);
+vnum=$(echo $vnum | head -c -3 | tail -c +25);
 
 case $(cat $indexjs) in
     *require\(\"\.\./\.\./\.\./\.\./\.\./darker_js.js\"\)* ) {
-        echo "DARKERcord $vnum already installed";
+        echo "DARKERcord v$vnum already installed";
         html=$(curl -s https://github.com/voxelprismatic/darkercord/releases | grep -E "/VoxelPrismatic/darkercord/tree/v[[:digit:]]+\.[[:digit:]]+" | head -n 1)
-        html=$(echo $html | head -c -3 | tail -c +87)
+        html=$(echo $html | head -c -3 | tail -c +89)
         echo "DARKERcord $html is the latest stable version";
         echo "https://github.com/voxelprismatic/darkercord/releases/latest"
     };
