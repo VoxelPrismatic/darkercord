@@ -15,7 +15,7 @@ var __emoji_timeout = 0;
 var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
-var __version_number = "0.7";
+var __version_number = "0.7.1";
 
 function $id(...a) {
     return document.getElementById(...a);
