@@ -1,8 +1,6 @@
 # #] DARKERcord ;]
 Making the discord dark theme even darker.
 
-**NOTE:** This does fuck with the light theme. If you intend to use light theme, you must turn it off first.
-
 **NOTE:** This only works for the desktop app. I did not [and will not] make an extension due to ToS and security issues.
 
 <details>
@@ -24,16 +22,31 @@ Also, I'd say my theme works even better because it supports Linux, whereas BD d
 BD, you will have to modify the CSS first, and possible the JS.
 
 # #] FEATURES ;]
-- A darker Discord!
-- You can now collapse channels
-- Removes most of the green/blurple and puts turqiose/cyan instead [nitro colors remain unchanged on purpose]
-  - Some elements are colored directly, I am working on a way to detect these elements.
-  - Statuses for Spotify and Twitch remain unchanged
-- Triple tapping an emoji will open the emoji source
-- You can now hide the ever annoying Clyde
-- You can check for updates within the app
-- Very easy to use settings panel
+- Darker theme
+  - Ofc, you want one brighter! /s
+- Collapse channels
+- More cyan
+  - Green and blurple aren't doing it for me, lets switch it to cyan/turquoise!
+- Triple tap emoji
+  - Ever wanted to download the emoji source? Just triple click on any emoji!
+- Hide Clyde
+- Check for updates
+- Intuitive settings
   - Discord Settings > OS Settings
+- Not intensive
+  - This theme doesn't need too much power to run, but keep in mind that it is more 
+  intensive than Discord itself
+- Not intrusive
+  - You can easily turn this theme off and other parts of it, and if you want to try
+  the light theme, it'll automatically disable the darker theme [and it'll turn it back
+  on once you leave light theme]
+- Stand alone
+  - Unlike BD, this works without any application. Just run the install script and it'll
+  install the files. All necessary modules are included just in case your PC doesn't have
+  them [no, discord doesnt come with this addon]
+- Seamless
+  - I try my best to make sure all the animations are as close as possible to what Discord
+  already has, making the experience seamless
 
 # #] INSTALLATION ;]
 *Any scripts require you to download the ZIP archive of the repo. Please extract it too.
