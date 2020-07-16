@@ -15,7 +15,7 @@ var __emoji_timeout = 0;
 var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
-var __version_number = "0.7.1";
+var __version_number = "0.8";
 
 function $id(...a) {
     return document.getElementById(...a);
@@ -40,7 +40,8 @@ var __darker_conf = {
     "round": true,
     "clyde": true,
     "emoji": true,
-    "collapse": true
+    "collapse": true,
+    "light": false
 };
 if(cwd.startsWith("C:\\"))
     var dir = cwd + "\\..\\..\\..\\Roaming\\discord\\";
@@ -60,7 +61,7 @@ try {
 console.log(__darker_conf);
 function __apply_settings() {
     __darker_conf = JSON.parse(fs.readFileSync(dir + "darker_conf.json"));
-    if(__darker_conf["load"]) {
+    if(__darker_conf["load"] && !__darker_conf["light"]) {
         if(!$id("__darker_theme")) {
             var newcss = fs.readFileSync(dir + "darker_css.css");
             var style = document.createElement("style");
@@ -415,31 +416,23 @@ function __fix_ui(evt) {
     __add_info(evt);
     if(!__darker_conf["load"])
         return;
-    // Fix wide toggles || [(o) Option                ]
-    for(var button of $cls("item-26Dhrx marginBottom8-AtZOdT horizontal-2EEEnY flex-1O1GKY directionRow-3v3tfG cardPrimaryEditable-3KtE4g card-3Qj_Yx")) {
-        if(button.style.borderColor == "rgb(114, 137, 218)") {
-            button.style.borderColor = "#4aa";
-            button.style.backgroundColor = "#4aa";
-        }
-    }
 
     // Radio and multiselect buttons || (o) or [√]
     for(var button of $cls("checked-3_4uQ9")) {
         if(button.className.includes("round-")) {
-            button.style.backgroundColor = "#4aa";
-            button.style.borderColor = "#4aa";
-            button.getElementsByTagName("polyline")[0].setAttribute("stroke", "#aff");
         } else {
             if(window.getComputedStyle(button).backgroundColor == "rgb(255, 255, 255)") {
                 button.style.borderColor =
                     window.getComputedStyle(button.parentElement.parentElement).borderColor;
-            } else {
-                button.style.backgroundColor = "#4aa";
-                button.style.borderColor = "#4aa";
             }
         }
     }
-
+    og_light = __darker_conf["light"];
+    __darker_conf["light"] = document.documentElement.className.includes("theme-light");
+    if(og_light != __darker_conf["light"]) {
+        fs.writeFileSync(dir + "darker_conf.json", JSON.stringify(__darker_conf), {flag: "w+"});
+        window.setTimeout(__apply_settings, 100);
+    }
     __toggle_channels(false);
 
     // Double check
@@ -478,8 +471,6 @@ function __close_updates() {
     $id("__update_alert").style.opacity = "0";
     window.setTimeout(() => {$id("update_screen__").remove()}, 100);
 }
-
-
 
 // Run script
 

@@ -139,7 +139,6 @@
 }
 .theme-dark .scrollerThemed-2oenus.themedWithTrack-q8E3vB>.scroller-2FKFPG::-webkit-scrollbar-track-piece,
 .theme-dark .tierInProgress-3mBoXq,
-.centerButton-3CaNcJ:hover,
 .scrollerThemed-2oenus.themeDark-2cjlUp.scrollerTrack-1ZIpsv>.scroller-2FKFPG::-webkit-scrollbar-track,
 .scrollerThemed-2oenus.themeDark-2cjlUp.scrollerTrack-1ZIpsv>.scrollerStore-390omS::-webkit-scrollbar-track,
 .theme-dark .scrollerWrap-2lJEkd.scrollerTrack-1ZIpsv>.scroller-2FKFPG::-webkit-scrollbar-track,
@@ -202,7 +201,8 @@
 .theme-dark .scroller-1-nKid,
 .theme-dark .container-2x5lvQ .header-2C89wJ,
 .centerButton-3CaNcJ,
-.theme-dark .spoilerText-3p6IlD.hidden-HHr2R9 {
+.theme-dark .spoilerText-3p6IlD.hidden-HHr2R9,
+.centerButton-3CaNcJ:hover {
     background-color: #111515; /*#2f3136*/
 }
 
@@ -245,7 +245,8 @@
 .verified-1eC5dy,
 .partnered-3nJayh,
 .colorBrand-ROmMP1,
-.lookInverted-2D7oAl.colorBrand-3pXr91 {
+.lookInverted-2D7oAl.colorBrand-3pXr91,
+.rtcConnectionQualityFine-2J6i8z .pingForeground-2uAOZ3 {
     color: #088; /*#43b581*/
 }
 
@@ -288,6 +289,9 @@
 }
 
 .lookFilled-1Gx00P.colorGreen-29iAKY,
+.lookFilled-1Gx00P.colorGreen-29iAKY:disabled,
+.theme-dark .nowPlaying-284llR,
+.theme-light .nowPlaying-284llR,
 .newMessagesBar-mujexs,
 .mediaBarInteraction-37i2O4:hover .mediaBarGrabber-1FqnbN,
 .mediaBarGrabber-1FqnbN,
@@ -318,6 +322,19 @@
     background-color: #077;
 }
 
+.theme-dark .allowSelected-25S_i5,
+.allowSelected-25S_i5 {
+    background: #088;
+    border-color: #088;
+}
+
+.theme-dark .nowPlaying-284llR .gameNameInput-385LoS:focus,
+.theme-dark .nowPlaying-284llR .gameNameInput-385LoS:hover,
+.theme-light .nowPlaying-284llR .gameNameInput-385LoS:focus,
+.theme-light .nowPlaying-284llR .gameNameInput-385LoS:hover {
+    border-color: #044;
+    background-color: #0044444c;
+}
 
 .colorPremium-p4p7qO.focused-3afm-j {
     background-color: #7289da;
@@ -333,8 +350,10 @@
 
 .subscribeTooltipWrapper-32-Ce8:after {
     border-bottom-color: #088;
+} .theme-dark .tooltipBrand-g03Nz8 .tooltipPointer-3ZfirK,
+.theme-light .tooltipBrand-g03Nz8 .tooltipPointer-3ZfirK {
+    border-top-color: #088;
 }
-
 
 .input-cIJ7To.focused-1mmYsC,
 .input-cIJ7To:focus,
@@ -566,5 +585,39 @@
 
 .userSettingsSecurity-3IYeMF .lockIcon-2Hj8Tq,
 .permissionCheckmark-1SeKr2 {
-    filter: saturate(2000) hue-rotate(82deg) brightness(1.5);
+    filter: saturate(2000) hue-rotate(95deg) brightness(1.5);
+}
+
+.overrideItem-3oL8Hi.noUserDrag-5Mb43F[src="/assets/ffeba954d48c1ac993679084cee38746.svg"] {
+    filter: saturate(2000) hue-rotate(95deg) brightness(0.8);
+}
+
+.icon-RTGJu3.typeCreate-1kfBMl.targetWebhook-1xS7Z7,
+.icon-RTGJu3.typeCreate-1kfBMl.targetMember-2iuwxX,
+.icon-RTGJu3.typeCreate-1kfBMl.targetInvite-1RQBlr,
+.icon-RTGJu3.typeCreate-1kfBMl.targetChannel-TrRFlx {
+    filter: saturate(2000) hue-rotate(95deg);
+}
+
+.checked-3_4uQ9.round-2jCFai[style="width: 24px; height: 24px; border-color: rgb(67, 181, 129); background-color: rgb(67, 181, 129);"],
+.checked-3_4uQ9.round-2jCFai[style="width: 24px; height: 24px; border-color: rgb(67, 181, 129); flex: 1 1 auto; background-color: rgb(67, 181, 129);"],
+.checked-3_4uQ9.round-2jCFai[style="width: 24px; height: 24px; border-color: rgb(114, 137, 218); background-color: rgb(114, 137, 218);"] {
+    background-color: #4aa !important;
+    border-color: #4aa !important;
+}
+
+.checked-3_4uQ9.round-2jCFai[style="width: 24px; height: 24px; border-color: rgba(67, 181, 129, 0.15); background-color: rgba(67, 181, 129, 0.15);"] {
+    background-color: #44aaaa26 !important;
+    border-color: #44aaaa26 !important;
+}
+
+.checked-3_4uQ9.round-2jCFai[style="width: 24px; height: 24px; border-color: rgba(67, 181, 129, 0.15); background-color: rgba(67, 181, 129, 0.15);"] path {
+    fill: #088 !important;
+}
+
+.card-3Qj_Yx[style="padding: 10px; border-color: rgb(114, 137, 218); background-color: rgb(114, 137, 218);"],
+.card-3Qj_Yx[style="border-color: rgb(114, 137, 218); background-color: rgb(114, 137, 218); padding: 10px;"],
+.box-mmYMsp.checked-3_4uQ9[style="width: 24px; height: 24px; border-color: rgb(114, 137, 218); background-color: rgb(114, 137, 218);"] {
+    border-color: #4aa !important;
+    background-color: #4aa !important;
 }
