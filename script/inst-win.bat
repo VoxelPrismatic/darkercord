@@ -1,6 +1,7 @@
 COPY ..\darker_js.js %APPDATA%\discord\
 COPY ..\darker_css.css %APPDATA%\discord\
 COPY ..\darker_settings.html %APPDATA%\discord\
+COPY ..\darker_update.html %APPDATA%\discord\
 MKDIR %APPDATA%\discord\request
 XCOPY ..\request\* %APPDATA%\discord\request /E
 
