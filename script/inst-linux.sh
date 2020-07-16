@@ -2,6 +2,7 @@ discord=~/snap/discord/current/
 cp ../darker_css.css $discord
 cp ../darker_js.js $discord
 cp ../darker_settings.html $discord
+cp ../darker_update.html $discord
 cp ../request $discord -r
 indexjs=~/snap/discord/current/.config/discord/0.0.10/modules/discord_utils/index.js
 case $(cat $indexjs) in
