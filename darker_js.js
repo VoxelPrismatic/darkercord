@@ -15,7 +15,7 @@ var __emoji_timeout = 0;
 var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
-var __version_number = "0.8";
+var __version_number = "0.9";
 
 function $id(...a) {
     return document.getElementById(...a);
@@ -25,12 +25,7 @@ function $id(...a) {
 
 /* -INIT- */
 var fs = require("fs");
-try {
-    var requests = require("request");
-} catch(err) {
-    console.warn("NODE.js doesn't have the `request' module. Loading via included copy");
-    var requests = require("./request");
-}
+var requests = require("request");
 
 console.log("PRIZ ;] - Loading");
 console.time("PRIZ ;] - Finished in");
@@ -41,8 +36,14 @@ var __darker_conf = {
     "clyde": true,
     "emoji": true,
     "collapse": true,
-    "light": false
+    "light": false,
+    "hidden": false
 };
+
+function __write_settings() {
+    fs.writeFileSync(dir + "darker_conf.json", JSON.stringify(__darker_conf), {flag: "w+"});
+}
+
 if(cwd.startsWith("C:\\"))
     var dir = cwd + "\\..\\..\\..\\Roaming\\discord\\";
 else
@@ -55,10 +56,12 @@ try {
     } catch(err) {
         var loadcss = true
     }
-    fs.writeFileSync(dir + "darker_conf.json", JSON.stringify(__darker_conf), {flag: "w+"})
+    __write_settings()
 }
-
 console.log(__darker_conf);
+
+__channels_hidden = __darker_conf["hidden"];
+
 function __apply_settings() {
     __darker_conf = JSON.parse(fs.readFileSync(dir + "darker_conf.json"));
     if(__darker_conf["load"] && !__darker_conf["light"]) {
@@ -96,7 +99,6 @@ function __apply_settings() {
     __toggle_channels(false);
 }
 
-__apply_settings();
 
 /* -Emoji stuff- */
 function __listen_to_emoji_click(evt = null, force = false) {
@@ -158,8 +160,11 @@ function __toggle_channels(doit = true) {
     __channel_button = $id("channelButton");
 
     // In case of channel change
-    if(doit)
+    if(doit) {
         __channels_hidden = !__channels_hidden;
+        __darker_conf["hidden"] = __channels_hidden;
+        __write_settings();
+    }
     try {
         if(!__darker_conf["collapse"]) {
             __channels_hidden = false
@@ -407,7 +412,7 @@ function __update_settings(elem) {
         elem.parentElement.classList.add("valueUnchecked-2lU_20");
     }
     __darker_conf[elem.getAttribute("data-conf")] = elem.checked;
-    fs.writeFileSync(dir + "darker_conf.json", JSON.stringify(__darker_conf), {flag: "w+"});
+    __write_settings();
     window.setTimeout(__apply_settings, 100);
 }
 
@@ -430,7 +435,7 @@ function __fix_ui(evt) {
     og_light = __darker_conf["light"];
     __darker_conf["light"] = document.documentElement.className.includes("theme-light");
     if(og_light != __darker_conf["light"]) {
-        fs.writeFileSync(dir + "darker_conf.json", JSON.stringify(__darker_conf), {flag: "w+"});
+        __write_settings();
         window.setTimeout(__apply_settings, 100);
     }
     __toggle_channels(false);
@@ -478,5 +483,8 @@ if(__darker_conf["load"]) {
     window.setTimeout(__guild_listen, 1000);
     window.setTimeout(__fix_ui, 1000);
 }
+
+__apply_settings();
+
 window.onclick = __fix_ui;
 console.timeEnd("PRIZ ;] - Finished in");
