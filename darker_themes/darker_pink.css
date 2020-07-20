@@ -1,0 +1,79 @@
+:root {
+    --neon-cyan: #ff0088; /*#00b0f4*/
+    --neon-cyan-invis: #ff008811;
+
+    --bg-cyan: #221115; /*#36393f*/
+    --bg-cyan-ultra-lucent: #221115bf;
+    --bg-cyan-dark: #180810; /*#2f3136*/
+    --bg-cyan-dark-lucent: #18001099;
+    --bg-cyan-semi-dark: #1b0815;
+    --bg-cyan-ultra-dark: #150408; /*#2e3338*/
+    --bg-cyan-damn-near-black: #110008;
+    --bg-cyan-bright: #332226; /*#40444b*/
+    --bg-cyan-halved: #11080a; /*#292b2f*/
+    --bg-cyan-halved-halved: #080406;
+
+    --turquoise-bright: #aa4488;
+    --turquoise-bright-invis-slight: #aa448826;
+    --turquoise-bright-invis: #aa44882a;
+    --turquoise-bright-semi: #aa44884d;
+    --turquoise-invis: #8844661a;
+    --turquoise-semidark: #554447;
+    --turquoise-semidark-invis: #5544471a;
+    --turquoise-dark: #993366;
+    --turquoise-dark-invis: #9933661a;
+    --turquoise-very-dark: #990044;
+    --turquoise-ultra-dark: #880033;
+    --turquoise-ultra-dark-semi: #8800334d;
+    --turquoise-ultra-dark-lucent: #88003399;
+    --turquoise-hella-dark: #770033;
+    --turquoise-mega-dark: #440022;
+    --turquoise-mega-dark-semi: #4400224c;
+
+    --bg-dark: #0a0a0a; /*#202225*/
+    --bg-dark-invis: #0a0a0a34;
+    --bg-dark-semi: #0a0a0a4d;
+    --bg-dark-kinda: #0a0a0a88;
+    --bg-dark-lucent: #0a0a0a99;
+
+    --neon-yellow: #ffff00;
+    --neon-yellow-invis: #ffff0010;
+    --neon-yellow-ultra-invis: #ffff0008;
+
+    --button-normal: #443338; /*#4f545c*/
+    --button-normal-invis: #4433384d;
+    --button-clicky: #554449; /*#72767d*/
+    --button-select: #77666b;
+    --button-hover: #66555a;
+    --button-hover-bright: #bb5588;
+    --button-bright: #dd66aa;
+
+    --black: #000000;
+    --black-invis: #000000;
+
+    --invis: #0000;
+
+    --white: #ffffff;
+    --white-invis: #ffffff22;
+    --white-semi: #ffffff4d;
+    --white-trans: #ffffff0f;
+
+    --nitro-level-one: #cc40c7;
+    --nitro-level-two: #dd51d8;
+    --nitro-level-three: #ee62e9;
+    --nitro-dark: #6178c9;
+    --nitro-bright: #7289da;
+
+    --standard: #dcddde;
+    --std-red: #e03636;
+    --std-red-bright: #f04747;
+
+    --color-streaming: #6600aa;
+
+    --swap-green-to-blue: saturate(2000) hue-rotate(241deg);
+    --swap-blurple-to-blue: hue-rotate(115deg) brightness(0.99) saturate(2%);
+
+    --mod-hover: #44333829; /*#4f545c29*/
+    --mod-active: #4433383d; /*#4f545c3d*/
+    --mod-selected: #44333852; /*#4f545c52*/
+}z

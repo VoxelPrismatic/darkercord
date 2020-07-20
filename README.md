@@ -1,7 +1,5 @@
-# #] DARKERcord ;]
-Making the discord dark theme even darker.
-
-**NOTE:** This does fuck with the light theme. If you intend to use light theme, you must turn it off first.
+# #] PRIZcord ;]
+Making the discord dark theme even darker, with some cool colors too.
 
 **NOTE:** This only works for the desktop app. I did not [and will not] make an extension due to ToS and security issues.
 
@@ -16,30 +14,48 @@ Making the discord dark theme even darker.
 </details>
 
 # #] Wait, isn't this against Discord's ToS?
-Yes, but Discord doesn't actively ban people BD and similar.
+Yes, but Discord doesn't actively hunt or ban people using BD and similar. Just don't do anything illegal
+or do anything to get yourself reported, and you should be fine with this mod.
 
 # #] Is this BetterDiscord compatible?
 Not at all. I made this theme by hand, and you can see that my code will look nothing like other BD themes.
-Also, I'd say my theme works even better because it supports Linux, whereas BD doesn't. If you try this with
-BD, you will have to modify the CSS first, and possible the JS.
+Also, I'd say my theme works even better because it supports Linux, whereas BD doesn't. However, you can use
+most BD CSS files with PRIZcord, no scripts allowed [security risks ofc].
 
 # #] FEATURES ;]
-- A darker Discord!
-- You can now collapse channels
-- Removes most of the green/blurple and puts turqiose/cyan instead [nitro colors remain unchanged on purpose]
-  - Some elements are colored directly, I am working on a way to detect these elements.
-  - Statuses for Spotify and Twitch remain unchanged
-- Triple tapping an emoji will open the emoji source
-- You can now hide the ever annoying Clyde
-- You can check for updates within the app
-- Very easy to use settings panel
+- Darker theme
+  - Ofc, you want one brighter! /s
+- Collapse channels
+- More cyan
+  - Green and blurple aren't doing it for me, lets switch it to cyan/turquoise!
+- Triple tap emoji
+  - Ever wanted to download the emoji source? Just triple click on any emoji!
+- Hide Clyde
+- Check for updates
+- Intuitive settings
   - Discord Settings > OS Settings
+- Not intensive
+  - This theme doesn't need too much power to run, but keep in mind that it is more
+  intensive than Discord itself
+- Not intrusive
+  - You can easily turn this theme off and other parts of it, and if you want to try
+  the light theme, it'll automatically disable the darker theme [and it'll turn it back
+  on once you leave light theme]
+- Stand alone
+  - Unlike BD, this works without any application. Just run the install script and it'll
+  install the files. All necessary modules are included just in case your PC doesn't have
+  them [no, discord doesnt come with this addon]
+- Seamless
+  - I try my best to make sure all the animations are as close as possible to what Discord
+  already has, making the experience seamless
+- Customizable
+  - You can upload your own themes
 
 # #] INSTALLATION ;]
 *Any scripts require you to download the ZIP archive of the repo. Please extract it too.
 
-### Update DARKERcord
-You can use the update checker in the DARKERcord settings panel. To update, download the
+### Update PRIZcord
+You can use the update checker in the PRIZcord settings panel. To update, download the
 release provided and run the corrosponding script. Alternatively, you may just update the
 files as specified below.
 
@@ -67,7 +83,7 @@ require("../../../../../darker_js.js");
 *I don't have a mac
 
 # #] TURN IT OFF ;|
-Just go to your app settings, and click on the corrosponding button to change DARKERcord's settings
+Just go to your app settings, and click on the corrosponding button to change PRIZcord's settings
 
 "**Linux** Settings", "**Windows** Settings", "**Mac** Settings"
 
@@ -99,4 +115,4 @@ require("../../../../../darker_js.js");
 
 # #] DARKERcord for macOS
 I do not own a mac, and I will not pay an exorbitant amount for a machine I will use once and never again.
-If you know how to run macOS on a VM, please let me know and provide a copy of macOS at [prizmdev@outlook.com](mailto:prizmdev@outlook.com).
+If you know how to run macOS on a VM, please let me know how at [prizmdev@outlook.com](mailto:prizmdev@outlook.com).
