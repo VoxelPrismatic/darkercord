@@ -1,8 +1,8 @@
 @ECHO off
-TITLE DARKERcord
+TITLE PRIZcord
 CLS
 
-ECHO ^<ESC^>[94;1mInstalling DARKERcord...^<ESC^>[0m
+ECHO ^<ESC^>[94;1mInstalling PRIZcord...^<ESC^>[0m
 
 SET "DISCORD=%APPDATA%\discord\"
 SET "INDEXJS=%APPDATA%\discord\0.0.306\modules\discord_utils\index.js"
@@ -33,7 +33,7 @@ SET /P __DARKER_VERSION__=<__DARKER_VERSION__.TXT
 SET "VNUM=%__DARKER_VERSION__:~24,-2%"
 DEL __DARKER_VERSION__.TXT
 
-ECHO ^<ESC^>[94;1mDARKERcord v%VNUM% installed^<ESC^>[0m
+ECHO ^<ESC^>[94;1mPRIZcord v%VNUM% installed^<ESC^>[0m
 PAUSE
 EXIT
 
