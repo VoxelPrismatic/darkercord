@@ -9,7 +9,7 @@ indexjs=~/snap/discord/current/.config/discord/0.0.10/modules/discord_utils/inde
     cp ../darker_js.js $discord > /dev/null 2> /dev/null
     cp ../darker_settings.html $discord > /dev/null 2> /dev/null
     cp ../darker_update.html $discord > /dev/null 2> /dev/null
-    cp ../darker_emotion.js $discord > /dev/null 2> /dev/null
+    cp ../darker_emotion.css $discord > /dev/null 2> /dev/null
     cp ../darker_themes $discord -r > /dev/null 2> /dev/null
     echo -e "\e[90m> Copying dependencies\e[0m"
     cp ../node_stuff/node_modules $discord -r > /dev/null 2> /dev/null
