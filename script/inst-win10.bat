@@ -44,7 +44,7 @@ EXIT
 
 :ESCAPE
 FOR /F "tokens=1,2 delims=#" %%T IN ('"PROMPT #$H#$E# & @ECHO on & FOR %%E IN (1) DO REM"') DO (
-  SET ESC=%%b
+  SET ESC=%%E
   EXIT /B 0
 )
 @ECHO off
