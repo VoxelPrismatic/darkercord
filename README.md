@@ -6,16 +6,22 @@ Making the discord dark theme even darker, with some cool colors too.
 *Also check out [Skeuocord](https://github.com/marda33/skeuocord), it works with PRIZcord too!*
 
 <details>
-  <summary>Screenshots [7]</summary>
+  <summary>Screenshots [13]</summary>
   <h2><i>Normal icons:</i></h2>
-  <img src="https://media.discordapp.net/attachments/569698278271090728/727590717009952908/unknown.png">
-  <img src="https://media.discordapp.net/attachments/569698278271090728/727590845817290773/unknown.png">
-  <img src="https://media.discordapp.net/attachments/569698278271090728/727591933517496452/unknown.png">
-  <img src="https://media.discordapp.net/attachments/569698278271090728/727592116011794522/unknown.png">
-  <img src="https://media.discordapp.net/attachments/569698278271090728/727593120664911902/unknown.png">
-  <img src="https://media.discordapp.net/attachments/569698278271090728/727593369789792346/unknown.png">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/727590717009952908/unknown.png" width="32%">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/727590845817290773/unknown.png" width="32%">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/727591933517496452/unknown.png" width="32%">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/727592116011794522/unknown.png" width="32%">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/727593120664911902/unknown.png" width="32%">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/727593369789792346/unknown.png" width="32%">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/735951917418807436/unknown.png" width="32%">
   <h2><i>Square icons:</i></h2>
-  <img src="https://media.discordapp.net/attachments/569698278271090728/735846902477881454/unknown.png">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/735846902477881454/unknown.png" width="32%">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/735951186989154426/unknown.png" width="32%">
+  <img src="https://media.discordapp.net/attachments/615530864830578688/735845849254461480/unknown.png" width="32%">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/735952050726371348/unknown.png" width="32%">
+  <img src="https://media.discordapp.net/attachments/615530864830578688/735939104176341022/unknown.png" width="32%">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/735953307927052299/unknown.png" width="32%">
 </details>
 
 # #] Wait, isn't this against Discord's ToS?
@@ -38,7 +44,7 @@ most BD CSS files with PRIZcord, no scripts allowed [security risks ofc].
 - Hide Clyde
 - Check for updates
 - Intuitive settings
-  - Discord Settings > OS Settings
+  - Scroll down to "PRIZcord Settings" in the Discord settings panel!
 - Not intensive
   - This theme doesn't need too much power to run, but keep in mind that it is more
   intensive than Discord itself
@@ -90,11 +96,8 @@ require("../../../../../darker_js.js");
 *I don't have a mac
 
 # #] TURN IT OFF ;|
-Just go to your app settings, and click on the corrosponding button to change PRIZcord's settings
-
-"**Linux** Settings", "**Windows** Settings", "**Mac** Settings"
-
-*I don't have a mac, don't quote me on that last one.
+Just go to your app settings, and click on "Theming" under the "PRIZcord Settings" section.
+All the theme options you need are there.
 
 # #] UNINSTALLATION ;\[
 *Any scripts require you to download the ZIP archive of the repo. Please extract it too.

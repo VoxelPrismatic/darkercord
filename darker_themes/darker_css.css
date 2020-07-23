@@ -160,7 +160,9 @@
 .themeDefault-24hCdX.valueChecked-m-4IJZ,
 .panel-UE8sQC .checkedIcon-251AcY,
 .iconBadge-2wi9r4.participating-NBGDkr,
-.button-1YfofB.buttonColor-7qQbGO.buttonActive-3FrkXp {
+.button-1YfofB.buttonColor-7qQbGO.buttonActive-3FrkXp,
+.selectorButton-EEUWed:not(.selectorButtonPremiumRequired-mKMbIu):hover,
+.selectorButtonSelected-t5V9On {
     background-color: var(--turquoise-bright); /*#7289dacc*/
 }
 .theme-dark .focused-1En8bG:after,
@@ -686,4 +688,8 @@ div.checkbox-1ix_J3.box-mmYMsp[style="width: 24px; height: 24px; border-color: r
 
 .theme-dark .allowSelected-25S_i5 {
     border-color: var(--turquoise-ultra-dark);
+}
+
+.avatarHint-1qgaV3 {
+    z-index: 0;
 }

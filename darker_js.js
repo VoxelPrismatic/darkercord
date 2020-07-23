@@ -7,6 +7,9 @@
  * whatever you like with this code *
  * -------------------------------- */
 
+console.log("PRIZcord - Loading");
+console.time("PRIZcord - Finished in");
+
 /* -Set up vars- */
 var __channels_hidden = false;
 var __channel_button = null;
@@ -15,7 +18,7 @@ var __emoji_timeout = 0;
 var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
-var __version_number = "1.0";
+var __version_number = "1.1";
 
 window._$ = {
     c: (st, elem = document) => { return elem.getElementsByClassName(st); },
@@ -39,7 +42,9 @@ window._$ = {
             i: (...args) => { return window.clearInterval(...args); },
             n: (...args) => { return window.clearImmediate(...args); },
         }
-    }
+    },
+
+    html: (file) => { return (new DOMParser()).parseFromString(fs.readFileSync(file), "text/html"); }
 }
 
 /* -INIT- */
@@ -47,6 +52,15 @@ window._$ = {
 function required(mod_name) {
     __darker_modules[mod_name] = require(mod_name);
     return __darker_modules[mod_name];
+}
+
+function __add_masks() {
+    e = _$.q("div#app-mount > svg");
+    if(!e) {
+        _$.tmr.s.o(__add_masks, 100);
+        return;
+    }
+    e.after(_$.html(dir + "darker_html/darker_masks.html").body.children[0]);
 }
 
 window.__darker_modules = {
@@ -57,12 +71,10 @@ window.__darker_modules = {
 var fs = required("fs");
 var requests = required("request");
 
-console.log("PRIZcord - Loading");
-console.time("PRIZcord - Finished in");
 var cwd = process.cwd();
 var __darker_conf = {
     "load": true,
-    "round": true,
+    "square": false,
     "clyde": true,
     "emoji": true,
     "collapse": true,
@@ -122,13 +134,14 @@ function __add_css(file, id) {
     return style;
 }
 
-__add_css(dir + "darker_emotion.css", "__darker_emotion")
+__add_css(dir + "darker_themes/darker_emotion.css", "__darker_emotion")
+__add_masks();
 
 function __apply_settings() {
     __darker_conf = JSON.parse(fs.readFileSync(dir + "darker_conf.json"));
     if(__darker_conf["load"] && !(__darker_conf["light"] && !__darker_conf["override_light"])) {
         if(!_$.i("__darker_global"))
-            __add_css(dir + "darker_css.css", "__darker_global");
+            __add_css(dir + "darker_themes/darker_css.css", "__darker_global");
         if(_$.i("__darker_theme"))
             if(_$.i("__darker_theme").getAttribute("data-theme") != __darker_conf)
                 __clear_css("__darker_theme")
@@ -143,7 +156,7 @@ function __apply_settings() {
         __clear_css("__darker_global", "__darker_theme");
     }
 
-    if(!__darker_conf["round"]) {
+    if(__darker_conf["square"]) {
         if(!_$.i("__darker_square")) {
             __add_css(dir + "darker_themes/darker_square.css", "__darker_square");
         }
@@ -155,7 +168,7 @@ function __apply_settings() {
         if(!_$.i("__darker_custom"))
             __add_css(__darker_conf["ext_theme_file"], "__darker_custom")
         if(__darker_conf["ext_theme_override"])
-            __clear_css("__darker_global", "__darker_theme");
+            __clear_css("__darker_global", "__darker_theme", "__darker_square");
     } else {
         __clear_css("__darker_custom");
     }
@@ -197,7 +210,7 @@ function __listen_to_emoji_click(evt = null, force = false) {
 
     // Make sure no emojis were missed
     if(count == 0 || count != __last_count) {
-        window.setTimeout(__listen_to_emoji_click, 100);
+        _$.tmr.s.o(__listen_to_emoji_click, 100);
         __last_count = count;
     } else {
         __last_count = 0;
@@ -219,7 +232,7 @@ function __listen_emoji(elem) {
     // Open
     if(__emoji_timeout == 3)
         window.open(elem.src);
-    window.setTimeout(() => __emoji_timeout -= 1, 1000)
+    _$.tmr.s.o(() => __emoji_timeout -= 1, 1000)
 }
 
 /* -Channel stuff-*/
@@ -254,7 +267,7 @@ function __toggle_channels(doit = true) {
         }
     } catch(err) {
         if(!__darker_conf["collapse"])
-            window.setTimeout(() => {
+            _$.tmr.s.o(() => {
                 __guild_listen();
                 __channel_listen();
                 __toggle_channels(false);
@@ -298,7 +311,7 @@ function __listen_to_channel_change() {
         _$.c("customContainer_NEW")[0].innerHTML = innerHTML;
 
         // Show the text
-        window.setTimeout(() => {
+        _$.tmr.s.o(() => {
             try {
                 style = _$.i("thething").style;
                 style.transform = "scale(1)";
@@ -315,7 +328,7 @@ function __listen_to_channel_change() {
             style = _$.i("thething").style;
             style.transform = "scale(0.9)";
             style.filter = "opacity(0)";
-            window.setTimeout(
+            _$.tmr.s.o(
                 () => _$.i("thething").outerHTML = "",
                 50
             )
@@ -359,7 +372,7 @@ function __channel_listen() {
     for(var channel of ls) {
         channel.onclick = () => {
             for(var x = 0; x <= 250; x += 50) {
-                window.setTimeout(__listen_to_channel_change, x);
+                _$.tmr.s.o(__listen_to_channel_change, x);
             }
         }
 //         console.log(channel);
@@ -368,7 +381,7 @@ function __channel_listen() {
 
     // Make sure no channel is missed
     if(count == 0 || count != __last_count) {
-        window.setTimeout(__channel_listen, 500);
+        _$.tmr.s.o(__channel_listen, 500);
         __last_count = count;
     } else {
         __listen_to_channel_change();
@@ -394,8 +407,8 @@ function __guild_listen() {
     for(var guild of _$.c("listItem-2P_4kh")) {
         guild.onclick = () => {
             for(var x = 0; x <= 250; x += 50) {
-                window.setTimeout(__listen_to_guild_change, x);
-                window.setTimeout(__listen_to_channel_change, x);
+                _$.tmr.s.o(__listen_to_guild_change, x);
+                _$.tmr.s.o(__listen_to_channel_change, x);
             }
         }
 //         console.log(guild);
@@ -404,76 +417,50 @@ function __guild_listen() {
 
     // Make sure no guild is missed
     if(count <= 3 || count != __last_count) {
-        window.setTimeout(__guild_listen, 1000);
+        _$.tmr.s.o(__guild_listen, 1000);
         __last_count = count;
     } else {
         __last_count = 0;
         __listen_to_guild_change();
-        window.setTimeout(__listen_to_channel_change, 1000);
+        _$.tmr.s.o(__listen_to_channel_change, 1000);
         __stop_guild_listen = true;
     }
 }
 
 /* -More UI fixing- */
 
-function __add_info(evt) {
-    // Add info in settings
-    var info = _$.c("info-1VyQPT");
-    if(!info.length)
-        return;
-
-    if(info[0].children.length == 3) {
-        info[0].innerHTML += `<div class="colorMuted-HdFt4q size12-3cLvbJ">PRIZcord v${__version_number} by PRIZ ;]</div>`;
-        var social = _$.c("socialLinks-3jqNFy")[0];
-        social.appendChild(document.createElement("br"));
-        var my_twitter = social.children[0].cloneNode();
-        my_twitter.innerHTML = social.children[0].innerHTML;
-        my_twitter.title = "@VoxelPrismatic's Twitter"
-        my_twitter.href = "https://twitter.com/voxelprismatic";
-        social.appendChild(my_twitter);
-        my_github = my_twitter.cloneNode();
-        my_github.innerHTML = social.children[0].innerHTML;
-        my_github.title = "PRIZ ;]'s GitHub"
-        my_github.style.paddingTop = "8px"
-        my_github.style.display = "inline-block";
-        my_github.children[0].style.height = "20px";
-        my_github.href = "https://github.com/voxelprismatic"
-        social.appendChild(my_github);
-        _$.t("path", my_github)[0].outerHTML = `<path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" class="foreground-26ym5y" style="transform:scale(1.2);"></path>`
-    }
-    var main = _$.c("contentColumn-2hrIYH contentColumnDefault-1VQkGM");
-    main = main[main.length - 1].children[0];
-    var buttons = _$.q("div[aria-label=\"USER_SETTINGS\"]");
-    buttons = _$.c("item-PXvHYJ selected-3s45Ha themed-OHr7kt");
-    var button = buttons.item(buttons.length - 1);
-    var btn = button.parentElement.children.item(button.parentElement.childElementCount - 8);
-    if(button != btn)
-        return;
-    if(!main.textContent.includes("PRIZcord Settings")) {
-        var html = fs.readFileSync(dir + "darker_settings.html");
-        html = (new DOMParser()).parseFromString(html, "text/html");
-        for(var e of html.body.children)
-            main.appendChild(e);
-        var toggles = [
-            "uid_DARKER_theme",
-            "uid_DARKER_light",
-            "uid_DARKER_round",
-            "uid_DARKER_emoji",
-            "uid_DARKER_collapse",
-            "uid_DARKER_clyde",
-            "uid_theme_enable",
-            "uid_theme_override"
-        ];
-        for(var toggle of toggles) {
-            toggle_elem = _$.i(toggle);
+function __relay_settings_html() {
+    var toggles = [
+        "uid_DARKER_theme",
+        "uid_DARKER_light",
+        "uid_DARKER_round",
+        "uid_DARKER_emoji",
+        "uid_DARKER_collapse",
+        "uid_DARKER_clyde",
+        "uid_theme_enable",
+        "uid_theme_override"
+    ];
+    for(var toggle of toggles) {
+        toggle_elem = _$.i(toggle);
+        if(toggle_elem) {
             toggle_elem.onclick = function() {__update_settings(this)};
             toggle_elem.checked = __darker_conf[toggle_elem.getAttribute("data-conf")];
             __update_settings(toggle_elem);
         }
-        _$.i("value_theme_file").innerHTML = __darker_conf["ext_theme_file"].split("/").slice(-1)[0];
-        _$.i("uid_theme_file").onclick = function() { __check_css_file(this); }
-        _$.i("__check_for_darker_updates").onclick = __check_for_darker_updates;
-        _$.i("restart_app__").onclick = () => {window.location = "discord.com"};
+    }
+    elem = _$.i("value_theme_file");
+    if(elem)
+        elem.innerHTML = __darker_conf["ext_theme_file"].split("/").slice(-1)[0];
+    elem = _$.i("uid_theme_file");
+    if(elem)
+        elem.onclick = function() { __check_css_file(this); }
+    elem = _$.i("__check_for_darker_updates");
+    if(elem)
+        elem.onclick = __check_for_darker_updates;
+    elem = _$.i("restart_app__");
+    if(elem)
+        elem.onclick = () => {window.location = "discord.com"};
+    if(_$.i("theme_select")) {
         for(var clicky of _$.i("theme_select").children) {
             clicky.onclick = function() {
                 for(var e of _$.c("css-12o7ek3-option custom-select")) {
@@ -492,6 +479,73 @@ function __add_info(evt) {
     }
 }
 
+function __add_info(evt) {
+    // Add info in settings
+    var info = _$.c("info-1VyQPT");
+    if(!info.length)
+        return;
+
+    if(info[0].children.length == 3) {
+        var main = _$.c("contentColumn-2hrIYH contentColumnDefault-1VQkGM");
+        main = main[main.length - 1].children[0];
+        var buttons = _$.q("div[aria-label=\"USER_SETTINGS\"]");
+        buttons = _$.c("item-PXvHYJ selected-3s45Ha themed-OHr7kt");
+        var button = buttons.item(buttons.length - 1);
+        var sep = button.parentElement.children.item(button.parentElement.childElementCount - 7);
+
+        info[0].innerHTML += `<div class="colorMuted-HdFt4q size12-3cLvbJ">PRIZcord v${__version_number} by PRIZ ;]</div>`;
+        var social = _$.c("socialLinks-3jqNFy")[0];
+        social.appendChild(document.createElement("br"));
+        var my_twitter = social.children[0].cloneNode();
+        my_twitter.innerHTML = social.children[0].innerHTML;
+        my_twitter.title = "@VoxelPrismatic's Twitter"
+        my_twitter.href = "https://twitter.com/voxelprismatic";
+        social.appendChild(my_twitter);
+        my_github = my_twitter.cloneNode();
+        my_github.innerHTML = social.children[0].innerHTML;
+        my_github.title = "PRIZ ;]'s GitHub"
+        my_github.style.paddingTop = "8px"
+        my_github.style.display = "inline-block";
+        my_github.children[0].style.height = "20px";
+        my_github.href = "https://github.com/voxelprismatic"
+        social.appendChild(my_github);
+        _$.t("path", my_github)[0].outerHTML = `<path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" class="foreground-26ym5y" style="transform:scale(1.2);"></path>`
+        sep.after(
+            _$.html(dir + "darker_html/darker_settings_panel.html").body.children[0]
+        );
+        for(var b of _$.c("prizcord-settings_button")) {
+            b.onclick = function() {
+                panel = _$.q("main.contentColumn-2hrIYH.contentColumnDefault-1VQkGM");
+                for(var p of panel.children) {
+                    p.innerHTML = "";
+                    if(p.id == "__darker_window")
+                        p.remove();
+                }
+                e = document.createElement("DIV");
+                e.id = "__darker_window"
+                e.innerHTML = _$.html(
+                    dir + "darker_html/darker_settings_" + this.getAttribute("data-html") + ".html"
+                ).body.children[0].innerHTML;
+                panel.appendChild(e);
+                __relay_settings_html();
+            }
+        }
+        for(var b of _$.c("item-PXvHYJ themed-OHr7kt")) {
+            b.addEventListener("mouseup", function() {
+                if(this.textContent.includes("Change Log"))
+                    return
+                _$.q(".selected-3s45Ha").classList.remove("selected-3s45Ha");
+                this.classList.add("selected-3s45Ha");
+                if(this.parentElement.id != "darker_panel" && _$.i("__darker_window")) {
+                   _$.i("__darker_window").remove();
+                    _$.tmr.s.o(() => this.previousElementSibling.click(), 10);
+                    _$.tmr.s.o(() => this.click(), 20);
+                }
+            });
+        }
+    }
+}
+
 async function __check_css_file(elem) {
     var file = await globalThis.DiscordNative.fileManager.showOpenDialog();
     file = file[0];
@@ -504,10 +558,10 @@ async function __check_css_file(elem) {
         __darker_conf["ext_theme_file"] = file;
         _$.i("value_theme_file").innerHTML = file.split("/").slice(-1)[0];
         __write_settings();
-        window.setTimeout(__apply_settings, 100);
+        _$.tmr.s.o(__apply_settings, 100);
         return;
     }
-    window.setTimeout(() => _$.i("value_theme_file").innerHTML = __darker_conf["ext_theme_file"].split("/").slice(-1)[0], 2000);
+    _$.tmr.s.o(() => _$.i("value_theme_file").innerHTML = __darker_conf["ext_theme_file"].split("/").slice(-1)[0], 2000);
 
 }
 
@@ -521,7 +575,39 @@ function __update_settings(elem) {
     }
     __darker_conf[elem.getAttribute("data-conf")] = elem.checked;
     __write_settings();
-    window.setTimeout(__apply_settings, 100);
+    if(elem.id == "uid_theme_enable" || elem.id == "uid_theme_override") {
+        ids = {
+            "uid_DARKER_theme": false,
+            "uid_DARKER_light": true,
+            "uid_DARKER_round": false
+        }
+        condition = __darker_conf["ext_theme_enabled"] && __darker_conf["ext_theme_override"];
+        for(var id of Object.keys(ids)) {
+            e = _$.i(id);
+            if(ids[id]) {
+                e.parentElement.classList.add("valueChecked-m-4IJZ");
+                e.parentElement.classList.remove("valueUnchecked-2lU_20");
+            } else {
+                e.parentElement.classList.remove("valueChecked-m-4IJZ");
+                e.parentElement.classList.add("valueUnchecked-2lU_20");
+            }
+            if(condition) {
+                e.parentElement.classList.add("switchDisabled-3HsXAJ");
+                e.parentElement.classList.remove("switchEnabled-V2WDBB");
+                e.disabled = true;
+                e.classList.add("checkboxDisabled-1MA81A");
+                e.parentElement.parentElement.parentElement.classList.add("disabled-2HSEFa");
+            } else {
+                e.parentElement.classList.remove("switchDisabled-3HsXAJ");
+                e.parentElement.classList.add("switchEnabled-V2WDBB");
+                e.classList.remove("checkboxDisabled-1MA81A");
+                e.disabled = false;
+                e.parentElement.parentElement.parentElement.classList.remove("disabled-2HSEFa");
+                __update_settings(e);
+            }
+        }
+    }
+    _$.tmr.s.n(__apply_settings);
 }
 
 function __fix_ui(evt) {
@@ -546,20 +632,20 @@ function __fix_ui(evt) {
     __darker_conf["light"] = document.documentElement.className.includes("theme-light");
     if(og_light != __darker_conf["light"]) {
         __write_settings();
-        window.setTimeout(__apply_settings, 100);
+        _$.tmr.s.o(__apply_settings, 100);
     }
     __toggle_channels(false);
 
     // Double check
     if(evt)
-        window.setTimeout(__fix_ui, 100);
+        _$.tmr.s.o(__fix_ui, 100);
 }
 
 
 /* Check for updates */
 function __check_for_darker_updates() {
     var main = _$.i("app-mount");
-    var html = fs.readFileSync(dir + "darker_update.html");
+    var html = fs.readFileSync(dir + "darker_html/darker_update.html");
     html = (new DOMParser()).parseFromString(html, "text/html");
     _$.i("current_version__", html).innerHTML = __version_number;
     var resp = requests.get("https://github.com/VoxelPrismatic/prizcord/releases/latest", (e , resp , b) => {
@@ -578,18 +664,18 @@ function __check_for_darker_updates() {
         __close_updates();
     }
     _$.i("__close_updates").onclick = __close_updates;
-    window.setTimeout(() => {
+    _$.tmr.s.o(() => {
         _$.i("__update_bg").style.opacity = "0.85";
         _$.i("__update_alert").style.opacity = "1";
         _$.i("__update_alert").style.transform = "scale(1.05)";
-        window.setTimeout(() => _$.i("__update_alert").style.transform = "scale(1)", 100);
+        _$.tmr.s.o(() => _$.i("__update_alert").style.transform = "scale(1)", 100);
     }, 50);
 }
 function __close_updates() {
     _$.i("__update_bg").style.opacity = "0";
     _$.i("__update_alert").style.transform = "scale(0.7)";
     _$.i("__update_alert").style.opacity = "0";
-    window.setTimeout(() => {_$.i("update_screen__").remove()}, 100);
+    _$.tmr.s.o(() => {_$.i("update_screen__").remove()}, 100);
 }
 
 function __details(elem) {
@@ -638,14 +724,14 @@ function maybe_hide_thing(elem) {
     author = elems[elems.length - 1].__reactEventHandlers$.children[1].props.message.author.tag;
     _$.q("span[role=\"button\"]", elem).click();
     if(author == "")
-        elem.parentElement.parentElement.classList.add("invis")
+        elem.parentElement.parentElement.classList.add("invis");
 }
 
 // Run script
 
 if(__darker_conf["load"]) {
-    window.setTimeout(__guild_listen, 1000);
-    window.setTimeout(__fix_ui, 1000);
+    _$.tmr.s.o(__guild_listen, 1000);
+    _$.tmr.s.o(__fix_ui, 1000);
 }
 
 __apply_settings();

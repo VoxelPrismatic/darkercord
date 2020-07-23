@@ -2,11 +2,11 @@
 TITLE PRIZcord
 
 FOR /F "tokens=4 delims=[]. " %%G IN ('ver') DO (
-    SET nt_build=%%G
+    SET NT_BUILD=%%G
 )
-IF %nt_build% EQU 10 (
-    inst-win10
-    exit
+IF %NT_BUILD% EQU 10 (
+    INST-WIN10.BAT
+    EXIT
 )
 COLOR 0B
 CLS
@@ -26,6 +26,8 @@ COPY ..\darker_update.html %DISCORD% > NUL 2> NUL
 COPY ..\darker_emotion.css %DISCORD% > NUL 2> NUL
 MKDIR %DISCORD%darker_themes > NUL 2> NUL
 XCOPY ..\darker_themes\* %DISCORD%darker_themes /E /Y > NUL 2> NUL
+MKDIR %DISCORD%darker_html > NUL 2> NUL
+XCOPY ..\darker_html\* %DISCORD%darker_html /E /Y > NUL 2> NUL
 
 ECHO ^> Copying dependencies
 COPY ..\node_stuff\package-lock.json %DISCORD% > NUL 2> NUL
