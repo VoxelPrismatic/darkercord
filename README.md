@@ -28,10 +28,11 @@ Making the discord dark theme even darker, with some cool colors too.
 Yes, but Discord doesn't actively hunt or ban people using BD and similar. Just don't do anything illegal
 or do anything to get yourself reported, and you should be fine with this mod.
 
-# #] Is this BetterDiscord compatible?
+# #] Is this BetterDiscord/BandagedBD/etc compatible?
 Not at all. I made this theme by hand, and you can see that my code will look nothing like other BD themes.
 Also, I'd say my theme works even better because it supports Linux, whereas BD doesn't. However, you can use
-most BD CSS files with PRIZcord, no scripts allowed [security risks ofc].
+most BD CSS files with PRIZcord, no scripts allowed [security risks ofc]. Feel free to take the CSS from here,
+but I guarentee nothing. Do not complain to me about it.
 
 # #] FEATURES ;]
 - Darker theme
