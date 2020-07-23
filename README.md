@@ -6,13 +6,15 @@ Making the discord dark theme even darker, with some cool colors too.
 *Also check out [Skeuocord](https://github.com/marda33/skeuocord), it works with PRIZcord too!*
 
 <details>
-  <summary>Screen shots [7]</summary>
+  <summary>Screenshots [7]</summary>
+  <h2><i>Normal icons:</i></h2>
   <img src="https://media.discordapp.net/attachments/569698278271090728/727590717009952908/unknown.png">
   <img src="https://media.discordapp.net/attachments/569698278271090728/727590845817290773/unknown.png">
   <img src="https://media.discordapp.net/attachments/569698278271090728/727591933517496452/unknown.png">
   <img src="https://media.discordapp.net/attachments/569698278271090728/727592116011794522/unknown.png">
   <img src="https://media.discordapp.net/attachments/569698278271090728/727593120664911902/unknown.png">
   <img src="https://media.discordapp.net/attachments/569698278271090728/727593369789792346/unknown.png">
+  <h2><i>Square icons:</i></h2>
   <img src="https://media.discordapp.net/attachments/569698278271090728/735846902477881454/unknown.png">
 </details>
 
