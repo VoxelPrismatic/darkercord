@@ -24,6 +24,7 @@
     --turquoise-dark-invis: #3399991a;
     --turquoise-very-dark: #009999;
     --turquoise-ultra-dark: #008888;
+    --turquoise-ultra-dark-invis: #0088881a;
     --turquoise-ultra-dark-semi: #0088884d;
     --turquoise-ultra-dark-lucent: #00888899;
     --turquoise-hella-dark: #007777;
@@ -33,6 +34,7 @@
     --bg-dark: #0a0a0a; /*#202225*/
     --bg-dark-invis: #0a0a0a34;
     --bg-dark-semi: #0a0a0a4d;
+    --bg-dark-border: #0a0a0a7f;
     --bg-dark-kinda: #0a0a0a88;
     --bg-dark-lucent: #0a0a0a99;
 
@@ -57,6 +59,9 @@
     --white-invis: #ffffff22;
     --white-semi: #ffffff4d;
     --white-trans: #ffffff0f;
+
+    --practically-white: #dddddd;
+    --some-grey: #bbbbbb;
 
     --nitro-level-one: #cc40c7;
     --nitro-level-two: #dd51d8;

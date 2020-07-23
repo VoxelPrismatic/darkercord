@@ -1,0 +1,81 @@
+img[alt] {
+    border-radius: 4px; /* Very generic, anything below may override this */
+}
+
+div[data-ref-id*="guildsnav-"] defs path,
+div.wrapper-21YSNc defs path,
+div.listItemWrapper-3X98Pc defs path,
+defs ~ foreignObject>div.circleIconButton-jET_ig.selected-ugP_am {
+    d: path("M 0 8 C 0 8 0 0 8 0 L 40 0 C 40 0 48 0 48 8 L 48 40 C 48 40 48 48 40 48 L 8 48 C 8 48 0 48 0 40 Z")
+}
+
+mask[id*="svg-mask-avatar-"] circle[r="0.5"],
+mask#svg-mask-channel-call-control-button circle[r="0.5"] {
+    r: 1;
+}
+
+foreignObject[mask*="url(#svg-mask-avatar-status-"][mask$="32)"] img,
+.checkbox-1ix_J3.round-2jCFai,
+.switchEnabled-V2WDBB.switch-3wwwcV,
+.themeDefault-24hCdX.sizeDefault-2YlOZr:after,
+.valueChecked-m-4IJZ.sizeDefault-2YlOZr:after,
+.switchDisabled-3HsXAJ.switch-3wwwcV:after,
+.themeClear-1EjkE4.valueUnchecked-2lU_20.sizeDefault-2YlOZr,
+.userLimit-64AFxe .wrapper-pZmgj4,
+.iconSizeMedium-2OqPjI,
+.ghostPill-2-KUPM,
+.button-2CgfFz[aria-label="Remove"],
+.actionButton-uPB8Fs,
+.bar-30k2ka,
+.button-1-5Aqk {
+    border-radius: 4px;
+}
+
+foreignObject[mask*="url(#svg-mask-avatar-status-"][mask$="80)"] img,
+.emptyChannelIcon-3IXV5M,
+.avatarUploaderInner-3UNxY3.avatarUploaderInner-3SDRO_,
+.avatarUploaderInner-3UNxY3.avatarUploaderInner-3Mrx2N,
+.wrapper-3t9DeA {
+    border-radius: 16px;
+}
+
+img.avatar-VxgULZ,
+div.listItemWrapper-3X98Pc:hover,
+.icon-3o6xvg.iconSizeLarge-161qtT.iconInactive-98JN5i,
+.iconWrapper-lS1uig,
+.contents-18-Yxp.button-3HqqDX,
+.controlButton-2MhVEL,
+.staticButton-1B0rfQ {
+    border-radius: 8px;
+}
+
+.houseLogoWrapper-3XZ6yo {
+    border-radius: 12px;
+}
+
+.avatarWrapperNormal-3wFMbf.avatarWrapper-3H_478.focusable-1YV_-H {
+    border-radius: 16px;
+    overflow: hidden;
+} .wrapper-129saQ {
+    border-radius: 9px;
+}
+.role-2irmRk.flex-1O1GKY.alignCenter-1dQNNs,
+.roleCircle-3xAZ1j.flex-1O1GKY.alignCenter-1dQNNs.justifyCenter-3D2jYp,
+.numberBadge-2s8kKX.base-PmTxvP {
+    border-radius: 3px;
+}
+
+.wrapper-1BJsBx.selected-bZ3Lue img,
+.folderIconWrapper-226oVY,
+img.avatar-1BDn8e.clickable-1bVtEA {
+    border-radius: 8px;
+} .wrapper-1BJsBx img {
+    transition: border-radius 0.15s linear 0s;
+    border-radius: 24px;
+} .expandedFolderBackground-2sPsd- {
+    border-radius: 8px;
+} div.listItemWrapper-3X98Pc {
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.15s linear 0s;
+}
