@@ -8,6 +8,7 @@
  * -------------------------------- */
 
 console.log("PRIZcord - Loading");
+___timer___ = new Date();
 console.time("PRIZcord - Finished in");
 
 /* -Set up vars- */
@@ -18,7 +19,7 @@ var __emoji_timeout = 0;
 var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
-var __version_number = "1.1";
+var __version_number = "1.2";
 
 window._$ = {
     c: (st, elem = document) => { return elem.getElementsByClassName(st); },
@@ -44,7 +45,35 @@ window._$ = {
         }
     },
 
-    html: (file) => { return (new DOMParser()).parseFromString(fs.readFileSync(file), "text/html"); }
+    html: (file) => { return (new DOMParser()).parseFromString(fs.readFileSync(file), "text/html"); },
+    
+    tok: {
+        tog: (ls, ...toks) => { for(var tok of toks) { ls.toggle(tok); } },
+        have: (ls, tok, cond) => { if(cond) { ls.add(tok); } else { ls.remove(tok); } },
+        have_multi: (ls, cond, tok_add, tok_rem) => {
+            for(var tok of tok_add) { _$.tok.have(ls, tok, cond); }
+            for(var tok of tok_rem) { _$.tok.have(ls, tok, !cond); }
+        }
+    },
+    
+    nth: {
+        child: (root, ...nths) => { 
+            elem = root; 
+            for(var nth of nths) { 
+                if(nth < 0)
+                    elem = _$.nth.parent(elem, Math.abs(nth));
+                else
+                    elem = elem.children[nth];
+            }; 
+            return elem; 
+        },
+        parent: (root, nths) => { elem = root; for(nth of Array(nths)) { elem = elem.parentElement; }; return elem; },
+        list: (root, ...nths) => { return _$.nth.child(root, ...nths).children; },
+        
+        dn: (...args) => { return _$.nth.child(...args); },
+        up: (...args) => { return _$.nth.parent(...args); },
+        ls: (...args) => { return _$.nth.list(...args); },
+    }
 }
 
 /* -INIT- */
@@ -84,6 +113,7 @@ var __darker_conf = {
     "ext_theme_file": "No file provided",
     "ext_theme_enabled": false,
     "ext_theme_override": false,
+    "ext_theme_refresh": false,
     "darker_color": "cyan",
 };
 
@@ -134,8 +164,6 @@ function __add_css(file, id) {
     return style;
 }
 
-__add_css(dir + "darker_themes/darker_emotion.css", "__darker_emotion")
-__add_masks();
 
 function __apply_settings() {
     __darker_conf = JSON.parse(fs.readFileSync(dir + "darker_conf.json"));
@@ -165,7 +193,10 @@ function __apply_settings() {
     }
 
     if(__darker_conf["ext_theme_enabled"]) {
-        if(!_$.i("__darker_custom"))
+        if(__darker_conf["ext_theme_refresh"]) {
+            __clear_css("__darker_custom");
+            __darker_conf["ext_theme_refresh"] = false;
+        } if(!_$.i("__darker_custom"))
             __add_css(__darker_conf["ext_theme_file"], "__darker_custom")
         if(__darker_conf["ext_theme_override"])
             __clear_css("__darker_global", "__darker_theme", "__darker_square");
@@ -196,9 +227,10 @@ function __listen_to_emoji_click(evt = null, force = false) {
     }
 
     // Ignore dupes
-    if(!force && __messages_length == target.children[0].children.length)
+    ln = _$.nth.list(target, 0).length;
+    if(!force && __messages_length == ln)
         return;
-    __messages_length = target.children[0].children.length;
+    __messages_length = ln;
 
     // Update emojis
     var count = 0;
@@ -216,6 +248,7 @@ function __listen_to_emoji_click(evt = null, force = false) {
         __last_count = 0;
     }
 }
+
 function __listen_emoji(elem) {
     /* Called when said emoji was clicked */
     if(!__darker_conf["emoji"])
@@ -231,7 +264,7 @@ function __listen_emoji(elem) {
 
     // Open
     if(__emoji_timeout == 3)
-        window.open(elem.src);
+        window.open(elem.src, '_blank');
     _$.tmr.s.o(() => __emoji_timeout -= 1, 1000)
 }
 
@@ -247,12 +280,9 @@ function __toggle_channels(doit = true) {
         __write_settings();
     }
     try {
-        if(!__darker_conf["collapse"]) {
+        if(!__darker_conf["collapse"])
             __channels_hidden = false
-            __channel_button.classList.remove("clickable-3rdHwn")
-        } else {
-            __channel_button.classList.add("clickable-3rdHwn")
-        }
+        _$.tok.have(__channel_button.classList, "clickable-3rdHwn", __channels_hidden);
     } catch(err) {
     }
 
@@ -287,10 +317,7 @@ function __listen_to_channel_change() {
 
     // Update the button to actually be a button
     globalThis.__channel_button = button;
-    if(__darker_conf["collapse"])
-        button.classList.add("clickable-3rdHwn");
-    else
-        button.classList.remove("clickable-3rdHwn");
+    _$.tok.have(button.classList, "clickable-3rdHwn", __darker_conf["collapse"]);
     button.id = "channelButton";
     button.onmouseenter = () => {
         if(!__darker_conf["collapse"])
@@ -371,9 +398,8 @@ function __channel_listen() {
     // Update channels
     for(var channel of ls) {
         channel.onclick = () => {
-            for(var x = 0; x <= 250; x += 50) {
+            for(var x = 0; x <= 250; x += 50)
                 _$.tmr.s.o(__listen_to_channel_change, x);
-            }
         }
 //         console.log(channel);
         count += 1;
@@ -448,6 +474,9 @@ function __relay_settings_html() {
             __update_settings(toggle_elem);
         }
     }
+    
+    // yanderedev would approve of this...
+    
     elem = _$.i("value_theme_file");
     if(elem)
         elem.innerHTML = __darker_conf["ext_theme_file"].split("/").slice(-1)[0];
@@ -460,15 +489,15 @@ function __relay_settings_html() {
     elem = _$.i("restart_app__");
     if(elem)
         elem.onclick = () => {window.location = "discord.com"};
+    
+    // sanity has been brought back kinda
+    
     if(_$.i("theme_select")) {
         for(var clicky of _$.i("theme_select").children) {
             clicky.onclick = function() {
-                for(var e of _$.c("css-12o7ek3-option custom-select")) {
-                    e.classList.remove("css-12o7ek3-option");
-                    e.classList.add("css-1aymab5-option");
-                }
-                this.classList.remove("css-1aymab5-option");
-                this.classList.add("css-12o7ek3-option");
+                for(var e of _$.c("css-12o7ek3-option custom-select"))
+                    _$.tok.have_multi(e.classList, 1, ["css-1aymab5-option"], ["css-12o7ek3-option"]);
+                _$.tok.have_multi(this.classList, 0, ["css-1aymab5-option"], ["css-12o7ek3-option"]);
                 __darker_conf["darker_color"] = this.innerHTML.toLowerCase();
                 __write_settings();
                 _$.i("theme-reflect").innerHTML = this.innerHTML;
@@ -494,22 +523,12 @@ function __add_info(evt) {
         var sep = button.parentElement.children.item(button.parentElement.childElementCount - 7);
 
         info[0].innerHTML += `<div class="colorMuted-HdFt4q size12-3cLvbJ">PRIZcord v${__version_number} by PRIZ ;]</div>`;
+        info[0].innerHTML += 
+            `<div class="colorMuted-HdFt4q size12-3cLvbJ">Last startup time: ${___startup_time___}ms</div>`
         var social = _$.c("socialLinks-3jqNFy")[0];
-        social.appendChild(document.createElement("br"));
-        var my_twitter = social.children[0].cloneNode();
-        my_twitter.innerHTML = social.children[0].innerHTML;
-        my_twitter.title = "@VoxelPrismatic's Twitter"
-        my_twitter.href = "https://twitter.com/voxelprismatic";
-        social.appendChild(my_twitter);
-        my_github = my_twitter.cloneNode();
-        my_github.innerHTML = social.children[0].innerHTML;
-        my_github.title = "PRIZ ;]'s GitHub"
-        my_github.style.paddingTop = "8px"
-        my_github.style.display = "inline-block";
-        my_github.children[0].style.height = "20px";
-        my_github.href = "https://github.com/voxelprismatic"
-        social.appendChild(my_github);
-        _$.t("path", my_github)[0].outerHTML = `<path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" class="foreground-26ym5y" style="transform:scale(1.2);"></path>`
+        var personal = _$.html(dir + "darker_html/darker_social.html");
+        for(var lnk of personal.body.children)
+            social.appendChild(lnk);
         sep.after(
             _$.html(dir + "darker_html/darker_settings_panel.html").body.children[0]
         );
@@ -558,6 +577,7 @@ async function __check_css_file(elem) {
         __darker_conf["ext_theme_file"] = file;
         _$.i("value_theme_file").innerHTML = file.split("/").slice(-1)[0];
         __write_settings();
+        __darker_conf["ext_theme_refresh"] = true; // Intentionally not written
         _$.tmr.s.o(__apply_settings, 100);
         return;
     }
@@ -566,13 +586,7 @@ async function __check_css_file(elem) {
 }
 
 function __update_settings(elem) {
-    if(elem.checked) {
-        elem.parentElement.classList.remove("valueUnchecked-2lU_20");
-        elem.parentElement.classList.add("valueChecked-m-4IJZ");
-    } else {
-        elem.parentElement.classList.remove("valueChecked-m-4IJZ");
-        elem.parentElement.classList.add("valueUnchecked-2lU_20");
-    }
+    _$.tog.have_multi(elem.parentElement.classList, elem.checked, ["valueChecked-m-4IJZ"], ["valueUnchecked-2lU_20"]);
     __darker_conf[elem.getAttribute("data-conf")] = elem.checked;
     __write_settings();
     if(elem.id == "uid_theme_enable" || elem.id == "uid_theme_override") {
@@ -584,25 +598,19 @@ function __update_settings(elem) {
         condition = __darker_conf["ext_theme_enabled"] && __darker_conf["ext_theme_override"];
         for(var id of Object.keys(ids)) {
             e = _$.i(id);
-            if(ids[id]) {
-                e.parentElement.classList.add("valueChecked-m-4IJZ");
-                e.parentElement.classList.remove("valueUnchecked-2lU_20");
-            } else {
-                e.parentElement.classList.remove("valueChecked-m-4IJZ");
-                e.parentElement.classList.add("valueUnchecked-2lU_20");
-            }
+            _$.tog.have_multi(e.parentElement.classList, ids[id], ["valueChecked-m-4IJZ"], ["valueUnchecked-2lU_20"]);
             if(condition) {
                 e.parentElement.classList.add("switchDisabled-3HsXAJ");
                 e.parentElement.classList.remove("switchEnabled-V2WDBB");
                 e.disabled = true;
                 e.classList.add("checkboxDisabled-1MA81A");
-                e.parentElement.parentElement.parentElement.classList.add("disabled-2HSEFa");
+                _$.nth.up(e, 3).classList.add("disabled-2HSEFa");
             } else {
                 e.parentElement.classList.remove("switchDisabled-3HsXAJ");
                 e.parentElement.classList.add("switchEnabled-V2WDBB");
                 e.classList.remove("checkboxDisabled-1MA81A");
                 e.disabled = false;
-                e.parentElement.parentElement.parentElement.classList.remove("disabled-2HSEFa");
+                _$.nth.up(e, 3).classList.remove("disabled-2HSEFa");
                 __update_settings(e);
             }
         }
@@ -641,7 +649,6 @@ function __fix_ui(evt) {
         _$.tmr.s.o(__fix_ui, 100);
 }
 
-
 /* Check for updates */
 function __check_for_darker_updates() {
     var main = _$.i("app-mount");
@@ -660,7 +667,7 @@ function __check_for_darker_updates() {
     for(var e of html.body.children)
         main.appendChild(e);
     _$.i("releases_button__").onclick = () => {
-        window.open('https://github.com/voxelprismatic/prizcord/releases/latest');
+        window.open('https://github.com/voxelprismatic/prizcord/releases/latest', '_blank');
         __close_updates();
     }
     _$.i("__close_updates").onclick = __close_updates;
@@ -679,40 +686,28 @@ function __close_updates() {
 }
 
 function __details(elem) {
-    elem.classList.toggle("css-2yldzf-control");
-    elem.classList.toggle("css-1a8reka-control");
-    elem.classList.toggle("wait");
-    elem.classList.toggle("wait2");
+    _$.tok.tog(elem.classList, "css-2yldzf-control", "css-1a8reka-control", "wait", "wait2");
     elem.nextElementSibling.classList.toggle("invis");
-    elem.children[1].children[0].classList.toggle("css-1flfamv-indicatorContainer");
-    elem.children[1].children[0].classList.toggle("css-12qlrak-indicatorContainer");
+    _$.tok.tog(_$.nth.child(elem, 1, 0).classList, "css-1flfamv-indicatorContainer", "css-12qlrak-indicatorContainer");
 }
 
 function __details_ui() {
     for(var elem of _$.c("css-1aymab5-option custom-select")) {
         elem.onmouseenter = function() {
-            this.classList.toggle("css-1aymab5-option");
-            this.classList.toggle("css-1gnr91b-option");
+            _$.tok.tog(this.classList, "css-1aymab5-option", "css-1gnr91b-option");
         }
         elem.onmouseleave = elem.onmouseenter;
-    }
-    for(var elem of _$.c("css-1a8reka-control custom-select")) {
+    } for(var elem of _$.c("css-1a8reka-control custom-select")) {
         elem.onclick = function() {
             __details(this)
         }
-    }
-    for(var elem of _$.c("css-2yldzf-control custom-select")) {
+    } for(var elem of _$.c("css-2yldzf-control custom-select")) {
         if(!elem.className.includes("wait")) {
             __details(elem);
             console.log(elem);
         }
-    }
-    for(var elem of _$.c("wait")) {
-        if(elem.className.includes("wait2")) {
-            elem.classList.remove("wait2");
-        } else {
-            elem.classList.remove("wait");
-        }
+    } for(var elem of _$.c("wait")) {
+        elem.classList.remove(elem.className.includes("wait2") ? "wait2" : "wait");
     }
 }
 
@@ -724,7 +719,7 @@ function maybe_hide_thing(elem) {
     author = elems[elems.length - 1].__reactEventHandlers$.children[1].props.message.author.tag;
     _$.q("span[role=\"button\"]", elem).click();
     if(author == "")
-        elem.parentElement.parentElement.classList.add("invis");
+        _$.nth.up(elem, 2).classList.add("invis");
 }
 
 // Run script
@@ -734,7 +729,10 @@ if(__darker_conf["load"]) {
     _$.tmr.s.o(__fix_ui, 1000);
 }
 
+__add_css(dir + "darker_themes/darker_emotion.css", "__darker_emotion")
+__add_masks();
 __apply_settings();
 
 window.onclick = __fix_ui;
 console.timeEnd("PRIZcord - Finished in");
+___startup_time___ = new Date() - ___timer___;

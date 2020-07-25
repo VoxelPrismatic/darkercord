@@ -5,6 +5,7 @@ I'm just importing the completed output. Basically, these are time savers and sp
 | Name | Purpose |
 | - | - |
 | `darker_masks.html` | Provides the icon set for stuff like status icons for the square theme | 
-| `darker_update.html` | Update popup | 
+| `darker_update.html` | Update popup |
+| `darker_social.html` | Social media links under Discord's in the settinsg panel |
 | `darker_settings_panel.html` | Button group in the Discord settings, right under "App settings" should be "PRIZcord settings" |
 | `darker_settings_<name>.html` | Settings screen for that menu. |
