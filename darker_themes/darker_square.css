@@ -205,3 +205,8 @@ rect[fill="rgba(250, 166, 26, 1)"]:last-child {
     ry: 2;
 }
 /* -- end group -- */
+
+
+div.pill-2uzAFe:not(:empty) + div.listItemWrapper-3X98Pc {
+    border-radius: unset;
+}
