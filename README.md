@@ -8,13 +8,13 @@ Making the discord dark theme even darker, with some cool colors too.
 <details>
   <summary>Screenshots [13]</summary>
   <h2><i>Normal icons:</i></h2>
-  <img src="https://media.discordapp.net/attachments/569698278271090728/727590717009952908/unknown.png" width="49%">
-  <img src="https://media.discordapp.net/attachments/569698278271090728/727590845817290773/unknown.png" width="49%">
-  <img src="https://media.discordapp.net/attachments/569698278271090728/727591933517496452/unknown.png" width="49%">
-  <img src="https://media.discordapp.net/attachments/569698278271090728/727592116011794522/unknown.png" width="49%">
-  <img src="https://media.discordapp.net/attachments/569698278271090728/727593120664911902/unknown.png" width="49%">
-  <img src="https://media.discordapp.net/attachments/569698278271090728/727593369789792346/unknown.png" width="49%">
-  <img src="https://media.discordapp.net/attachments/569698278271090728/735951917418807436/unknown.png" width="49%">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/727590717009952908/unknown.png" width="32%">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/727590845817290773/unknown.png" width="32%">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/727591933517496452/unknown.png" width="32%">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/727592116011794522/unknown.png" width="32%">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/727593120664911902/unknown.png" width="32%">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/727593369789792346/unknown.png" width="32%">
+  <img src="https://media.discordapp.net/attachments/569698278271090728/735951917418807436/unknown.png" width="32%">
   <h2><i>Square icons:</i></h2>
   <img src="https://media.discordapp.net/attachments/569698278271090728/735846902477881454/unknown.png" width="32%">
   <img src="https://media.discordapp.net/attachments/569698278271090728/735951186989154426/unknown.png" width="32%">

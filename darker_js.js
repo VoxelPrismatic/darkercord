@@ -19,7 +19,7 @@ var __emoji_timeout = 0;
 var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
-var __version_number = "1.2";
+var __version_number = "1.3";
 
 window._$ = {
     c: (st, elem = document) => { return elem.getElementsByClassName(st); },
@@ -46,7 +46,7 @@ window._$ = {
     },
 
     html: (file) => { return (new DOMParser()).parseFromString(fs.readFileSync(file), "text/html"); },
-    
+
     tok: {
         tog: (ls, ...toks) => { for(var tok of toks) { ls.toggle(tok); } },
         have: (ls, tok, cond) => { if(cond) { ls.add(tok); } else { ls.remove(tok); } },
@@ -55,21 +55,21 @@ window._$ = {
             for(var tok of tok_rem) { _$.tok.have(ls, tok, !cond); }
         }
     },
-    
+
     nth: {
-        child: (root, ...nths) => { 
-            elem = root; 
-            for(var nth of nths) { 
+        child: (root, ...nths) => {
+            elem = root;
+            for(var nth of nths) {
                 if(nth < 0)
                     elem = _$.nth.parent(elem, Math.abs(nth));
                 else
                     elem = elem.children[nth];
-            }; 
-            return elem; 
+            };
+            return elem;
         },
         parent: (root, nths) => { elem = root; for(nth of Array(nths)) { elem = elem.parentElement; }; return elem; },
         list: (root, ...nths) => { return _$.nth.child(root, ...nths).children; },
-        
+
         dn: (...args) => { return _$.nth.child(...args); },
         up: (...args) => { return _$.nth.parent(...args); },
         ls: (...args) => { return _$.nth.list(...args); },
@@ -474,9 +474,9 @@ function __relay_settings_html() {
             __update_settings(toggle_elem);
         }
     }
-    
+
     // yanderedev would approve of this...
-    
+
     elem = _$.i("value_theme_file");
     if(elem)
         elem.innerHTML = __darker_conf["ext_theme_file"].split("/").slice(-1)[0];
@@ -489,9 +489,9 @@ function __relay_settings_html() {
     elem = _$.i("restart_app__");
     if(elem)
         elem.onclick = () => {window.location = "discord.com"};
-    
+
     // sanity has been brought back kinda
-    
+
     if(_$.i("theme_select")) {
         for(var clicky of _$.i("theme_select").children) {
             clicky.onclick = function() {
@@ -523,7 +523,7 @@ function __add_info(evt) {
         var sep = button.parentElement.children.item(button.parentElement.childElementCount - 7);
 
         info[0].innerHTML += `<div class="colorMuted-HdFt4q size12-3cLvbJ">PRIZcord v${__version_number} by PRIZ ;]</div>`;
-        info[0].innerHTML += 
+        info[0].innerHTML +=
             `<div class="colorMuted-HdFt4q size12-3cLvbJ">Last startup time: ${___startup_time___}ms</div>`
         var social = _$.c("socialLinks-3jqNFy")[0];
         var personal = _$.html(dir + "darker_html/darker_social.html");
@@ -586,7 +586,7 @@ async function __check_css_file(elem) {
 }
 
 function __update_settings(elem) {
-    _$.tog.have_multi(elem.parentElement.classList, elem.checked, ["valueChecked-m-4IJZ"], ["valueUnchecked-2lU_20"]);
+    _$.tok.have_multi(elem.parentElement.classList, elem.checked, ["valueChecked-m-4IJZ"], ["valueUnchecked-2lU_20"]);
     __darker_conf[elem.getAttribute("data-conf")] = elem.checked;
     __write_settings();
     if(elem.id == "uid_theme_enable" || elem.id == "uid_theme_override") {
@@ -598,7 +598,7 @@ function __update_settings(elem) {
         condition = __darker_conf["ext_theme_enabled"] && __darker_conf["ext_theme_override"];
         for(var id of Object.keys(ids)) {
             e = _$.i(id);
-            _$.tog.have_multi(e.parentElement.classList, ids[id], ["valueChecked-m-4IJZ"], ["valueUnchecked-2lU_20"]);
+            _$.tok.have_multi(e.parentElement.classList, ids[id], ["valueChecked-m-4IJZ"], ["valueUnchecked-2lU_20"]);
             if(condition) {
                 e.parentElement.classList.add("switchDisabled-3HsXAJ");
                 e.parentElement.classList.remove("switchEnabled-V2WDBB");
