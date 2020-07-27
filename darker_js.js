@@ -19,7 +19,7 @@ var __emoji_timeout = 0;
 var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
-var __version_number = "1.3";
+var __version_number = "1.3.1";
 
 window._$ = {
     c: (st, elem = document) => { return elem.getElementsByClassName(st); },
@@ -124,7 +124,7 @@ function __write_settings() {
 if(cwd.startsWith("C:\\"))
     var dir = cwd + "\\..\\..\\..\\Roaming\\discord\\";
 else
-    var dir = "./snap/discord/current/";
+    var dir = cwd.split("/", 3).join("/") + "/snap/discord/current/";
 try {
     Object.assign(__darker_conf, JSON.parse(fs.readFileSync(dir + "darker_conf.json")));
 } catch(err) {
