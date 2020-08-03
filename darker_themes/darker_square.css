@@ -1,88 +1,15 @@
-/* Mask replacement */
-
-foreignObject[mask="url(#svg-mask-squircle)"] {
-    mask: url(#priz-mask-squircle);
-} foreignObject[mask="url(#svg-mask-header-bar-badge)"] {
-    mask: url(#priz-mask-header-bar-badge)
-} foreignObject[mask="url(#svg-mask-voice-user-summary-item)"] {
-    mask: url(#priz-mask-voice-user-summary-item)
-} foreignObject[mask="url(#svg-mask-vertical-fade)"] {
-    mask: url(#priz-mask-vertical-fade)
-} foreignObject[mask="url(#svg-mask-panel-button)"] {
-    mask: url(#priz-mask-panel-button)
-} foreignObject[mask="url(#svg-mask-channel-call-control-button)"] {
-    mask: url(#priz-mask-channel-call-control-button)
-} foreignObject[mask="url(#svg-mask-avatar-default)"] {
-    mask: url(#priz-mask-avatar-default)
-} foreignObject[mask="url(#svg-mask-avatar-status-round-16)"] {
-    mask: url(#priz-mask-avatar-status-round-16)
-} foreignObject[mask="url(#svg-mask-avatar-status-mobile-16)"] {
-    mask: url(#priz-mask-avatar-status-mobile-16)
-} foreignObject[mask="url(#svg-mask-avatar-status-typing-16)"] {
-    mask: url(#priz-mask-avatar-status-typing-16)
-} foreignObject[mask="url(#svg-mask-avatar-status-round-24)"] {
-    mask: url(#priz-mask-avatar-status-round-24)
-} foreignObject[mask="url(#svg-mask-avatar-status-mobile-24)"] {
-    mask: url(#priz-mask-avatar-status-mobile-24)
-} foreignObject[mask="url(#svg-mask-avatar-status-typing-24)"] {
-    mask: url(#priz-mask-avatar-status-typing-24)
-} foreignObject[mask="url(#svg-mask-avatar-status-round-32)"] {
-    mask: url(#priz-mask-avatar-status-round-32)
-} foreignObject[mask="url(#svg-mask-avatar-status-mobile-32)"] {
-    mask: url(#priz-mask-avatar-status-mobile-32)
-} foreignObject[mask="url(#svg-mask-avatar-status-typing-32)"] {
-    mask: url(#priz-mask-avatar-status-typing-32)
-}  foreignObject[mask="url(#svg-mask-avatar-status-round-40)"] {
-    mask: url(#priz-mask-avatar-status-round-40)
-} foreignObject[mask="url(#svg-mask-avatar-status-mobile-40)"] {
-    mask: url(#priz-mask-avatar-status-mobile-40)
-} foreignObject[mask="url(#svg-mask-avatar-status-typing-40)"] {
-    mask: url(#priz-mask-avatar-status-typing-40)
-}  foreignObject[mask="url(#svg-mask-avatar-status-round-80)"] {
-    mask: url(#priz-mask-avatar-status-round-80)
-} foreignObject[mask="url(#svg-mask-avatar-status-mobile-80)"] {
-    mask: url(#priz-mask-avatar-status-mobile-80)
-} foreignObject[mask="url(#svg-mask-avatar-status-typing-80)"] {
-    mask: url(#priz-mask-avatar-status-typing-80)
-}  foreignObject[mask="url(#svg-mask-avatar-status-round-120)"] {
-    mask: url(#priz-mask-avatar-status-round-120)
-} foreignObject[mask="url(#svg-mask-avatar-status-mobile-120)"] {
-    mask: url(#priz-mask-avatar-status-mobile-120)
-} foreignObject[mask="url(#svg-mask-avatar-status-typing-120)"] {
-    mask: url(#priz-mask-avatar-status-typing-120)
-} :-webkit-any(rect, foreignObject)[mask="url(#svg-mask-status-mobile-online)"] {
-    mask: url(#priz-mask-status-mobile-online)
-} :-webkit-any(rect, foreignObject)[mask="url(#svg-mask-status-online)"] {
-    mask: url(#priz-mask-status-online)
-} :-webkit-any(rect, foreignObject)[mask="url(#svg-mask-status-idle)"] {
-    mask: url(#priz-mask-status-idle)
-} :-webkit-any(rect, foreignObject)[mask="url(#svg-mask-status-dnd)"] {
-    mask: url(#priz-mask-status-dnd)
-} :-webkit-any(rect, foreignObject)[mask="url(#svg-mask-status-offline)"] {
-    mask: url(#priz-mask-status-offline)
-} :-webkit-any(rect, foreignObject)[mask="url(#svg-mask-status-streaming)"] {
-    mask: url(#priz-mask-status-streaming)
-} :-webkit-any(rect, foreignObject)[mask="url(#svg-mask-status-typing)"] {
-    mask: url(#priz-mask-status-typing)
-} :-webkit-any(rect, foreignObject)[mask="url(#svg-mask-avatar-voice-call-80)"] {
-    mask: url(#priz-mask-avatar-voice-call-80)
-}
-/* -- end group -- */
-
 /* Fix Discord's obsucation after a user types something */
 svg.mask-1l8v16.svg-2V3M55 > mask[height="32"][width="32"]:first-child circle {
     r: 32;
 } svg.mask-1l8v16.svg-2V3M55 > mask[height="32"][width="32"]:first-child rect {
     rx: 4;
     ry: 4;
-} svg.mask-1l8v16.svg-2V3M55 > mask[height="32"][width="32"]:first-child rect[x="19"] {
+} /*svg.mask-1l8v16.svg-2V3M55 > mask[height="32"][width="32"]:first-child rect[x="19"] {
     x: 19.5;
 } svg.mask-1l8v16.svg-2V3M55 > mask[height="32"][width="32"]:first-child rect[x="11.5"] {
     x: 12;
-}
+}*/
 /* -- end group -- */
-
-
 
 img[alt] {
     border-radius: 4px; /* Very generic, anything below may override this */
@@ -90,23 +17,12 @@ img[alt] {
 
 div[data-ref-id*="guildsnav-"] defs path,
 div.wrapper-21YSNc defs path,
-defs ~ foreignObject>div.circleIconButton-jET_ig.selected-ugP_am,
+defs ~ foreignObject > div.circleIconButton-jET_ig.selected-ugP_am,
 div.listItemWrapper-3X98Pc defs path {
     d: path("M 0 8 C 0 8 0 0 8 0 L 40 0 C 40 0 48 0 48 8 L 48 40 C 48 40 48 48 40 48 L 8 48 C 8 48 0 48 0 40 Z")
 }
 
-defs g[id$="_badge_masks"] rect[rx="12"][ry="12"] {
-    rx: 6;
-    ry: 6;
-}
-
 foreignObject[mask*="url(#svg-mask-avatar-status-"][mask$="32)"] img,
-.checkbox-1ix_J3.round-2jCFai,
-.switchEnabled-V2WDBB.switch-3wwwcV,
-.switchDisabled-3HsXAJ.switch-3wwwcV,
-.themeDefault-24hCdX.sizeDefault-2YlOZr:after,
-.valueChecked-m-4IJZ.sizeDefault-2YlOZr:after,
-.themeClear-1EjkE4.valueUnchecked-2lU_20:after,
 .userLimit-64AFxe .wrapper-pZmgj4,
 .iconSizeMedium-2OqPjI,
 .ghostPill-2-KUPM,
@@ -114,8 +30,6 @@ foreignObject[mask*="url(#svg-mask-avatar-status-"][mask$="32)"] img,
 .actionButton-uPB8Fs,
 .bar-30k2ka,
 .button-1-5Aqk,
-.iconBadge-2wi9r4,
-.textBadge-1iylP6,
 .planOptionDiscount-cS8uaO {
     border-radius: 4px;
 }
@@ -149,8 +63,7 @@ img.avatar-VxgULZ,
     border-radius: 9px;
 }
 .role-2irmRk.flex-1O1GKY.alignCenter-1dQNNs,
-.roleCircle-3xAZ1j.flex-1O1GKY.alignCenter-1dQNNs.justifyCenter-3D2jYp,
-.numberBadge-2s8kKX.base-PmTxvP {
+.roleCircle-3xAZ1j.flex-1O1GKY.alignCenter-1dQNNs.justifyCenter-3D2jYp {
     border-radius: 3px;
 }
 
@@ -170,36 +83,6 @@ svg.badge-1JXQev {
     bottom: -6px;
     right: -6px;
 }
-
-/* More obfuscation fixing */
-mask[width="32"][height="32"] circle[cx="16"]["cy=16"][r="16"][fill="white"] {
-    r: 32;
-}
-
-:-webkit-any(svg.cursorDefault-dsQJ1n, svg.svg-2V3M55) rect[width="25"][height="15"]:last-child {
-    width: 10px;
-    height: 10px;
-    x: 8px;
-    y: 5px;
-}
-
-rect[fill="rgba(250, 166, 26, 1)"]:last-child {
-    mask: url(#priz-mask-status-idle);
-} rect[fill="rgba(67, 181, 129, 1)"]:last-child {
-    mask: url(#priz-mask-status-online);
-} rect[fill="rgba(240, 71, 71, 1)"]:last-child {
-    mask: url(#priz-mask-status-dnd);
-} rect[fill="rgba(116, 127, 141, 1)"]:last-child {
-    mask: url(#priz-mask-status-offline);
-} rect[fill="rgba(89, 54, 149, 1)"]:last-child {
-    mask: url(#priz-mask-status-offline);
-}
-
-:-webkit-any(svg.cursorDefault-dsQJ1n, svg.svg-2V3M55) mask:first-child rect:first-child {
-    rx: 2;
-    ry: 2;
-}
-/* -- end group -- */
 
 a.wrapper-1BJsBx,
 div.circleIconButton-jET_ig {

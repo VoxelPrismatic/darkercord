@@ -611,6 +611,8 @@
 .icon-RTGJu3.typeCreate-1kfBMl.targetInvite-1RQBlr,
 .icon-RTGJu3.typeCreate-1kfBMl.targetChannel-TrRFlx {
     filter: var(--swap-green-to-blue);
+} .activeCircle-1486wp {
+    filter: var(--hue-green-to-blue);
 }
 
 .checked-3_4uQ9.round-2jCFai[style="width: 24px; height: 24px; border-color: rgb(67, 181, 129); background-color: rgb(67, 181, 129);"],

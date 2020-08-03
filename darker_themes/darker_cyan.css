@@ -76,6 +76,7 @@
     --color-streaming: #6600aa;
 
     --swap-green-to-blue: saturate(2000) hue-rotate(95deg);
+    --hue-green-to-blue: hue-rotate(95deg);
     --swap-blurple-to-blue: hue-rotate(-47deg) brightness(0.77);
 
     --mod-hover: #33444429; /*#4f545c29*/

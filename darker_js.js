@@ -19,7 +19,7 @@ var __emoji_timeout = 0;
 var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
-var __version_number = "1.3.1";
+var __version_number = "1.4";
 
 window._$ = {
     c: (st, elem = document) => { return elem.getElementsByClassName(st); },
@@ -104,6 +104,9 @@ var cwd = process.cwd();
 var __darker_conf = {
     "load": true,
     "square": false,
+    "square_status": true,
+    "square_vc": true,
+    "square_toggle": true,
     "clyde": true,
     "emoji": true,
     "collapse": true,
@@ -118,7 +121,7 @@ var __darker_conf = {
 };
 
 function __write_settings() {
-    fs.writeFileSync(dir + "darker_conf.json", JSON.stringify(__darker_conf), {flag: "w+"});
+    fs.writeFileSync(dir + "darker_conf.json", JSON.stringify(__darker_conf, null, "    "), {flag: "w+"});
 }
 
 if(cwd.startsWith("C:\\"))
@@ -184,12 +187,17 @@ function __apply_settings() {
         __clear_css("__darker_global", "__darker_theme");
     }
 
-    if(__darker_conf["square"]) {
-        if(!_$.i("__darker_square")) {
-            __add_css(dir + "darker_themes/darker_square.css", "__darker_square");
-        }
-    } else {
-        __clear_css("__darker_square");
+    __square_styles = [
+        "square",
+        "square_status",
+        "square_toggle",
+        "square_vc"
+    ];
+    for(var style of __square_styles) {
+        if(!__darker_conf["square"] || !__darker_conf[style])
+            __clear_css("__darker_" + style);
+        else if(!_$.i("__darker_" + style))
+            __add_css(dir + "darker_themes/" + "darker_" + style + ".css", "__darker_" + style)
     }
 
     if(__darker_conf["ext_theme_enabled"]) {
@@ -199,7 +207,11 @@ function __apply_settings() {
         } if(!_$.i("__darker_custom"))
             __add_css(__darker_conf["ext_theme_file"], "__darker_custom")
         if(__darker_conf["ext_theme_override"])
-            __clear_css("__darker_global", "__darker_theme", "__darker_square");
+            __clear_css(
+                "__darker_global", "__darker_theme", "__darker_square",
+                "__darker_square_status", "__darker_square_toggle",
+                "__darker_square_vc"
+           );
     } else {
         __clear_css("__darker_custom");
     }
@@ -464,14 +476,21 @@ function __relay_settings_html() {
         "uid_DARKER_collapse",
         "uid_DARKER_clyde",
         "uid_theme_enable",
-        "uid_theme_override"
+        "uid_theme_override",
+        "uid_SQUARE_vc",
+        "uid_SQUARE_status",
+        "uid_SQUARE_toggle",
     ];
     for(var toggle of toggles) {
-        toggle_elem = _$.i(toggle);
-        if(toggle_elem) {
-            toggle_elem.onclick = function() {__update_settings(this)};
-            toggle_elem.checked = __darker_conf[toggle_elem.getAttribute("data-conf")];
-            __update_settings(toggle_elem);
+        try {
+            toggle_elem = _$.i(toggle);
+            if(toggle_elem) {
+                toggle_elem.onclick = function() { __update_settings(this) };
+                toggle_elem.checked = __darker_conf[toggle_elem.getAttribute("data-conf")];
+                __update_settings(toggle_elem, false, false);
+            }
+        } catch(err) {
+            console.error(err);
         }
     }
 
@@ -489,6 +508,9 @@ function __relay_settings_html() {
     elem = _$.i("restart_app__");
     if(elem)
         elem.onclick = () => {window.location = "discord.com"};
+    elem = _$.i("__nav_square");
+    if(elem)
+        elem.onclick = () => {_$.q("div#darker_panel div[data-html='square']").click()};
 
     // sanity has been brought back kinda
 
@@ -585,35 +607,54 @@ async function __check_css_file(elem) {
 
 }
 
-function __update_settings(elem) {
+function __maybe_disable_switches(ids, condition) {
+    for(var id of Object.keys(ids)) {
+        e = _$.i(id);
+        if(!e)
+            continue;
+        _$.tok.have_multi(e.parentElement.classList, ids[id], ["valueChecked-m-4IJZ"], ["valueUnchecked-2lU_20"]);
+        if(condition) {
+            e.parentElement.classList.add("switchDisabled-3HsXAJ");
+            e.parentElement.classList.remove("switchEnabled-V2WDBB");
+            e.classList.add("checkboxDisabled-1MA81A");
+            e.disabled = true;
+            _$.nth.up(e, 3).classList.add("disabled-2HSEFa");
+        } else {
+            e.parentElement.classList.remove("switchDisabled-3HsXAJ");
+            e.parentElement.classList.add("switchEnabled-V2WDBB");
+            e.classList.remove("checkboxDisabled-1MA81A");
+            e.disabled = false;
+            _$.nth.up(e, 3).classList.remove("disabled-2HSEFa");
+            __update_settings(e, true, false);
+        }
+    }
+}
+
+function __update_settings(elem, dont = false, write = true) {
     _$.tok.have_multi(elem.parentElement.classList, elem.checked, ["valueChecked-m-4IJZ"], ["valueUnchecked-2lU_20"]);
-    __darker_conf[elem.getAttribute("data-conf")] = elem.checked;
-    __write_settings();
-    if(elem.id == "uid_theme_enable" || elem.id == "uid_theme_override") {
+    if(write) {
+        __darker_conf[elem.getAttribute("data-conf")] = elem.checked;
+        __write_settings();
+    }
+    if(!dont && (
+        elem.id == "uid_theme_enable" ||
+        elem.id == "uid_theme_override" ||
+        elem.id == "uid_DARKER_round"
+    )) {
         ids = {
             "uid_DARKER_theme": false,
             "uid_DARKER_light": true,
             "uid_DARKER_round": false
         }
         condition = __darker_conf["ext_theme_enabled"] && __darker_conf["ext_theme_override"];
-        for(var id of Object.keys(ids)) {
-            e = _$.i(id);
-            _$.tok.have_multi(e.parentElement.classList, ids[id], ["valueChecked-m-4IJZ"], ["valueUnchecked-2lU_20"]);
-            if(condition) {
-                e.parentElement.classList.add("switchDisabled-3HsXAJ");
-                e.parentElement.classList.remove("switchEnabled-V2WDBB");
-                e.disabled = true;
-                e.classList.add("checkboxDisabled-1MA81A");
-                _$.nth.up(e, 3).classList.add("disabled-2HSEFa");
-            } else {
-                e.parentElement.classList.remove("switchDisabled-3HsXAJ");
-                e.parentElement.classList.add("switchEnabled-V2WDBB");
-                e.classList.remove("checkboxDisabled-1MA81A");
-                e.disabled = false;
-                _$.nth.up(e, 3).classList.remove("disabled-2HSEFa");
-                __update_settings(e);
-            }
+        __maybe_disable_switches(ids, condition);
+        ids = {
+            "uid_SQUARE_vc": false,
+            "uid_SQUARE_toggle": false,
+            "uid_SQUARE_status": false
         }
+        condition = !__darker_conf["square"]
+        __maybe_disable_switches(ids, condition);
     }
     _$.tmr.s.n(__apply_settings);
 }
