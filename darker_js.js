@@ -653,7 +653,7 @@ function __update_settings(elem, dont = false, write = true) {
             "uid_SQUARE_toggle": false,
             "uid_SQUARE_status": false
         }
-        condition = !__darker_conf["square"]
+        condition = !__darker_conf["square"] || condition;
         __maybe_disable_switches(ids, condition);
     }
     _$.tmr.s.n(__apply_settings);
