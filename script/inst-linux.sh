@@ -1,10 +1,22 @@
 echo -e "\e[94;1mInstalling PRIZcord...\e[0m"
 
-discord=~/snap/discord/current/
-indexjs=~/snap/discord/current/.config/discord/0.0.10/modules/discord_utils/index.js
+discord=~/.config/discord/
+indexjs=~/.config/discord/0.0.11/modules/discord_utils/index.js
+echo -e "\e[90m> Copying files\e[0m"
+
+#Detect whether or not discord is SNAP
+{
+    cp ../darker_css.css $discord > /dev/null 2> /dev/null
+    echo -e "\e[90m  > Detected install as APT/RPM\e[0m"
+    snap="false"
+} || {
+    echo -e "\e[90m  > Detected install as SNAP\e[0m"
+    discord=~/snap/discord/current/
+    indexjs=~/snap/discord/current/.config/discord/0.0.11/modules/discord_utils/index.js
+    snap="true"
+}
 
 {
-    echo -e "\e[90m> Copying files\e[0m"
     cp ../darker_css.css $discord > /dev/null 2> /dev/null
     cp ../darker_js.js $discord > /dev/null 2> /dev/null
     cp ../darker_settings.html $discord > /dev/null 2> /dev/null
@@ -25,7 +37,12 @@ cp ../index-backup.js $indexjs -T > /dev/null 2> /dev/null
 mkdir $discord\darker_themes > /dev/null 2> /dev/null
 cp $indexjs $indexjs\~ -T > /dev/null 2> /dev/null
 echo "" >> $indexjs
-echo "require(\"../../../../../darker_js.js\");" >> $indexjs
+if [ "$snap" == "true" ];
+then
+    echo "require(\"../../../../../darker_js.js\");" >> $indexjs;
+else
+    echo "require(\"../../../darker_js.js\");" >> $indexjs;
+fi
 
 vnum=$(cat $discord\darker_js.js | grep "__version_number = ");
 vnum=$(echo $vnum | head -c -3 | tail -c +25);

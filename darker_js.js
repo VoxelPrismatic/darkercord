@@ -19,7 +19,7 @@ var __emoji_timeout = 0;
 var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
-var __version_number = "1.4";
+var __version_number = "2";
 
 window._$ = {
     c: (st, elem = document) => { return elem.getElementsByClassName(st); },
@@ -101,12 +101,21 @@ var fs = required("fs");
 var requests = required("request");
 
 var cwd = process.cwd();
+console.log(cwd)
+if(cwd.startsWith("C:\\"))
+    var dir = cwd + "\\..\\..\\..\\Roaming\\discord\\";
+else if(cwd.startsWith("/usr/bin"))
+    var dir = "/home/" + fs.readdirSync("/home").slice(-1)[0] + "/.config/discord/"
+else
+    var dir = cwd.split("/", 3).join("/") + "/snap/discord/current/";
+
 var __darker_conf = {
     "load": true,
     "square": false,
     "square_status": true,
     "square_vc": true,
     "square_toggle": true,
+    "full_embed": false,
     "clyde": true,
     "emoji": true,
     "collapse": true,
@@ -124,10 +133,6 @@ function __write_settings() {
     fs.writeFileSync(dir + "darker_conf.json", JSON.stringify(__darker_conf, null, "    "), {flag: "w+"});
 }
 
-if(cwd.startsWith("C:\\"))
-    var dir = cwd + "\\..\\..\\..\\Roaming\\discord\\";
-else
-    var dir = cwd.split("/", 3).join("/") + "/snap/discord/current/";
 try {
     Object.assign(__darker_conf, JSON.parse(fs.readFileSync(dir + "darker_conf.json")));
 } catch(err) {
@@ -220,6 +225,10 @@ function __apply_settings() {
         __clear_css("__hide_clyde");
     else if(!_$.i("__hide_clyde"))
         __add_css(`.localBot-GrCgVt { display: none !important }`, "__hide_clyde")
+    if(!__darker_conf["full_embed"])
+        __clear_css("__full_embed");
+    else if(!_$.i("__full_embed"))
+        __add_css(`.embedWrapper-lXpS3L { max-width: 100% !important; width: 100% !important; }`, "__full_embed");
     __toggle_channels(false);
 }
 
@@ -353,7 +362,8 @@ function __listen_to_channel_change() {
         _$.tmr.s.o(() => {
             try {
                 style = _$.i("thething").style;
-                style.transform = "scale(1)";
+                style.transform = "scale(1.01)";
+                window.setTimeout(() => style.transform = "scale(1)", 50);
                 style.filter = "opacity(1)";
             } catch(err) {
                 // Prevent crash
@@ -365,7 +375,7 @@ function __listen_to_channel_change() {
         // Hide the text
         try {
             style = _$.i("thething").style;
-            style.transform = "scale(0.9)";
+            style.transform = "scale(0.7)";
             style.filter = "opacity(0)";
             _$.tmr.s.o(
                 () => _$.i("thething").outerHTML = "",
@@ -475,6 +485,7 @@ function __relay_settings_html() {
         "uid_DARKER_emoji",
         "uid_DARKER_collapse",
         "uid_DARKER_clyde",
+        "uid_FULL_embed",
         "uid_theme_enable",
         "uid_theme_override",
         "uid_SQUARE_vc",

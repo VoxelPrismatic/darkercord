@@ -6,7 +6,7 @@ CLS
 ECHO %ESC%[94;1mInstalling PRIZcord...%ESC%[0m
 
 SET "DISCORD=%APPDATA%\discord\"
-SET "INDEXJS=%APPDATA%\discord\0.0.306\modules\discord_utils\index.js"
+SET "INDEXJS=%APPDATA%\discord\0.0.307\modules\discord_utils\index.js"
 
 ECHO %ESC%[90m^> Copying files%ESC%[0m
 COPY ..\darker_js.js %DISCORD% > NUL 2> NUL

@@ -11,10 +11,10 @@ IF %NT_BUILD% EQU 10 (
 COLOR 0B
 CLS
 
-ECHO Installing DARKERcord...
+ECHO Installing PRIZcord...
 
 SET "DISCORD=%APPDATA%\discord\"
-SET "INDEXJS=%APPDATA%\discord\0.0.306\modules\discord_utils\index.js"
+SET "INDEXJS=%APPDATA%\discord\0.0.307\modules\discord_utils\index.js"
 
 COLOR 08
 ECHO ^> Copying files
@@ -46,7 +46,7 @@ SET "VNUM=%__DARKER_VERSION__:~24,-2%"
 DEL __DARKER_VERSION__.TXT
 
 COLOR 0B
-ECHO DARKERcord v%VNUM% installed
+ECHO PRIZcord v%VNUM% installed
 PAUSE
 EXIT
 

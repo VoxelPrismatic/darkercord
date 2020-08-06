@@ -81,6 +81,10 @@ rect[fill="rgba(250, 166, 26, 1)"]:last-child {
     mask: url(#priz-mask-status-idle);
 } rect[fill="rgba(67, 181, 129, 1)"]:last-child {
     mask: url(#priz-mask-status-online);
+} mask:first-child + rect[fill="rgba(67, 181, 129, 1)"][height="15"]:last-child {
+    mask: url(#priz-mask-status-online-mobile);
+    height: 15px;
+    y: 0;
 } rect[fill="rgba(240, 71, 71, 1)"]:last-child {
     mask: url(#priz-mask-status-dnd);
 } rect[fill="rgba(116, 127, 141, 1)"]:last-child {
@@ -103,4 +107,8 @@ rect[fill="rgba(250, 166, 26, 1)"]:last-child {
 defs g[id$="_badge_masks"] rect[rx="12"][ry="12"] {
     rx: 4;
     ry: 4;
+}
+
+svg.mask-1qbNWk[width="10"][height="15"][viewBox="0 0 10 15"] {
+    transform: scaleX(1.5);
 }
