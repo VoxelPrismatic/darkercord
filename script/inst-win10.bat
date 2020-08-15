@@ -11,14 +11,12 @@ SET "INDEXJS=%APPDATA%\discord\0.0.307\modules\discord_utils\index.js"
 ECHO %ESC%[90m^> Copying files%ESC%[0m
 COPY ..\darker_js.js %DISCORD% > NUL 2> NUL
 IF %ERRORLEVEL% NEQ 0 GOTO ERR
-COPY ..\darker_css.css %DISCORD% > NUL 2> NUL
-COPY ..\darker_settings.html %DISCORD% > NUL 2> NUL
-COPY ..\darker_update.html %DISCORD% > NUL 2> NUL
-COPY ..\darker_emotion.css %DISCORD% > NUL 2> NUL
 MKDIR %DISCORD%darker_themes > NUL 2> NUL
 XCOPY ..\darker_themes\* %DISCORD%darker_themes /E /Y > NUL 2> NUL
 MKDIR %DISCORD%darker_html > NUL 2> NUL
 XCOPY ..\darker_html\* %DISCORD%darker_html /E /Y > NUL 2> NUL
+MKDIR %DISCORD%darker_tray > NUL 2> NUL
+XCOPY ..\darker_tray\* %DISCORD%darker_tray /E /Y > NUL 2> NUL
 
 ECHO %ESC%[90m> Copying dependencies%ESC%[0m
 COPY ..\node_stuff\package-lock.json %DISCORD% > NUL 2> NUL

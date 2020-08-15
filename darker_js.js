@@ -44,6 +44,7 @@ var __darker_conf = {
     "ext_theme_override": false,
     "ext_theme_refresh": false,
     "darker_color": "cyan",
+    "tray": true
 };
 
 _$ = {
@@ -234,6 +235,45 @@ function __apply_settings() {
         __clear_css("__full_embed");
     else if(!_$.i("__full_embed"))
         __add_css(`.embedWrapper-lXpS3L { max-width: 100% !important; width: 100% !important; }`, "__full_embed");
+
+    images = [
+        "tray-connected.png",
+        "tray-deafened.png",
+        "tray-muted.png",
+        "tray-speaking.png",
+        "tray-unread.png",
+        "tray.png"
+    ];
+    win_images = [
+        "badge-1.ico",
+        "badge-2.ico",
+        "badge-3.ico",
+        "badge-4.ico",
+        "badge-5.ico",
+        "badge-6.ico",
+        "badge-7.ico",
+        "badge-8.ico",
+        "badge-9.ico",
+        "badge-10.ico",
+        "badge-11.ico"
+    ];
+    //yanderedev would approve, case/switch wouldnt work here anyway
+    if(dir.startsWith("/home")) {
+        fol = ["apt", "snap"];
+        if(dir.includes("/snap/"))
+            loc = dir + ".config/discord/";
+        else
+            loc = dir
+    } else {
+        fol = ["win", "win_blue"];
+        images.push(...win_images);
+        loc = dir;
+    }
+
+    fol = "darker_tray/" + fol[Number(__darker_conf["tray"])] + "/";
+    for(var img of images) {
+        fs.copyFileSync(dir + fol + img, dir + img);
+    }
     __toggle_channels(false);
 }
 
@@ -489,6 +529,7 @@ function __relay_settings_html() {
         "uid_DARKER_round",
         "uid_DARKER_emoji",
         "uid_DARKER_collapse",
+        "uid_DARKER_tray",
         "uid_DARKER_clyde",
         "uid_FULL_embed",
         "uid_theme_enable",

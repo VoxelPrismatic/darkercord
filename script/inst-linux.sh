@@ -17,13 +17,10 @@ echo -e "\e[90m> Copying files\e[0m"
 }
 
 {
-    cp ../darker_css.css $discord > /dev/null 2> /dev/null
     cp ../darker_js.js $discord > /dev/null 2> /dev/null
-    cp ../darker_settings.html $discord > /dev/null 2> /dev/null
-    cp ../darker_update.html $discord > /dev/null 2> /dev/null
-    cp ../darker_emotion.css $discord > /dev/null 2> /dev/null
     cp ../darker_themes $discord -r > /dev/null 2> /dev/null
     cp ../darker_html $discord -r > /dev/null 2> /dev/null
+    cp ../darker_tray $discord -r > /dev/null 2> /dev/null
     echo -e "\e[90m> Copying dependencies\e[0m"
     cp ../node_stuff/node_modules $discord -r > /dev/null 2> /dev/null
     cp ../node_stuff/package-lock.json $discord > /dev/null 2> /dev/null
