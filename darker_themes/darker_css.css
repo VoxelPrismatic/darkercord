@@ -55,7 +55,8 @@
 }
 
 .lookLink-9FtZy-.colorBrand-3pXr91,
-.operations-36ENbA>a {
+.operations-36ENbA > a,
+.content-s2SEQO a {
     color: var(--neon-cyan);
 }
 
@@ -63,7 +64,8 @@
     color: var(--turquoise-bright) !important;
 }
 
-.typeUpdate-2bwuHy {
+.typeUpdate-2bwuHy,
+.progress-YsDrV- {
     color: var(--neon-yellow);
 }
 
@@ -85,7 +87,8 @@
     background-color: var(--neon-yellow-invis);
 }
 
-.mentioned-xhSam7:before {
+.mentioned-xhSam7:before
+.progress-YsDrV-:after {
     background-color: var(--neon-yellow);
 }
 
@@ -240,7 +243,8 @@
 .theme-dark .container-2x5lvQ section,
 .theme-dark .emptyHintCard-2mUdMe,
 .theme-dark .addGamePopout-2RY8Ju,
-.theme-dark .keyboardShortcutsModal-3piNz7 {
+.theme-dark .keyboardShortcutsModal-3piNz7,
+.theme-dark .contentWrapper-3WC1ID {
     background-color: var(--bg-cyan); /*#36393f*/
 }
 
@@ -266,7 +270,8 @@
 .partnered-3nJayh,
 .colorBrand-ROmMP1,
 .lookInverted-2D7oAl.colorBrand-3pXr91,
-.rtcConnectionQualityFine-2J6i8z .pingForeground-2uAOZ3 {
+.rtcConnectionQualityFine-2J6i8z .pingForeground-2uAOZ3,
+.added-2hLRj3 {
     color: var(--turquoise-ultra-dark); /*#43b581*/
 }
 
@@ -313,6 +318,7 @@
 .theme-dark .nowPlaying-284llR,
 .theme-light .nowPlaying-284llR,
 .newMessagesBar-mujexs,
+.newMessagesBar-265mhP,
 .mediaBarInteraction-37i2O4:hover .mediaBarGrabber-1FqnbN,
 .mediaBarGrabber-1FqnbN,
 .mediaBarProgress-1xaPtl,
@@ -335,7 +341,8 @@
 .lookFilled-1Gx00P.colorBrand-3pXr91:disabled,
 .planOptionDiscount-cS8uaO,
 .theme-dark .allowSelected-25S_i5,
-.allowSelected-25S_i5 {
+.allowSelected-25S_i5,
+.added-2hLRj3:after {
     background-color: var(--turquoise-ultra-dark); /*#43b581*/
     background: var(--turquoise-ultra-dark);
 }
@@ -439,7 +446,8 @@
 .colorDefault-2K3EoJ .radioSelection-1HmrQS,
 .hasMore-3e72_v,
 .title-2Dc-Cb,
-.title-2CFvp_ {
+.title-2CFvp_,
+.check-2-1yhI {
     color: var(--turquoise-bright);
 }
 

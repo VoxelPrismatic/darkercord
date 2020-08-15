@@ -81,7 +81,10 @@ rect[fill="rgba(250, 166, 26, 1)"]:last-child {
     mask: url(#priz-mask-status-idle);
 } rect[fill="rgba(67, 181, 129, 1)"]:last-child {
     mask: url(#priz-mask-status-online);
-} mask:first-child + rect[fill="rgba(67, 181, 129, 1)"][height="15"]:last-child {
+} rect[fill="rgba(67, 181, 129, 1)"][width="15"][height="25"]:last-child {
+    mask: url(#priz-mask-status-online);
+    height: 15;
+} mask:first-child + rect[fill="rgba(67, 181, 129, 1)"][height="15"][width="10"]:last-child {
     mask: url(#priz-mask-status-online-mobile);
     height: 15px;
     y: 0;

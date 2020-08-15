@@ -21,7 +21,32 @@ var __last_count = 0;
 var __stop_guild_listen = false;
 var __version_number = "2";
 
-window._$ = {
+var __darker_modules = {
+    __process__: process,
+    __require__: required
+}
+
+var __darker_conf = {
+    "load": true,
+    "square": false,
+    "square_status": true,
+    "square_vc": true,
+    "square_toggle": true,
+    "full_embed": false,
+    "clyde": true,
+    "emoji": true,
+    "collapse": true,
+    "light": false,
+    "hidden": false,
+    "override_light": false,
+    "ext_theme_file": "No file provided",
+    "ext_theme_enabled": false,
+    "ext_theme_override": false,
+    "ext_theme_refresh": false,
+    "darker_color": "cyan",
+};
+
+_$ = {
     c: (st, elem = document) => { return elem.getElementsByClassName(st); },
     i: (st, elem = document) => { return elem.getElementById(st); },
     n: (st, elem = document) => { return elem.getElementsByName(st); },
@@ -73,8 +98,12 @@ window._$ = {
         dn: (...args) => { return _$.nth.child(...args); },
         up: (...args) => { return _$.nth.parent(...args); },
         ls: (...args) => { return _$.nth.list(...args); },
-    }
+    },
+    mod: __darker_modules,
+    conf: __darker_conf,
 }
+
+module.exports._$ = _$;
 
 /* -INIT- */
 
@@ -92,11 +121,6 @@ function __add_masks() {
     e.after(_$.html(dir + "darker_html/darker_masks.html").body.children[0]);
 }
 
-window.__darker_modules = {
-    __process__: process,
-    __require__: required
-}
-
 var fs = required("fs");
 var requests = required("request");
 
@@ -105,29 +129,10 @@ console.log(cwd)
 if(cwd.startsWith("C:\\"))
     var dir = cwd + "\\..\\..\\..\\Roaming\\discord\\";
 else if(cwd.startsWith("/usr/bin"))
-    var dir = "/home/" + fs.readdirSync("/home").slice(-1)[0] + "/.config/discord/"
+    var dir = process.env.PWD + "/.config/discord/"
 else
     var dir = cwd.split("/", 3).join("/") + "/snap/discord/current/";
 
-var __darker_conf = {
-    "load": true,
-    "square": false,
-    "square_status": true,
-    "square_vc": true,
-    "square_toggle": true,
-    "full_embed": false,
-    "clyde": true,
-    "emoji": true,
-    "collapse": true,
-    "light": false,
-    "hidden": false,
-    "override_light": false,
-    "ext_theme_file": "No file provided",
-    "ext_theme_enabled": false,
-    "ext_theme_override": false,
-    "ext_theme_refresh": false,
-    "darker_color": "cyan",
-};
 
 function __write_settings() {
     fs.writeFileSync(dir + "darker_conf.json", JSON.stringify(__darker_conf, null, "    "), {flag: "w+"});
@@ -786,5 +791,5 @@ __add_masks();
 __apply_settings();
 
 window.onclick = __fix_ui;
-console.timeEnd("PRIZcord - Finished in");
 ___startup_time___ = new Date() - ___timer___;
+console.timeEnd("PRIZcord - Finished in");
