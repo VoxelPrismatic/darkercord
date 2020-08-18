@@ -5,16 +5,15 @@ indexjs=~/.config/discord/0.0.11/modules/discord_utils/index.js
 echo -e "\e[90m> Copying files\e[0m"
 
 #Detect whether or not discord is SNAP
-{
-    cp ../darker_css.css $discord > /dev/null 2> /dev/null
+if [ -d $discord ]; then 
     echo -e "\e[90m  > Detected install as APT/RPM\e[0m"
     snap="false"
-} || {
+else
     echo -e "\e[90m  > Detected install as SNAP\e[0m"
     discord=~/snap/discord/current/
     indexjs=~/snap/discord/current/.config/discord/0.0.11/modules/discord_utils/index.js
     snap="true"
-}
+fi
 
 {
     cp ../darker_js.js $discord > /dev/null 2> /dev/null
