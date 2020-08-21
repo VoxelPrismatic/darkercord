@@ -1,12 +1,12 @@
 .theme-dark {
     --header-primary: var(--white);
-    --header-secondary: #b9bbbe;
-    --text-normal: #dcddde;
+    --header-secondary: var(--other-standard);
+    --text-normal: var(--standard);
     --text-muted: var(--button-clicky);
     --text-link: var(--neon-cyan);
-    --channels-default: #8e9297;
-    --interactive-normal: #b9bbbe;
-    --interactive-hover: #dcddde;
+    --channels-default: var(--standard-half);
+    --interactive-normal:  var(--other-standard);
+    --interactive-hover: var(--standard);
     --interactive-active: var(--white);
     --interactive-muted: var(--button-normal);
     --background-primary: var(--bg-cyan);
@@ -23,7 +23,7 @@
     --background-modifier-accent: var(--white-trans);
     --background-mentioned: var(--neon-yellow-ultra-invis);
     --background-mentioned-hover: var(--neon-yellow-invis);
-    --background-message-hover: #04040512;
+    --background-message-hover: var(--neon-cyan-damn-near-black-invis);
     --scrollbar-thin-thumb: var(--bg-dark);
     --scrollbar-thin-track: var(--invis);
     --scrollbar-auto-thumb: var(--bg-dark);
@@ -39,17 +39,17 @@
     --guild-header-text-shadow: 0 1px 1px #0006;
     --channeltextarea-background: var(--bg-cyan-bright);
     --activity-card-background: var(--bg-dark);
-    --textbox-markdown-syntax: #8e9297;
+    --textbox-markdown-syntax: var(--standard-half);
     --deprecated-card-bg: #20222599;
     --deprecated-card-editable-bg: #2022254d;
     --deprecated-store-bg: var(--bg-cyan);
-    --deprecated-quickswitcher-input-background: #445555;
-    --deprecated-quickswitcher-input-placeholder: #ffffff4d;
+    --deprecated-quickswitcher-input-background: var(--button-clicky);
+    --deprecated-quickswitcher-input-placeholder: var(--white-semi);
     --deprecated-text-input-bg: #0000001a;
     --deprecated-text-input-border: #0000004d;
-    --deprecated-text-input-border-hover: #040405;
+    --deprecated-text-input-border-hover: var(--neon-cyan-damn-near-black);
     --deprecated-text-input-border-disabled: var(--bg-dark);
-    --deprecated-text-input-prefix: #dcddde;
+    --deprecated-text-input-prefix: var(--standard);
 } .theme-light {
     --text-link: var(--neon-cyan);
 }
@@ -549,6 +549,13 @@
     background-color: var(--turquoise-very-dark);
 }
 
+.lookFilled-1Gx00P.colorGreen-29iAKY:hover,
+.lookFilled-1Gx00P.colorBrand-3pXr91:hover,
+.theme-dark .questionMark-CWEQZn:hover,
+.interactive:hover {
+    background-color: var(--turquoise-dark);
+}
+
 .item-3HknzM.item-PXvHYJ[aria-label="Add Friend"],
 .categoryPill-34fszg.selected-1dONk0 {
     background-color: var(--turquoise-bright) !important;
@@ -603,7 +610,7 @@
 .spinner-j8Y2Rh, .spinner-qO2DFZ, .spinner-3POzOM,
 .spinner-3N25TF, .spinner-3lb-NU, .spinner-2OWD4A,
 .spinner-3abdbi {
-    filter: var(--swap-blurple-to-blue) saturate(200);
+    filter: var(--swap-blurple-to-blue);
 }
 
 .spinner-VERSION {
@@ -717,4 +724,10 @@ div.checkbox-1ix_J3.box-mmYMsp[style="width: 24px; height: 24px; border-color: r
 html.reduce-motion div#thething {
     transform: scale(1) !important;
     transition: 0.1s all ease 0s !important;
+}
+.uploadModalIn-1z07Bv .uploadDropModal-2kTwbc .bgScale-1otPtc {
+    background-color: var(--turquoise-ultra-dark);
+}
+.uploadModalIn-1z07Bv .uploadDropModal-2kTwbc .inner-3nWsbo .icon-kyxXVr {
+    filter: var(--swap-blurple-to-blue) brightness(1.5);
 }

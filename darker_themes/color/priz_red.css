@@ -1,0 +1,92 @@
+:root {
+    /* -- Colors -- */
+    --neon-cyan: #ff0000; /*#00b0f4*/
+    --neon-cyan-invis: #ff000011;
+    --neon-cyan-damn-near-black: #050303;
+    --neon-cyan-damn-near-black-invis: #05030312;
+
+    --bg-cyan: #221111; /*#36393f*/
+    --bg-cyan-ultra-lucent: #221111bf;
+    --bg-cyan-dark: #180808; /*#2f3136*/
+    --bg-cyan-dark-lucent: #18080899;
+    --bg-cyan-semi-dark: #1b0808;
+    --bg-cyan-ultra-dark: #1b0808; /*#2e3338*/
+    --bg-cyan-damn-near-black: #110000;
+    --bg-cyan-bright: #332222; /*#40444b*/
+    --bg-cyan-halved: #110808; /*#292b2f*/
+    --bg-cyan-halved-halved: #080404;
+
+    --turquoise-bright: #aa4444;
+    --turquoise-bright-invis-slight: #aa444426;
+    --turquoise-bright-invis: #aa44442a;
+    --turquoise-bright-semi: #aa44444d;
+    --turquoise-invis: #8844441a;
+    --turquoise-semidark: #554444;
+    --turquoise-semidark-invis: #5544441a;
+    --turquoise-dark: #993333;
+    --turquoise-dark-invis: #9933331a;
+    --turquoise-very-dark: #990000;
+    --turquoise-ultra-dark: #880000;
+    --turquoise-ultra-dark-semi: #8800004d;
+    --turquoise-ultra-dark-lucent: #88000099;
+    --turquoise-hella-dark: #770000;
+    --turquoise-mega-dark: #440000;
+    --turquoise-mega-dark-semi: #4400004c;
+
+    --bg-dark: #0a0a0a; /*#202225*/
+    --bg-dark-invis: #0a0a0a34;
+    --bg-dark-semi: #0a0a0a4d;
+    --bg-dark-kinda: #0a0a0a88;
+    --bg-dark-lucent: #0a0a0a99;
+
+    --button-normal: #443333; /*#4f545c*/
+    --button-normal-invis: #4433334d;
+    --button-clicky: #554444; /*#72767d*/
+    --button-select: #776666;
+    --button-hover: #665555;
+    --button-hover-bright: #bb5555;
+    --button-bright: #dd6666;
+
+    --mod-hover: #44333329; /*#4f545c29*/
+    --mod-active: #4433333d; /*#4f545c3d*/
+    --mod-selected: #44333352; /*#4f545c52*/
+
+    /* -- Static -- */
+
+    --neon-yellow: #ffff00;
+    --neon-yellow-invis: #ffff0010;
+    --neon-yellow-ultra-invis: #ffff0008;
+
+    --black: #000000;
+    --black-invis: #000000;
+
+    --invis: #0000;
+
+    --white: #ffffff;
+    --white-invis: #ffffff22;
+    --white-semi: #ffffff4d;
+    --white-trans: #ffffff0f;
+
+    --practically-white: #dddddd;
+    --some-grey: #bbbbbb;
+
+    --nitro-level-one: #cc40c7;
+    --nitro-level-two: #dd51d8;
+    --nitro-level-three: #ee62e9;
+    --nitro-dark: #6178c9;
+    --nitro-bright: #7289da;
+
+    --standard: #dcddde;
+    --other-standard: #b9bbbe;
+    --standard-half: #8e9297;
+    --std-red: #e03636;
+    --std-red-bright: #f04747;
+
+    --color-streaming: #6600aa;
+
+    /* -- Swap -- */
+
+    --swap-green-to-blue: hue-rotate(-100deg) saturate(200);
+    --hue-green-to-blue: hue-rotate(-125deg);
+    --swap-blurple-to-blue: hue-rotate(140deg) saturate(200);
+};

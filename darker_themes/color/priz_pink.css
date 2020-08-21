@@ -1,15 +1,18 @@
 :root {
+    /* -- Colors -- */
     --neon-cyan: #ff0088; /*#00b0f4*/
     --neon-cyan-invis: #ff008811;
+    --neon-cyan-damn-near-black: #050304;
+    --neon-cyan-damn-near-black-invis: #05030412;
 
     --bg-cyan: #221115; /*#36393f*/
     --bg-cyan-ultra-lucent: #221115bf;
     --bg-cyan-dark: #180810; /*#2f3136*/
-    --bg-cyan-dark-lucent: #18001099;
+    --bg-cyan-dark-lucent: #18081099;
     --bg-cyan-semi-dark: #1b0815;
-    --bg-cyan-ultra-dark: #150408; /*#2e3338*/
-    --bg-cyan-damn-near-black: #110008;
-    --bg-cyan-bright: #332226; /*#40444b*/
+    --bg-cyan-ultra-dark: #1b0815; /*#2e3338*/
+    --bg-cyan-damn-near-black: #11000a;
+    --bg-cyan-bright: #332225; /*#40444b*/
     --bg-cyan-halved: #11080a; /*#292b2f*/
     --bg-cyan-halved-halved: #080406;
 
@@ -36,10 +39,6 @@
     --bg-dark-kinda: #0a0a0a88;
     --bg-dark-lucent: #0a0a0a99;
 
-    --neon-yellow: #ffff00;
-    --neon-yellow-invis: #ffff0010;
-    --neon-yellow-ultra-invis: #ffff0008;
-
     --button-normal: #443338; /*#4f545c*/
     --button-normal-invis: #4433384d;
     --button-clicky: #554449; /*#72767d*/
@@ -47,6 +46,16 @@
     --button-hover: #66555a;
     --button-hover-bright: #bb5588;
     --button-bright: #dd66aa;
+
+    --mod-hover: #44333829; /*#4f545c29*/
+    --mod-active: #4433383d; /*#4f545c3d*/
+    --mod-selected: #44333852; /*#4f545c52*/
+
+    /* -- Static -- */
+
+    --neon-yellow: #ffff00;
+    --neon-yellow-invis: #ffff0010;
+    --neon-yellow-ultra-invis: #ffff0008;
 
     --black: #000000;
     --black-invis: #000000;
@@ -68,16 +77,16 @@
     --nitro-bright: #7289da;
 
     --standard: #dcddde;
+    --other-standard: #b9bbbe;
+    --standard-half: #8e9297;
     --std-red: #e03636;
     --std-red-bright: #f04747;
 
     --color-streaming: #6600aa;
 
+    /* -- Swap -- */
+
     --swap-green-to-blue: saturate(2000) hue-rotate(241deg);
     --hue-green-to-blue: hue-rotate(241deg);
     --swap-blurple-to-blue: hue-rotate(115deg) brightness(0.99) saturate(2%);
-
-    --mod-hover: #44333829; /*#4f545c29*/
-    --mod-active: #4433383d; /*#4f545c3d*/
-    --mod-selected: #44333852; /*#4f545c52*/
-}z
+};

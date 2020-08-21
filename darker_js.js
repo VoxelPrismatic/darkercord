@@ -19,12 +19,14 @@ var __emoji_timeout = 0;
 var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
-var __version_number = "2.2.1";
+var __version_number = "2.3";
 
 var __darker_modules = {
     __process__: process,
     __require__: required
 }
+
+__epilepsy_timer = 0
 
 var __darker_conf = {
     "load": true,
@@ -178,6 +180,15 @@ function __add_css(file, id) {
     return style;
 }
 
+function __new_rng_theme() {
+    require(dir + "darker_themes/color/random_color.js").generate(dir);
+    __clear_css("__darker_theme");
+    style = __add_css(
+        dir + "darker_themes/color/priz_" + __darker_conf["darker_color"] + ".css",
+        "__darker_theme"
+    )
+    style.setAttribute("data-theme", __darker_conf["darker_color"]);
+}
 
 function __apply_settings() {
     __darker_conf = JSON.parse(fs.readFileSync(dir + "darker_conf.json"));
@@ -185,11 +196,14 @@ function __apply_settings() {
         if(!_$.i("__darker_global"))
             __add_css(dir + "darker_themes/darker_css.css", "__darker_global");
         if(_$.i("__darker_theme"))
-            if(_$.i("__darker_theme").getAttribute("data-theme") != __darker_conf)
+            if(_$.i("__darker_theme").getAttribute("data-theme") != __darker_conf["darker_color"])
                 __clear_css("__darker_theme")
         if(!_$.i("__darker_theme")) {
+            window.clearInterval(__epilepsy_timer);
+            if(__darker_conf["darker_color"] == "epilepsy")
+                __epilepsy_timer = window.setInterval(__new_rng_theme, 1000);
             style = __add_css(
-                dir + "darker_themes/darker_" + __darker_conf["darker_color"] + ".css",
+                dir + "darker_themes/color/priz_" + __darker_conf["darker_color"] + ".css",
                 "__darker_theme"
             )
             style.setAttribute("data-theme", __darker_conf["darker_color"]);
@@ -568,6 +582,9 @@ function __relay_settings_html() {
     elem = _$.i("__nav_square");
     if(elem)
         elem.onclick = () => {_$.q("div#darker_panel div[data-html='square']").click()};
+    elem = _$.i("_DARKER_rng_make");
+    if(elem)
+        elem.onclick = __new_rng_theme;
 
     // sanity has been brought back kinda
 
@@ -577,7 +594,17 @@ function __relay_settings_html() {
                 for(var e of _$.c("css-12o7ek3-option custom-select"))
                     _$.tok.have_multi(e.classList, 1, ["css-1aymab5-option"], ["css-12o7ek3-option"]);
                 _$.tok.have_multi(this.classList, 0, ["css-1aymab5-option"], ["css-12o7ek3-option"]);
-                __darker_conf["darker_color"] = this.innerHTML.toLowerCase();
+                __darker_conf["darker_color"] = this.id.split("theme-select-")[1];
+                if(__darker_conf["darker_color"].endsWith("rng")) {
+                    _$.i("_DARKER_rng_desc").style.display = "";
+                    _$.i("_DARKER_og_desc").style.display = "none";
+                } else if(__darker_conf["darker_color"].endsWith("epilepsy")) {
+                    _$.i("_DARKER_rng_desc").style.display = "";
+                    _$.i("_DARKER_og_desc").style.display = "none";
+                } else {
+                    _$.i("_DARKER_rng_desc").style.display = "none";
+                    _$.i("_DARKER_og_desc").style.display = "";
+                }
                 __write_settings();
                 _$.i("theme-reflect").innerHTML = this.innerHTML;
                 __apply_settings();
@@ -636,8 +663,9 @@ function __add_info(evt) {
                 this.classList.add("selected-3s45Ha");
                 if(this.parentElement.id != "darker_panel" && _$.i("__darker_window")) {
                    _$.i("__darker_window").remove();
-                    _$.tmr.s.o(() => this.previousElementSibling.click(), 10);
-                    _$.tmr.s.o(() => this.click(), 20);
+                    _$.tmr.s.o(() => this.previousElementSibling.click(), 5);
+                    _$.tmr.s.o(() => this.nextElementSibling.click(), 7);
+                    _$.tmr.s.o(() => this.click(), 10);
                 }
             });
         }

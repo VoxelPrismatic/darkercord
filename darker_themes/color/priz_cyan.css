@@ -1,14 +1,17 @@
 :root {
+    /* -- Colors -- */
     --neon-cyan: #00ffff; /*#00b0f4*/
     --neon-cyan-invis: #00ffff11;
+    --neon-cyan-damn-near-black: #030505;
+    --neon-cyan-damn-near-black-invis: #03050512;
 
     --bg-cyan: #112222; /*#36393f*/
     --bg-cyan-ultra-lucent: #112222bf;
-    --bg-cyan-dark: #111515; /*#2f3136*/
-    --bg-cyan-dark-lucent: #11151599;
-    --bg-cyan-semi-dark: #111818;
-    --bg-cyan-ultra-dark: #111313; /*#2e3338*/
-    --bg-cyan-damn-near-black: #001515;
+    --bg-cyan-dark: #081818; /*#2f3136*/
+    --bg-cyan-dark-lucent: #08181899;
+    --bg-cyan-semi-dark: #081b1b;
+    --bg-cyan-ultra-dark: #081b1b; /*#2e3338*/
+    --bg-cyan-damn-near-black: #001111;
     --bg-cyan-bright: #223333; /*#40444b*/
     --bg-cyan-halved: #081111; /*#292b2f*/
     --bg-cyan-halved-halved: #040808;
@@ -24,7 +27,6 @@
     --turquoise-dark-invis: #3399991a;
     --turquoise-very-dark: #009999;
     --turquoise-ultra-dark: #008888;
-    --turquoise-ultra-dark-invis: #0088881a;
     --turquoise-ultra-dark-semi: #0088884d;
     --turquoise-ultra-dark-lucent: #00888899;
     --turquoise-hella-dark: #007777;
@@ -34,13 +36,8 @@
     --bg-dark: #0a0a0a; /*#202225*/
     --bg-dark-invis: #0a0a0a34;
     --bg-dark-semi: #0a0a0a4d;
-    --bg-dark-border: #0a0a0a7f;
     --bg-dark-kinda: #0a0a0a88;
     --bg-dark-lucent: #0a0a0a99;
-
-    --neon-yellow: #ffff00;
-    --neon-yellow-invis: #ffff0010;
-    --neon-yellow-ultra-invis: #ffff0008;
 
     --button-normal: #334444; /*#4f545c*/
     --button-normal-invis: #3344444d;
@@ -49,6 +46,16 @@
     --button-hover: #556666;
     --button-hover-bright: #55bbbb;
     --button-bright: #66dddd;
+
+    --mod-hover: #33444429; /*#4f545c29*/
+    --mod-active: #3344443d; /*#4f545c3d*/
+    --mod-selected: #33444452; /*#4f545c52*/
+
+    /* -- Static -- */
+
+    --neon-yellow: #ffff00;
+    --neon-yellow-invis: #ffff0010;
+    --neon-yellow-ultra-invis: #ffff0008;
 
     --black: #000000;
     --black-invis: #000000;
@@ -70,16 +77,16 @@
     --nitro-bright: #7289da;
 
     --standard: #dcddde;
+    --other-standard: #b9bbbe;
+    --standard-half: #8e9297;
     --std-red: #e03636;
     --std-red-bright: #f04747;
 
     --color-streaming: #6600aa;
 
+    /* -- Swap -- */
+
     --swap-green-to-blue: saturate(2000) hue-rotate(95deg);
     --hue-green-to-blue: hue-rotate(95deg);
     --swap-blurple-to-blue: hue-rotate(-47deg) brightness(0.77);
-
-    --mod-hover: #33444429; /*#4f545c29*/
-    --mod-active: #3344443d; /*#4f545c3d*/
-    --mod-selected: #33444452; /*#4f545c52*/
-}z
+};
