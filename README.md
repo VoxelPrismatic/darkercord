@@ -3,8 +3,6 @@ Making the discord dark theme even darker, with some cool colors too.
 
 **NOTE:** This only works for the desktop app. I did not [and will not] make an extension due to ToS and security issues.
 
-**NOTE:** The Linux version of PRIZcord is ***NOT*** compatible with APT/RPM/DNF/etc. Only SNAP.
-
 *Also check out [Skeuocord](https://github.com/marda33/skeuocord), it works with PRIZcord too!*
 
 <details>
