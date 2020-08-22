@@ -1,7 +1,7 @@
 :root {
     /* -- Colors -- */
-    --neon-cyan: #888888; /*#00b0f4*/
-    --neon-cyan-invis: #88888811;
+    --neon-cyan: #ffffff; /*#00b0f4*/
+    --neon-cyan-invis: #ffffff11;
     --neon-cyan-damn-near-black: #040404;
     --neon-cyan-damn-near-black-invis: #04040412;
 
