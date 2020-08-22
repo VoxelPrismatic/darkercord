@@ -33,7 +33,7 @@ Making the discord dark theme even darker, with some cool colors too.
   <details>
     <summary>
       <h2><i>Builtin themes: [16]</i></h2>
-    <summary>
+    </summary>
     <h4>Almost Amoled</h4>
     <img src="https://media.discordapp.net/attachments/613157686329999363/746757660505931816/unknown.png" width="32%">
     <h4>Black</h4>
