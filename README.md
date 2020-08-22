@@ -9,7 +9,7 @@ Making the discord dark theme even darker, with some cool colors too.
   <summary>Screenshots [29]</summary>
   <details>
     <summary>
-      <h2><i>Normal icons: [7]</i></h2>
+      Normal icons: [7]
     </summary>
     <img src="https://media.discordapp.net/attachments/569698278271090728/727590717009952908/unknown.png" width="32%">
     <img src="https://media.discordapp.net/attachments/569698278271090728/727590845817290773/unknown.png" width="32%">
@@ -21,7 +21,7 @@ Making the discord dark theme even darker, with some cool colors too.
   </details>
   <details>
     <summary>
-      <h2><i>Square icons: [6]</i></h2>
+      Square icons: [6]
     </summary>
     <img src="https://media.discordapp.net/attachments/569698278271090728/735846902477881454/unknown.png" width="32%">
     <img src="https://media.discordapp.net/attachments/569698278271090728/735951186989154426/unknown.png" width="32%">
@@ -32,7 +32,7 @@ Making the discord dark theme even darker, with some cool colors too.
   </details>
   <details>
     <summary>
-      <h2><i>Builtin themes: [16]</i></h2>
+      Builtin themes: [16]
     </summary>
     <h4>Almost Amoled</h4>
     <img src="https://media.discordapp.net/attachments/613157686329999363/746757660505931816/unknown.png" width="32%">
