@@ -19,7 +19,7 @@ var __emoji_timeout = 0;
 var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
-var __version_number = "2.3.2";
+var __version_number = "2.4";
 
 var __darker_modules = {
     __process__: process,
