@@ -5,7 +5,7 @@ indexjs=~/.config/discord/0.0.11/modules/discord_utils/index.js
 echo -e "\e[90m> Copying files\e[0m"
 
 #Detect whether or not discord is SNAP
-if [ -d $discord ]; then 
+if [ -d $discord ]; then
     echo -e "\e[90m  > Detected install as APT/RPM\e[0m"
     snap="false"
 else
@@ -15,7 +15,7 @@ else
     snap="true"
 fi
 
-{
+if [ -f ../darker_js.js ]; then
     cp ../darker_js.js $discord > /dev/null 2> /dev/null
     cp ../darker_themes $discord -r > /dev/null 2> /dev/null
     cp ../darker_html $discord -r > /dev/null 2> /dev/null
@@ -23,18 +23,17 @@ fi
     echo -e "\e[90m> Copying dependencies\e[0m"
     cp ../node_stuff/node_modules $discord -r > /dev/null 2> /dev/null
     cp ../node_stuff/package-lock.json $discord > /dev/null 2> /dev/null
-} || {
+else
     echo -e "\e[41;30;1mYou aren't in the right folder, please run this script ./script folder\e[0m"
     exit
-}
+fi
 
 echo -e "\e[90m> Setting up\e[0m"
 cp ../index-backup.js $indexjs -T > /dev/null 2> /dev/null
 mkdir $discord\darker_themes > /dev/null 2> /dev/null
 cp $indexjs $indexjs\~ -T > /dev/null 2> /dev/null
 echo "" >> $indexjs
-if [ "$snap" == "true" ];
-then
+if [ "$snap" == "true" ]; then
     echo "require(\"../../../../../darker_js.js\");" >> $indexjs;
 else
     echo "require(\"../../../darker_js.js\");" >> $indexjs;

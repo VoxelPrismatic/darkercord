@@ -7,15 +7,19 @@ CALL :BLUEBOLD & ECHO Installing PRIZcord... & CALL :CLR
 SET "DISCORD=%APPDATA%\discord\"
 SET "INDEXJS=%APPDATA%\discord\0.0.307\modules\discord_utils\index.js"
 
-CALL :GREY & ECHO ^> Copying files & CALL :CLR
-COPY ..\darker_js.js %DISCORD% > NUL 2> NUL
-IF %ERRORLEVEL% NEQ 0 GOTO ERR
-MKDIR %DISCORD%darker_themes > NUL 2> NUL
-XCOPY ..\darker_themes\* %DISCORD%darker_themes /E /Y > NUL 2> NUL
-MKDIR %DISCORD%darker_html > NUL 2> NUL
-XCOPY ..\darker_html\* %DISCORD%darker_html /E /Y > NUL 2> NUL
-MKDIR %DISCORD%darker_tray > NUL 2> NUL
-XCOPY ..\darker_tray\* %DISCORD%darker_tray /E /Y > NUL 2> NUL
+IF EXIST "..\darker_js.js" (
+    CALL :GREY & ECHO ^> Copying files & CALL :CLR
+    COPY ..\darker_js.js %DISCORD% > NUL 2> NUL
+    MKDIR %DISCORD%darker_themes > NUL 2> NUL
+    XCOPY ..\darker_themes\* %DISCORD%darker_themes /E /Y > NUL 2> NUL
+    MKDIR %DISCORD%darker_html > NUL 2> NUL
+    XCOPY ..\darker_html\* %DISCORD%darker_html /E /Y > NUL 2> NUL
+    MKDIR %DISCORD%darker_tray > NUL 2> NUL
+    XCOPY ..\darker_tray\* %DISCORD%darker_tray /E /Y > NUL 2> NUL
+) ELSE (
+    CALL :REDINVBOLD & ECHO You aren't in the right folder, please run this script ./script folder & CALL :CLR
+    EXIT
+)
 
 CALL :GREY & ECHO ^> Copying dependencies & CALL :CLR
 COPY ..\node_stuff\package-lock.json %DISCORD% > NUL 2> NUL
@@ -36,11 +40,6 @@ DEL __DARKER_VERSION__.TXT
 CALL :BLUEBOLD & ECHO PRIZcord v%VNUM% installed & CALL :CLR
 PAUSE
 EXIT
-
-:ERR
-CALL :REDINVBOLD & ECHO You aren't in the right folder, please run this script ./script folder & CALL :CLR
-EXIT
-
 
 REM -- COLOR ESCAPING CODE --
 

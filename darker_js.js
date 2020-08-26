@@ -293,40 +293,14 @@ function __apply_settings() {
 
 
 /* -Emoji stuff- */
-function __listen_to_emoji_click(evt = null, force = false) {
-    /* Finds all emojis and allows them to be clicked */
 
-    // Get messages wrapper
-    try {
-        if(evt)
-            target = evt.target;
-        else
-            target = _$.i("messages").parentElement;
-    } catch(err) {
-        return;
-    }
-
-    // Ignore dupes
-    ln = _$.nth.list(target, 0).length;
-    if(!force && __messages_length == ln)
-        return;
-    __messages_length = ln;
-
-    // Update emojis
-    var count = 0;
-    for(var emoji of _$.c("emoji", target)) {
-        if(!emoji.onclick || emoji.onclick.toString() == "function Kn(){}")
-            emoji.onclick = function () {__listen_emoji(this)};
-        count += 1;
-    }
-
-    // Make sure no emojis were missed
-    if(count == 0 || count != __last_count) {
-        _$.tmr.s.o(__listen_to_emoji_click, 100);
-        __last_count = count;
-    } else {
-        __last_count = 0;
-    }
+function __open_link(url) {
+    a = document.createElement("A");
+    a.href = url;
+    a.rel = "noreferrer noopener";
+    a.target = "_blank";
+    a.click();
+    a.remove();
 }
 
 function __listen_emoji(elem) {
@@ -343,8 +317,16 @@ function __listen_emoji(elem) {
     __emoji_timeout += 1
 
     // Open
-    if(__emoji_timeout == 3)
-        window.open(elem.src, '_blank');
+    if(__emoji_timeout == 3) {
+        var url = ""
+        if(elem.className.includes("emoji"))
+            url = elem.src;
+        else if(elem.className.includes("avatar-3EQepX wrapper-3t9DeA"))
+            url = _$.q("img.avatar-VxgULZ", elem).src.split("?")[0];
+        else if(elem.className.includes("wrapper-1BJsBx") && _$.q("img.icon-27yU2q", elem))
+            url = _$.q("img.icon-27yU2q", elem).src.split("?")[0];
+        __open_link(url);
+    }
     _$.tmr.s.o(() => __emoji_timeout -= 1, 1000)
 }
 
@@ -447,12 +429,6 @@ function __listen_to_channel_change() {
     }
     button.onclick = __toggle_channels;
     __toggle_channels(false);
-    try {
-        __listen_to_emoji_click(null, true);
-        _$.i("messages").parentElement.onscroll = __listen_to_emoji_click;
-    } catch(err) {
-        console.error(err);
-    }
     __fix_ui();
 }
 
@@ -460,7 +436,6 @@ function __channel_listen() {
     /* Fixes said button */
 //     console.log("__channel_listen");
     __listen_to_channel_change();
-    __listen_to_emoji_click(null, true);
     var count = 0;
     var ls;
 
@@ -745,6 +720,22 @@ function __update_settings(elem, dont = false, write = true) {
 }
 
 function __fix_ui(evt) {
+    if(__darker_conf["emoji"] && evt) {
+        window.setTimeout(() => {
+            add_timer = 0;
+            for(var group of ["div.avatar-3EQepX.wrapper-3t9DeA", "img.emoji", "a.wrapper-1BJsBx"]) {
+                for(var elem of _$.qALL(group)) {
+                    if(!elem.onclick || elem.onclick.toString() == "function Kn(){}") {
+                        elem.onclick = function () { __listen_emoji(this) };
+                        add_timer = 1;
+                    }
+                }
+            }
+            __emoji_timeout += add_timer;
+        }, 100)
+    }
+
+
     /* Fixes more UI elements */
     __add_info(evt);
     if(!__darker_conf["load"])
@@ -793,8 +784,7 @@ function __check_for_darker_updates() {
     for(var e of html.body.children)
         main.appendChild(e);
     _$.i("releases_button__").onclick = () => {
-        window.open('https://github.com/voxelprismatic/prizcord/releases/latest', '_blank');
-        __close_updates();
+        __open_link('https://github.com/voxelprismatic/prizcord/releases/latest');
     }
     _$.i("__close_updates").onclick = __close_updates;
     _$.tmr.s.o(() => {
