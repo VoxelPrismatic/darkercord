@@ -5,7 +5,7 @@ CLS
 CALL :BLUEBOLD & ECHO Installing PRIZcord... & CALL :CLR
 
 SET "DISCORD=%APPDATA%\discord\"
-SET "INDEXJS=%APPDATA%\discord\0.0.307\modules\discord_utils\index.js"
+SET "INDEXJS=%APPDATA%\discord\0.0.308\modules\discord_utils\index.js"
 
 IF EXIST "..\darker_js.js" (
     CALL :GREY & ECHO ^> Copying files & CALL :CLR

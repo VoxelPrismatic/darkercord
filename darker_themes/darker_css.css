@@ -618,7 +618,8 @@
 }
 
 .userSettingsSecurity-3IYeMF .lockIcon-2Hj8Tq,
-.permissionCheckmark-1SeKr2 {
+.permissionCheckmark-1SeKr2,
+.iconWrapper-2OrFZ1.clickable-3rdHwn.focusable-1YV_-H[aria-label="Update Ready!"] {
     filter: var(--swap-green-to-blue) brightness(1.5);
 }
 

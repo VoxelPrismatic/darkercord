@@ -1,7 +1,7 @@
 echo -e "\e[94;1mInstalling PRIZcord...\e[0m"
 
 discord=~/.config/discord/
-indexjs=~/.config/discord/0.0.11/modules/discord_utils/index.js
+indexjs=~/.config/discord/0.0.12/modules/discord_utils/index.js
 echo -e "\e[90m> Copying files\e[0m"
 
 #Detect whether or not discord is SNAP
@@ -11,7 +11,7 @@ if [ -d $discord ]; then
 else
     echo -e "\e[90m  > Detected install as SNAP\e[0m"
     discord=~/snap/discord/current/
-    indexjs=~/snap/discord/current/.config/discord/0.0.11/modules/discord_utils/index.js
+    indexjs=~/snap/discord/current/.config/discord/0.0.12/modules/discord_utils/index.js
     snap="true"
 fi
 
