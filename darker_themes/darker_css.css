@@ -56,7 +56,9 @@
 
 .lookLink-9FtZy-.colorBrand-3pXr91,
 .operations-36ENbA > a,
-.content-s2SEQO a {
+.content-s2SEQO a,
+.reactionMe-wv5HKu .reactionCount-2mvXRV,
+.reactionMe-wv5HKu:hover .reactionCount-2mvXRV {
     color: var(--neon-cyan);
 }
 
@@ -454,8 +456,7 @@
 .regionSelectModal-12e-57 .regionSelectModalHeader-21khC1,
 .rtcConnectionStatusConnected-VRZDjy,
 .theme-dark .secured-1Yihly,
-.reactionMe-wv5HKu .reactionCount-2mvXRV,
-.reactionMe-wv5HKu:hover .reactionCount-2mvXRV {
+.reactionCount-2mvXRV {
     color: var(--turquoise-ultra-dark);
 }
 

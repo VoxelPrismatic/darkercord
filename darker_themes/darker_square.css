@@ -22,6 +22,10 @@ div.listItemWrapper-3X98Pc defs path {
     d: path("M 0 8 C 0 8 0 0 8 0 L 40 0 C 40 0 48 0 48 8 L 48 40 C 48 40 48 48 40 48 L 8 48 C 8 48 0 48 0 40 Z")
 }
 
+.mask-1l8v16.svg-2V3M55 > mask:first-child circle[cx="40"][cy="40"][r="40"] {
+    r: 80;
+}
+
 foreignObject[mask*="url(#svg-mask-avatar-status-"][mask$="32)"] img,
 .userLimit-64AFxe .wrapper-pZmgj4,
 .iconSizeMedium-2OqPjI,
@@ -42,7 +46,8 @@ foreignObject[mask*="url(#svg-mask-avatar-status-"][mask$="80)"] img,
 .emptyChannelIcon-cc932w,
 .avatarUploaderInner-3UNxY3.avatarUploaderInner-3SDRO_,
 .avatarUploaderInner-3UNxY3.avatarUploaderInner-3Mrx2N,
-.wrapper-3t9DeA {
+.wrapper-3t9DeA,
+.userPopout-3XzG_A .avatar-VxgULZ {
     border-radius: 16px;
 }
 

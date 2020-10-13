@@ -20,7 +20,6 @@ var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
 var __version_number = "2.5";
-
 var __darker_modules = {
     __process__: process,
     __require__: required
@@ -34,6 +33,7 @@ var __darker_conf = {
     "square_status": true,
     "square_vc": true,
     "square_toggle": true,
+    "square_bubble": false,
     "full_embed": false,
     "clyde": true,
     "emoji": true,
@@ -46,6 +46,8 @@ var __darker_conf = {
     "ext_theme_override": false,
     "ext_theme_refresh": false,
     "darker_color": "cyan",
+    "hide_help": false,
+    "strike_match_theme": false,
     "tray": true
 };
 
@@ -172,6 +174,7 @@ function __add_css(file, id) {
     } catch(err) {
         var newcss = file;
     }
+    __clear_css(id);
     var style = document.createElement("style");
     style.id = id;
     style.type = "text/css";
@@ -216,7 +219,8 @@ function __apply_settings() {
         "square",
         "square_status",
         "square_toggle",
-        "square_vc"
+        "square_vc",
+        "square_bubble"
     ];
     for(var style of __square_styles) {
         if(!__darker_conf["square"] || !__darker_conf[style])
@@ -224,6 +228,23 @@ function __apply_settings() {
         else if(!_$.i("__darker_" + style))
             __add_css(dir + "darker_themes/" + "darker_" + style + ".css", "__darker_" + style)
     }
+
+    if(__darker_conf["clyde"])
+        __clear_css("__hide_clyde");
+    else if(!_$.i("__hide_clyde"))
+        __add_css(`.localBot-GrCgVt { display: none !important }`, "__hide_clyde");
+    if(!__darker_conf["full_embed"])
+        __clear_css("__full_embed");
+    else if(!_$.i("__full_embed"))
+        __add_css(`.embedWrapper-lXpS3L { max-width: 100% !important; width: 100% !important; }`, "__full_embed");
+    if(!__darker_conf["hide_help"])
+        __clear_css("__hide_help");
+    else if(!_$.i("__hide_help"))
+        __add_css(`a[href='https://support.discord.com'] { display: none; }`, "__hide_help");
+    if(!__darker_conf["strike_match_theme"])
+        __clear_css("__darker_strikes");
+    else if(!_$.i("__darker_strikes"))
+        __add_css(dir + "darker_themes/darker_strike.css", "__darker_strikes");
 
     if(__darker_conf["ext_theme_enabled"]) {
         if(__darker_conf["ext_theme_refresh"]) {
@@ -235,20 +256,11 @@ function __apply_settings() {
             __clear_css(
                 "__darker_global", "__darker_theme", "__darker_square",
                 "__darker_square_status", "__darker_square_toggle",
-                "__darker_square_vc"
+                "__darker_square_vc", "__darker_strikes"
            );
     } else {
         __clear_css("__darker_custom");
     }
-
-    if(__darker_conf["clyde"])
-        __clear_css("__hide_clyde");
-    else if(!_$.i("__hide_clyde"))
-        __add_css(`.localBot-GrCgVt { display: none !important }`, "__hide_clyde")
-    if(!__darker_conf["full_embed"])
-        __clear_css("__full_embed");
-    else if(!_$.i("__full_embed"))
-        __add_css(`.embedWrapper-lXpS3L { max-width: 100% !important; width: 100% !important; }`, "__full_embed");
 
     images = [
         "tray-connected.png",
@@ -286,7 +298,7 @@ function __apply_settings() {
 
     fol = "darker_tray/" + fol[Number(__darker_conf["tray"])] + "/";
     for(var img of images) {
-        fs.copyFileSync(dir + fol + img, dir + img);
+        fs.copyFileSync(dir + fol + img, loc + img);
     }
     __toggle_channels(false);
 }
@@ -521,11 +533,14 @@ function __relay_settings_html() {
         "uid_DARKER_tray",
         "uid_DARKER_clyde",
         "uid_FULL_embed",
+        "uid_hide_help",
+        "uid_strikes",
         "uid_theme_enable",
         "uid_theme_override",
         "uid_SQUARE_vc",
         "uid_SQUARE_status",
         "uid_SQUARE_toggle",
+        "uid_SQUARE_bubble"
     ];
     for(var toggle of toggles) {
         try {
@@ -704,14 +719,16 @@ function __update_settings(elem, dont = false, write = true) {
         ids = {
             "uid_DARKER_theme": false,
             "uid_DARKER_light": true,
-            "uid_DARKER_round": false
+            "uid_DARKER_round": false,
+            "uid_strikes": false,
         }
         condition = __darker_conf["ext_theme_enabled"] && __darker_conf["ext_theme_override"];
         __maybe_disable_switches(ids, condition);
         ids = {
             "uid_SQUARE_vc": false,
             "uid_SQUARE_toggle": false,
-            "uid_SQUARE_status": false
+            "uid_SQUARE_status": false,
+            "uid_SQUARE_bubble": false,
         }
         condition = !__darker_conf["square"] || condition;
         __maybe_disable_switches(ids, condition);

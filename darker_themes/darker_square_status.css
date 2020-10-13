@@ -112,6 +112,11 @@ rect[fill="rgba(240, 71, 71, 1)"]:last-child, rect[fill="#f04747"]:last-child {
     border-radius: 3px;
 }
 
+.mask-1l8v16.svg-2V3M55 > mask:first-child rect[x="54"][y="54"][rx="14"][ry="14"] {
+    rx: 8;
+    ry: 8;
+}
+
 defs g[id$="_badge_masks"] rect[rx="12"][ry="12"] {
     rx: 4;
     ry: 4;
