@@ -107,6 +107,8 @@ but I guarentee nothing. Do not complain to me about it.
   - You can upload your own themes
 - Square icons
   - These look great, try them
+- Loop audio & video endlessly
+  - Handy button right next to the volume button!
 
 # #] INSTALLATION ;]
 *Any scripts require you to download the ZIP archive of the repo. Please extract it too.
