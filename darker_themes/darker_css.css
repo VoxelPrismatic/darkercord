@@ -75,7 +75,8 @@
     color: var(--button-clicky);
 } #channelButton.selected-1GqIat .icon-22AiRD {
     color: var(--button-select);
-} #channelButton.clickable-3rdHwn:hover .icon-22AiRD {
+} #channelButton.clickable-3rdHwn:hover .icon-22AiRD,
+#channelButton.selected-1GqIat:hover .icon-22AiRD {
     color: var(--button-hover);
 }
 

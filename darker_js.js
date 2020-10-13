@@ -19,6 +19,7 @@ var __emoji_timeout = 0;
 var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
+var __block_wheel = true;
 var __version_number = "2.5";
 var __darker_modules = {
     __process__: process,
@@ -39,6 +40,7 @@ var __darker_conf = {
     "emoji": true,
     "collapse": true,
     "light": false,
+    "vid_loop": false,
     "hidden": false,
     "override_light": false,
     "ext_theme_file": "No file provided",
@@ -236,7 +238,7 @@ function __apply_settings() {
     if(!__darker_conf["full_embed"])
         __clear_css("__full_embed");
     else if(!_$.i("__full_embed"))
-        __add_css(`.embedWrapper-lXpS3L { max-width: 100% !important; width: 100% !important; }`, "__full_embed");
+        __add_css(dir + "darker_themes/darker_embeds.css", "__full_embed");
     if(!__darker_conf["hide_help"])
         __clear_css("__hide_help");
     else if(!_$.i("__hide_help"))
@@ -442,6 +444,7 @@ function __listen_to_channel_change() {
     button.onclick = __toggle_channels;
     __toggle_channels(false);
     __fix_ui();
+    __wheel_listener();
 }
 
 function __channel_listen() {
@@ -534,6 +537,7 @@ function __relay_settings_html() {
         "uid_DARKER_clyde",
         "uid_FULL_embed",
         "uid_hide_help",
+        "uid_loop_vid",
         "uid_strikes",
         "uid_theme_enable",
         "uid_theme_override",
@@ -736,7 +740,34 @@ function __update_settings(elem, dont = false, write = true) {
     _$.tmr.s.n(__apply_settings);
 }
 
-function __fix_ui(evt) {
+function __fix_images() {
+    if(__darker_conf["full_embed"]) {
+        for(var elem of _$.qALL(":-webkit-any(a.imageWrapper-2p5ogY, .embedWrapper-lXpS3L, .wrapper-2TxpI8) > :-webkit-any(img:not(.icon-1kp3fr), video, .wrapper-2TxpI8)")) {
+            elem.style.width = "100%";
+            elem.style.height = "auto";
+            if(elem.clientHeight > window.innerHeight / 2) {
+                elem.style.width = "auto";
+                elem.style.height = (window.innerHeight / 2) + "px"
+            }
+            elem.parentElement.style.height = elem.clientHeight + "px";
+            elem.parentElement.style.width = elem.clientWidth + "px";
+        }
+    }
+}
+
+function __video_loop(elem) {
+    vid = elem.parentElement.previousElementSibling;
+    vid.loop = !vid.loop;
+    if(vid.paused)
+        vid.click();
+    sty = elem.children[0].children[1].style;
+    if(vid.loop)
+        sty.display = "";
+    else
+        sty.display = "none";
+}
+
+function __fix_emojis(evt) {
     if(__darker_conf["emoji"] && evt) {
         window.setTimeout(() => {
             add_timer = 0;
@@ -751,7 +782,31 @@ function __fix_ui(evt) {
             __emoji_timeout += add_timer;
         }, 100)
     }
+}
 
+function __fix_ui(evt) {
+    __fix_emojis(evt);
+    if(__darker_conf["vid_loop"]) {
+        if(_$.q(".videoControls-2kcYic, .audioControls-2HsaU6")) {
+            thing = _$.html(dir + "darker_html/darker_video.html").body.children[0];
+            thing.onclick = function() { __video_loop(this) }
+            for(var elem of _$.qALL(".videoControls-2kcYic")) {
+                if(!elem.querySelector("div[title='Loop video']")) {
+                    elem.insertBefore(thing, elem.querySelector("div.flex-1O1GKY"));
+                }
+            }
+            thing = thing.cloneNode();
+            thing.title = "Loop audio";
+            for(var elem of _$.qALL(".audioControls-2HsaU6")) {
+                if(!elem.querySelector("div[title='Loop audio']")) {
+                    elem.insertBefore(thing, elem.querySelector("div.flex-1O1GKY"));
+                }
+            }
+        }
+    } else {
+        for(var elem of _$.qALL("div[title='Loop video']"))
+            elem.remove();
+    }
 
     /* Fixes more UI elements */
     __add_info(evt);
@@ -777,10 +832,21 @@ function __fix_ui(evt) {
         _$.tmr.s.o(__apply_settings, 100);
     }
     __toggle_channels(false);
+    __fix_images();
 
     // Double check
     if(evt)
         _$.tmr.s.o(__fix_ui, 100);
+}
+
+function __wheel_listener(evt) {
+    if(__block_wheel)
+        return;
+    console.log(evt);
+    globalThis.__block_wheel = true;
+    window.setTimeout(() => globalThis.__block_wheel = false, 1000)
+    __fix_emojis(true);
+    __fix_images();
 }
 
 /* Check for updates */
@@ -867,5 +933,8 @@ __add_masks();
 __apply_settings();
 
 window.onclick = __fix_ui;
+window.onresize = __fix_images;
+window.onwheel = __wheel_listener;
+
 ___startup_time___ = new Date() - ___timer___;
 console.timeEnd("PRIZcord - Finished in");
