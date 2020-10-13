@@ -20,7 +20,7 @@ var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
 var __block_wheel = true;
-var __version_number = "2.5";
+var __version_number = "2.6";
 var __darker_modules = {
     __process__: process,
     __require__: required
