@@ -7,3 +7,10 @@
 pre {
     max-width: 100%% !important;
 }
+
+
+:-webkit-any(a.imageWrapper-2p5ogY, .embedWrapper-lXpS3L, .wrapper-2TxpI8) > :-webkit-any(img:not(.full_fixed):not(.icon-1kp3fr):not(.embedFooterIcon-239O1f):not(.embedAuthorIcon--1zR3L), video:not(.full_fixed), .wrapper-2TxpI8:not(.full_fixed)) {
+    width: 100% !important;
+    max-height: 65vh !important;
+    height: auto !important;
+}

@@ -62,7 +62,8 @@
     color: var(--neon-cyan);
 }
 
-.pro-1T8RK7 {
+.pro-1T8RK7,
+.protip-283HFv {
     color: var(--turquoise-bright) !important;
 }
 
@@ -136,6 +137,7 @@
 
 .css-1o55ng5-control,
 .css-123uooi-menu,
+.css-3vaxre-menu,
 .css-1b86x2o-control,
 .css-9wh895-control {
     background-color: var(--bg-dark) !important;
@@ -164,6 +166,7 @@
 .categoryItem-3zFJns.selectedCategoryItem-3X8ujp .itemInner-3gVXMG,
 .barFill-23-gu-,
 .themeDefault-24hCdX.valueChecked-m-4IJZ,
+.container-3auIfb[style="opacity: 1; background-color: rgb(67, 181, 129);"],
 .panel-UE8sQC .checkedIcon-251AcY,
 .iconBadge-2wi9r4.participating-NBGDkr,
 .button-1YfofB.buttonColor-7qQbGO.buttonActive-3FrkXp,
@@ -301,6 +304,7 @@
 }
 
 .css-n57xjs-menu,
+.css-3vaxre-menu,
 .theme-dark .popout-2sKjHu {
     background-color: var(--bg-cyan-dark) !important; /*#2f3136*/
     box-shadow: var(--bg-dark-kinda) /*#20222588*/ 0px 1px 5px 0px !important;
@@ -384,6 +388,7 @@
 
 .input-cIJ7To.focused-1mmYsC,
 .input-cIJ7To:focus,
+.input-rwLH4i:focus,
 .panel-UE8sQC .checked-3kwPyT,
 .regionSelectModal-12e-57 .regionSelectModalOption-2DSIZ3:hover,
 .copyInputSuccess-XZc7BO {
@@ -564,16 +569,23 @@
     color: var(--white) !important;
 }
 
-.valueChecked-m-4IJZ {
+.valueChecked-m-4IJZ,
+.container-3auIfb[style="opacity: 1; background-color: rgb(67, 181, 129);"] {
     background-color: var(--turquoise-bright) !important;
 }
+
+.container-3auIfb:not([style="opacity: 1; background-color: rgb(67, 181, 129);"]) {
+    background-color: var(--button-normal) !important;
+}
+
 .themeClear-1EjkE4.valueChecked-m-4IJZ {
     background-color: var(--white-semi) !important;
 }
 
 .search-1iTphC .searchBox-2_mAlO .searchBoxInput-K6mkng,
 .theme-light .input-UJ9Tr3,
-.theme-light .input-1mgnkM {
+.theme-light .input-1mgnkM,
+.theme-light .input-rwLH4i {
     color: var(--white);
 }
 
@@ -733,4 +745,8 @@ html.reduce-motion div#thething {
 }
 .uploadModalIn-1z07Bv .uploadDropModal-2kTwbc .inner-3nWsbo .icon-kyxXVr {
     filter: var(--swap-blurple-to-blue) brightness(1.5);
+}
+
+.bar-2Qqk5Z {
+    background: var(--button-hover-bright) !important;
 }

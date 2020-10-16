@@ -129,3 +129,23 @@ svg.mask-1qbNWk[width="10"][height="15"][viewBox="0 0 10 15"] {
 div.autocomplete-1vrmpx.autocomplete-Z9HwQh img[alt] {
     border-radius: 4px;
 }
+
+img.avatar-VxgULZ {
+    border-radius: 4px !important;
+}
+
+foreignObject[width="80"][height="80"] > img.avatar-VxgULZ {
+    border-radius: 16px !important;
+}
+
+svg.cursorDefault-dsQJ1n[viewBox="0 0 40 24"][x="48"][y="52"][width="40"][height="24"],
+div.avatarWrapperNormal-3wFMbf.avatarWrapper-3H_478.focusable-1YV_-H {
+    overflow: visible;
+}
+
+svg.cursorDefault-dsQJ1n[viewBox="0 0 40 24"][x="48"][y="52"][width="40"][height="24"] > rect[height="24"][width="40"] {
+    height: 16px;
+    width: 16px;
+    x: 10;
+    y: 7;
+}

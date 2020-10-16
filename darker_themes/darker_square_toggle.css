@@ -1,8 +1,15 @@
 .switchEnabled-V2WDBB.switch-3wwwcV,
 .switchDisabled-3HsXAJ.switch-3wwwcV,
+.switchEnabled-V2WDBB.switch-2ckjoa,
+.switchDisabled-3HsXAJ.switch-2ckjoa,
+.container-3auIfb,
 .themeDefault-24hCdX.sizeDefault-2YlOZr:after,
 .valueChecked-m-4IJZ.sizeDefault-2YlOZr:after,
 .themeClear-1EjkE4.valueUnchecked-2lU_20:after,
 .checkbox-1ix_J3.round-2jCFai {
     border-radius: 4px;
+}
+
+.slider-TkfMQL rect[rx="10"] {
+    rx: 4;
 }

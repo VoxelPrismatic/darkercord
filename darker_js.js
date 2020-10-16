@@ -19,8 +19,8 @@ var __emoji_timeout = 0;
 var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
-var __block_wheel = true;
-var __version_number = "2.6";
+var __block_wheel = false;
+var __version_number = "2.7";
 var __darker_modules = {
     __process__: process,
     __require__: required
@@ -379,6 +379,12 @@ function __toggle_channels(doit = true) {
                 __toggle_channels(false);
             }, 500);
     }
+    for(var x = 0; x <= 5; x += 0.5)
+        window.setTimeout(__wheel_listener, x * 1000);
+    try {
+        _$.q("div.messagesWrapper-1sRNjr").children[0].onscroll = __wheel_listener;
+    } catch(err) {
+    }
 }
 function __listen_to_channel_change() {
     /* Finds all channels and allows them to fix the button */
@@ -445,6 +451,10 @@ function __listen_to_channel_change() {
     __toggle_channels(false);
     __fix_ui();
     __wheel_listener();
+    try {
+        _$.q("div.messagesWrapper-1sRNjr").children[0].onscroll = __wheel_listener;
+    } catch(err) {
+    }
 }
 
 function __channel_listen() {
@@ -526,6 +536,55 @@ function __guild_listen() {
 
 /* -More UI fixing- */
 
+function __darker_toggle(that, skip_anim = false) {
+
+    svg = that.previousElementSibling;
+    paths = svg.children;
+    svg1 = paths[1];
+    svg2 = paths[2];
+    p1 = svg1.children[0];
+    p2 = svg1.children[1];
+    p3 = svg2.children[0];
+    p4 = svg2.children[1];
+    if(that.disabled)
+        that.parentElement.style.opacity = "0.3";
+    else
+        that.parentElement.style.opacity = "1";
+    if(!that.checked || that.disabled) {
+        that.parentElement.style.backgroundColor = "rgb(114, 118, 125)";
+        svg.style.left = "-3px";
+    } else {
+        that.parentElement.style.backgroundColor = "rgb(67, 181, 129)";
+        [svg1, svg2] = [svg2, svg1];
+        svg.style.left = "12px";
+    }
+
+    for(var p of [p1, p2, p3, p4, paths[0]]) {
+        p.style.animation = "";
+        p.style.animationPlayState = "paused"
+        window.setTimeout((e) => {
+            e.style.animation = "";
+            e.style.animationPlayState = "paused";
+        }, 200, p);
+    }
+
+    if(!skip_anim) {
+        p1.style.animation = "darker_switch_left 0.2s running";
+        p2.style.animation = "darker_switch_right_2 0.2s running";
+        p3.style.animation = "darker_switch_right 0.2s running";
+        p4.style.animation = "darker_switch_left 0.2s running";
+        paths[0].style.animation = "darker_switch_body 0.2s running";
+    }
+
+    svg1.classList.add("darker_switch_hidden");
+    svg2.classList.remove("darker_switch_hidden");
+
+//     p1.children[0].style.transform = "matrix(1, -1, 0, 1, 0, 0) translateY(10px)";
+//     p1.children[1].style.transform = "matrix(1, 1, 0, 1, 0, 0) translateY(-10px)";
+//     for(var path of p2.children)
+//         path.style.transform = "matrix(1, 0, 0, 1, 0, 0) translateY(0px)";
+}
+
 function __relay_settings_html() {
     var toggles = [
         "uid_DARKER_theme",
@@ -550,8 +609,18 @@ function __relay_settings_html() {
         try {
             toggle_elem = _$.i(toggle);
             if(toggle_elem) {
-                toggle_elem.onclick = function() { __update_settings(this) };
+                toggle_elem.onclick = function(evt) {
+                    __darker_toggle(this);
+                    __update_settings(this);
+                }
                 toggle_elem.checked = __darker_conf[toggle_elem.getAttribute("data-conf")];
+                try {
+                    __darker_toggle(toggle_elem, true);
+
+                } catch(err) {
+                    console.warn(toggle_elem);
+                    console.error(err);
+                }
                 __update_settings(toggle_elem, false, false);
             }
         } catch(err) {
@@ -642,9 +711,21 @@ function __add_info(evt) {
                 }
                 e = document.createElement("DIV");
                 e.id = "__darker_window"
-                e.innerHTML = _$.html(
+                doc = _$.html(
                     dir + "darker_html/darker_settings_" + this.getAttribute("data-html") + ".html"
-                ).body.children[0].innerHTML;
+                ).body.children[0];
+                for(var btn of doc.querySelectorAll("btn")) {
+                    try {
+                        btn_elem = _$.html(dir + "darker_html/switch/switch.html").body.children[0];
+                        inp = btn_elem.getElementsByTagName("INPUT")[0];
+                        inp.id = btn.id;
+                        inp.setAttribute("data-conf", btn.getAttribute("data-conf"))
+                        btn.replaceWith(btn_elem);
+                    } catch(err) {
+                        console.error(err);
+                    }
+                }
+                e.innerHTML = doc.innerHTML;
                 panel.appendChild(e);
                 __relay_settings_html();
             }
@@ -691,26 +772,14 @@ function __maybe_disable_switches(ids, condition) {
         e = _$.i(id);
         if(!e)
             continue;
-        _$.tok.have_multi(e.parentElement.classList, ids[id], ["valueChecked-m-4IJZ"], ["valueUnchecked-2lU_20"]);
-        if(condition) {
-            e.parentElement.classList.add("switchDisabled-3HsXAJ");
-            e.parentElement.classList.remove("switchEnabled-V2WDBB");
-            e.classList.add("checkboxDisabled-1MA81A");
-            e.disabled = true;
-            _$.nth.up(e, 3).classList.add("disabled-2HSEFa");
-        } else {
-            e.parentElement.classList.remove("switchDisabled-3HsXAJ");
-            e.parentElement.classList.add("switchEnabled-V2WDBB");
-            e.classList.remove("checkboxDisabled-1MA81A");
-            e.disabled = false;
-            _$.nth.up(e, 3).classList.remove("disabled-2HSEFa");
-            __update_settings(e, true, false);
-        }
+        e.disabled = condition;
+        __darker_toggle(e, true);
     }
 }
 
 function __update_settings(elem, dont = false, write = true) {
-    _$.tok.have_multi(elem.parentElement.classList, elem.checked, ["valueChecked-m-4IJZ"], ["valueUnchecked-2lU_20"]);
+    if(elem.disabled)
+        return
     if(write) {
         __darker_conf[elem.getAttribute("data-conf")] = elem.checked;
         __write_settings();
@@ -741,16 +810,45 @@ function __update_settings(elem, dont = false, write = true) {
 }
 
 function __fix_images() {
+    if(globalThis.__block_wheel)
+        return;
     if(__darker_conf["full_embed"]) {
         for(var elem of _$.qALL(":-webkit-any(a.imageWrapper-2p5ogY, .embedWrapper-lXpS3L, .wrapper-2TxpI8) > :-webkit-any(img:not(.icon-1kp3fr), video, .wrapper-2TxpI8)")) {
             elem.style.width = "100%";
             elem.style.height = "auto";
-            if(elem.clientHeight > window.innerHeight / 2) {
-                elem.style.width = "auto";
-                elem.style.height = (window.innerHeight / 2) + "px"
+            if(elem.clientHeight > window.innerHeight * 0.65) {
+                if(elem.tagName != "VIDEO")
+                    elem.style.width = "auto";
+                elem.style.height = (window.innerHeight * 0.65) + "px"
             }
             elem.parentElement.style.height = elem.clientHeight + "px";
-            elem.parentElement.style.width = elem.clientWidth + "px";
+            if(elem.tagName != "VIDEO")
+                elem.parentElement.style.width = elem.clientWidth + "px";
+            else
+                elem.parentElement.style.width = "100%";
+            elem.classList.add("full_fixed");
+        }
+        e = _$.q(".wrapper-2K4Z3k > .image-1tIMwV > img")
+        if(e) {
+            iW = window.innerWidth;
+            iH = window.innerHeight;
+
+            if(
+                (e.clientWidth < iW * 0.8 && e.clientHeight < iH * 0.8) ||
+                (e.clientWidth > iW * 0.9 || e.clientHeight > iH * 0.9)
+            ) {
+                w = e.clientWidth;
+                h = e.clientHeight;
+                while(w < iW * 0.9 && h < iH * 0.9) {
+                    w *= 1.1;
+                    h *= 1.1;
+                }
+                e.style.width = w + "px";
+                e.style.height = h + "px";
+                ee = e.parentElement;
+                ee.style.width = e.clientWidth + "px";
+                ee.style.height = e.clientHeight + "px";
+            }
         }
     }
 }
@@ -768,6 +866,8 @@ function __video_loop(elem) {
 }
 
 function __fix_emojis(evt) {
+    if(globalThis.__block_wheel)
+        return;
     if(__darker_conf["emoji"] && evt) {
         window.setTimeout(() => {
             add_timer = 0;
@@ -788,18 +888,19 @@ function __fix_ui(evt) {
     __fix_emojis(evt);
     if(__darker_conf["vid_loop"]) {
         if(_$.q(".videoControls-2kcYic, .audioControls-2HsaU6")) {
-            thing = _$.html(dir + "darker_html/darker_video.html").body.children[0];
-            thing.onclick = function() { __video_loop(this) }
+            video = _$.html(dir + "darker_html/darker_video.html").body.children[0];
+            video.onclick = function() { __video_loop(this) }
+            audio = _$.html(dir + "darker_html/darker_video.html").body.children[0];
+            audio.title = "Loop audio";
+            audio.onclick = function() { __video_loop(this) }
             for(var elem of _$.qALL(".videoControls-2kcYic")) {
                 if(!elem.querySelector("div[title='Loop video']")) {
-                    elem.insertBefore(thing, elem.querySelector("div.flex-1O1GKY"));
+                    elem.insertBefore(video, elem.querySelector("div.flex-1O1GKY"));
                 }
             }
-            thing = thing.cloneNode();
-            thing.title = "Loop audio";
             for(var elem of _$.qALL(".audioControls-2HsaU6")) {
                 if(!elem.querySelector("div[title='Loop audio']")) {
-                    elem.insertBefore(thing, elem.querySelector("div.flex-1O1GKY"));
+                    elem.insertBefore(audio, elem.querySelector("div.flex-1O1GKY"));
                 }
             }
         }
@@ -840,13 +941,13 @@ function __fix_ui(evt) {
 }
 
 function __wheel_listener(evt) {
-    if(__block_wheel)
+    if(globalThis.__block_wheel)
         return;
-    console.log(evt);
-    globalThis.__block_wheel = true;
-    window.setTimeout(() => globalThis.__block_wheel = false, 1000)
+    //console.log(evt);
     __fix_emojis(true);
     __fix_images();
+    globalThis.__block_wheel = true;
+    window.setTimeout(() => globalThis.__block_wheel = false, 500)
 }
 
 /* Check for updates */
@@ -934,7 +1035,6 @@ __apply_settings();
 
 window.onclick = __fix_ui;
 window.onresize = __fix_images;
-window.onwheel = __wheel_listener;
 
 ___startup_time___ = new Date() - ___timer___;
 console.timeEnd("PRIZcord - Finished in");

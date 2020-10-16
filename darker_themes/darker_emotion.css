@@ -293,3 +293,51 @@
     cursor: not-allowed;
     opacity: 0.6;
 }
+
+@keyframes darker_switch_right {
+    0% { transform: matrix(1, 0, 0, 1, 0, 0) translateY(0px); }
+    40% { transform: matrix(1, -1, 0, 1, 0, 0) translateY(10px); }
+    60% { transform: matrix(1, -1, 0, 1, 0, 0) translateY(10px); }
+    100% { transform: matrix(1, 0, 0, 1, 0, 0) translateY(0px); }
+}
+
+@keyframes darker_switch_right_2 {
+    0% { transform: matrix(1, 0, 0, 1, 0, 0) translateY(0px); }
+    40% { transform: matrix(1, -1, 0, 1, 0, 0) translateY(5px); }
+    60% { transform: matrix(1, -1, 0, 1, 0, 0) translateY(5px); }
+    100% { transform: matrix(1, 0, 0, 1, 0, 0) translateY(0px); }
+}
+
+@keyframes darker_switch_left {
+    0% { transform: matrix(1, 0, 0, 1, 0, 0) translateY(0px); }
+    40% { transform: matrix(1, 1, 0, 1, 0, 0) translateY(-10px); }
+    60% { transform: matrix(1, 1, 0, 1, 0, 0) translateY(-10px); }
+    100% { transform: matrix(1, 0, 0, 1, 0, 0) translateY(0px); }
+}
+
+@keyframes darker_switch_body {
+    0% { height: 20px; width: 20px; x: 4; y: 0; }
+    40% { height: 17px; width: 30px; x: -1; y: 1.5; }
+    60% { height: 17px; width: 30px; x: -1; y: 1.5; }
+    100% { height: 20px; width: 20px; x: 4; y: 0; }
+}
+
+.darker_switch .slider-TkfMQL > svg {
+    transition: opacity 0s 0.1s !important;
+}
+.darker_switch_hidden {
+    opacity: 0;
+}
+
+.control-2BBjec.darker_switch * {
+    transition: all cubic-bezier(0.7, 0.2, 0.2, 0.7) 0.2s;
+}
+
+.control-2BBjec.darker_switch .slider-TkfMQL {
+    transition: all cubic-bezier(0.7, 0.2, 0.2, 0.7) 0.2s;
+}
+
+input[disabled],
+div.container-3auIfb[style*="opacity: 0.3"] {
+    cursor: no-drop !important;
+}

@@ -37,7 +37,8 @@ foreignObject[mask*="url(#svg-mask-avatar-status-"][mask$="32)"] img,
 .badge-_BgAUQ,
 .planOptionDiscount-cS8uaO,
 .blob-2w7iIK,
-img.avatar-VxgULZ {
+img.avatar-VxgULZ,
+div.avatarUploaderIndicator-2G-aIZ {
     border-radius: 4px;
 }
 
@@ -80,7 +81,8 @@ foreignObject[mask*="url(#svg-mask-avatar-status-"][mask$="80)"] img,
 .wrapper-1BJsBx.selected-bZ3Lue img,
 .folderIconWrapper-226oVY,
 img.avatar-1BDn8e.clickable-1bVtEA,
-.perkArt-1SGWbA {
+.perkArt-1SGWbA,
+div.avatarUploaderInner-3UNxY3.avatarUploaderInner-2EvNMg {
     border-radius: 8px;
 } .wrapper-1BJsBx img {
     transition: border-radius 0.15s linear 0s;
@@ -89,7 +91,8 @@ img.avatar-1BDn8e.clickable-1bVtEA,
     border-radius: 8px;
 }
 
-.memberDot-y8-JHF {
+.memberDot-y8-JHF,
+.iconBadge-qZ4Ksk {
     border-radius: 2px;
 }
 
