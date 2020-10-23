@@ -169,6 +169,6 @@ require("../../../../../darker_js.js");
 ### macOS
 *I don't have a mac
 
-# #] DARKERcord for macOS
+# #] PRIZcord for macOS
 I do not own a mac, and I will not pay an exorbitant amount for a machine I will use once and never again.
 If you know how to run macOS on a VM, please let me know how at [prizmdev@outlook.com](mailto:prizmdev@outlook.com).
