@@ -134,7 +134,8 @@ img.avatar-VxgULZ {
     border-radius: 4px !important;
 }
 
-foreignObject[width="80"][height="80"] > img.avatar-VxgULZ {
+foreignObject[width="80"][height="80"] > img.avatar-VxgULZ,
+div.avatarHintInner-Dco91E.size10-39i14u.height12-2Ltw-k {
     border-radius: 16px !important;
 }
 
@@ -149,3 +150,5 @@ svg.cursorDefault-dsQJ1n[viewBox="0 0 40 24"][x="48"][y="52"][width="40"][height
     x: 10;
     y: 7;
 }
+
+div.wrapper-3t9DeA[aria-label*="Online cia mobile"] > svg.mask-1l8v16.svg-2V3M55[width="40"][height="42"] > svg[width="25"][height="25"]

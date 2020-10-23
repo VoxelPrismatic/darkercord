@@ -5,6 +5,17 @@
 
 .numberBadge-2s8kKX,
 .iconBadge-qZ4Ksk,
-.bar-30k2ka.unreadBar-3YD_k9.mention-1f5kbO.active-1SSsBb {
+.bar-30k2ka.unreadBar-3YD_k9.mention-1f5kbO.active-1SSsBb,
+.mention-1f5kbO,
+.unreadPill-2HyYtt {
     background-color: var(--turquoise-bright) !important;
+}
+
+.isUnread-3Ef-o9 .content-1o0f9g {
+    color: var(--turquoise-bright);
+} .isUnread-3Ef-o9 {
+    border-color: var(--turquoise-bright);
+} .unreadPillCapStroke-7rkHbg {
+    color: var(--turquoise-bright);
+    fill: var(--turquoise-bright);
 }

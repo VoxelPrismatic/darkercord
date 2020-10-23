@@ -38,7 +38,10 @@ foreignObject[mask*="url(#svg-mask-avatar-status-"][mask$="32)"] img,
 .planOptionDiscount-cS8uaO,
 .blob-2w7iIK,
 img.avatar-VxgULZ,
-div.avatarUploaderIndicator-2G-aIZ {
+div.avatarUploaderIndicator-2G-aIZ,
+.tier-2c9-hT,
+.activeCircle-1486wp.iconCircle-36YzEX,
+.tierUnlocked-27DwHo {
     border-radius: 4px;
 }
 
@@ -59,7 +62,8 @@ foreignObject[mask*="url(#svg-mask-avatar-status-"][mask$="80)"] img,
 .controlButton-2MhVEL,
 .staticButton-1B0rfQ,
 .closeButton-1tv5uR[aria-label="Close"],
-.avatar-2daVqv {
+.avatar-2daVqv,
+.featureIcon-3p1TC_ {
     border-radius: 8px;
 }
 

@@ -401,6 +401,10 @@
     border-color: var(--turquoise-ultra-dark-semi);
 }
 
+.lookInverted-2D7oAl.colorGreen-29iAKY, {
+    color: var(--turquoise-ultra-dark);
+}
+
 .lookOutlined-3sRXeN.colorGreen-29iAKY:hover,
 .lookOutlined-3sRXeN.colorBrand-3pXr91:hover {
     border-color: var(--turquoise-ultra-dark-lucent);
@@ -474,7 +478,9 @@
 .theme-dark .modal-yWgWj-,
 .theme-dark .uploadModal-2ifh8j,
 .theme-dark .root-1gCeng,
-.theme-dark .message-2qRu38 {
+.theme-dark .message-2qRu38,
+.theme-dark .overflowRolesPopout-140n9i,
+.theme-dark .overflowRolesPopoutArrow-2O66oH {
     background-color: var(--bg-cyan-dark) !important; /*#36393f*/
     -webkit-box-shadow:
         0 0 0 1px var(--bg-dark-lucent) /*#20222599*/,
@@ -644,7 +650,8 @@
 .icon-RTGJu3.typeCreate-1kfBMl.targetWebhook-1xS7Z7,
 .icon-RTGJu3.typeCreate-1kfBMl.targetMember-2iuwxX,
 .icon-RTGJu3.typeCreate-1kfBMl.targetInvite-1RQBlr,
-.icon-RTGJu3.typeCreate-1kfBMl.targetChannel-TrRFlx {
+.icon-RTGJu3.typeCreate-1kfBMl.targetChannel-TrRFlx,
+.icon-2Po-VO.iconSize-2tmqqh {
     filter: var(--swap-green-to-blue);
 } .activeCircle-1486wp {
     filter: var(--hue-green-to-blue);

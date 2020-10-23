@@ -708,6 +708,8 @@ function __add_info(evt) {
                     p.innerHTML = "";
                     if(p.id == "__darker_window")
                         p.remove();
+                    else if(p.className)
+                        p.className = "";
                 }
                 e = document.createElement("DIV");
                 e.id = "__darker_window"
@@ -734,10 +736,16 @@ function __add_info(evt) {
             b.addEventListener("mouseup", function() {
                 if(this.textContent.includes("Change Log"))
                     return
-                _$.q(".selected-3s45Ha").classList.remove("selected-3s45Ha");
+                try {
+                    _$.q(".selected-3s45Ha").classList.remove("selected-3s45Ha");
+                } catch(err) {
+                    e = _$.q("div.item-PXvHYJ[style='color: rgb(255, 255, 255); background-color: rgb(114, 137, 218);']")
+                    e.style.backgroundColor = "";
+                    e.style.color = "rgb(134, 137, 218)";
+                }
                 this.classList.add("selected-3s45Ha");
                 if(this.parentElement.id != "darker_panel" && _$.i("__darker_window")) {
-                   _$.i("__darker_window").remove();
+                    _$.i("__darker_window").remove();
                     _$.tmr.s.o(() => this.previousElementSibling.click(), 5);
                     _$.tmr.s.o(() => this.nextElementSibling.click(), 7);
                     _$.tmr.s.o(() => this.click(), 10);
@@ -886,6 +894,10 @@ function __fix_emojis(evt) {
 
 function __fix_ui(evt) {
     __fix_emojis(evt);
+    try {
+        _$.q("div.messagesWrapper-1sRNjr").children[0].onscroll = __wheel_listener;
+    } catch(err) {
+    }
     if(__darker_conf["vid_loop"]) {
         if(_$.q(".videoControls-2kcYic, .audioControls-2HsaU6")) {
             video = _$.html(dir + "darker_html/darker_video.html").body.children[0];
