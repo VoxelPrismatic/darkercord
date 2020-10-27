@@ -1,5 +1,7 @@
 .strikethrough-3Wiitd,
-.strikethrough-1n4ekb {
+.strikethrough-1n4ekb,
+.iconServer-3Z_nSE,
+.strikethrough-231d_b {
     color: var(--turquoise-ultra-dark);
 }
 
@@ -7,11 +9,13 @@
 .iconBadge-qZ4Ksk,
 .bar-30k2ka.unreadBar-3YD_k9.mention-1f5kbO.active-1SSsBb,
 .mention-1f5kbO,
-.unreadPill-2HyYtt {
+.unreadPill-2HyYtt,
+.live-vBWnV6.liveSmall-1dy2uA.textBadge-1iylP6.base-PmTxvP {
     background-color: var(--turquoise-bright) !important;
 }
 
-.isUnread-3Ef-o9 .content-1o0f9g {
+.isUnread-3Ef-o9 .content-1o0f9g,
+.badge-_BgAUQ {
     color: var(--turquoise-bright);
 } .isUnread-3Ef-o9 {
     border-color: var(--turquoise-bright);

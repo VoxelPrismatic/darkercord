@@ -390,12 +390,13 @@ function __listen_to_channel_change() {
     /* Finds all channels and allows them to fix the button */
 
     // Find channel icon
-    for(var button of _$.c("iconWrapper-2OrFZ1 focusable-1YV_-H")) {
-        if(button.className == "iconWrapper-2OrFZ1 focusable-1YV_-H" && button.getAttribute("aria-label") != "Help")
-            break
-    }
-    if(button.getAttribute("aria-label") == "Help")
-        return
+    button = _$.q("div.iconWrapper-2OrFZ1[role='button'][aria-label*='Channel'][tabindex='-1']")
+//     for(var button of _$.c("iconWrapper-2OrFZ1 focusable-1YV_-H")) {
+//         if(button.className == "iconWrapper-2OrFZ1 focusable-1YV_-H" && button.getAttribute("aria-label") != "Help")
+//             break
+//     }
+//     if(button.getAttribute("aria-label") == "Help")
+//         return
 
     // Update the button to actually be a button
     globalThis.__channel_button = button;
