@@ -20,7 +20,7 @@ var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
 var __block_wheel = false;
-var __version_number = "2.7";
+var __version_number = "2.7.2";
 var __darker_modules = {
     __process__: process,
     __require__: required
@@ -390,7 +390,7 @@ function __listen_to_channel_change() {
     /* Finds all channels and allows them to fix the button */
 
     // Find channel icon
-    button = _$.q("div.iconWrapper-2OrFZ1[role='button'][aria-label*='Channel'][tabindex='-1']")
+    button = _$.q(".children-19S4PO .iconWrapper-2OrFZ1")
 //     for(var button of _$.c("iconWrapper-2OrFZ1 focusable-1YV_-H")) {
 //         if(button.className == "iconWrapper-2OrFZ1 focusable-1YV_-H" && button.getAttribute("aria-label") != "Help")
 //             break

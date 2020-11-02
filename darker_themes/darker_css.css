@@ -391,9 +391,15 @@
     border-top-color: var(--turquoise-ultra-dark);
 }
 
+.input-cIJ7To {
+    border: 1px solid var(--deprecated-text-input-border);
+}
+
 .input-cIJ7To.focused-1mmYsC,
 .input-cIJ7To:focus,
+.input-cIJ7To:hover,
 .input-rwLH4i:focus,
+.input-rwLH4i:hover,
 .panel-UE8sQC .checked-3kwPyT,
 .regionSelectModal-12e-57 .regionSelectModalOption-2DSIZ3:hover,
 .copyInputSuccess-XZc7BO {
@@ -456,9 +462,14 @@
 }
 
 .header-3ZP1MY,
-.backButton-iA7KIs .contents-18-Yxp,
+.lookLink-9FtZy- .contents-18-Yxp,
+.lookBlank-3eh9lL .contents-18-Yxp,
 .inputDefault-_djjkz.input-cIJ7To {
     color: var(--white) !important;
+}
+
+.input--jS-j2 {
+    background: unset !important;
 }
 
 .colorDefault-2K3EoJ .checkbox-3s5GYZ,
@@ -599,7 +610,8 @@
 .search-1iTphC .searchBox-2_mAlO .searchBoxInput-K6mkng,
 .theme-light .input-UJ9Tr3,
 .theme-light .input-1mgnkM,
-.theme-light .input-rwLH4i {
+.theme-light .input-rwLH4i,
+.sampleLink-2NLvZg {
     color: var(--white);
 }
 
@@ -647,7 +659,7 @@
 
 .userSettingsSecurity-3IYeMF .lockIcon-2Hj8Tq,
 .permissionCheckmark-1SeKr2,
-.iconWrapper-2OrFZ1.clickable-3rdHwn.focusable-1YV_-H[aria-label="Update Ready!"] {
+.iconWrapper-2OrFZ1.clickable-3rdHwn[aria-label="Update Ready!"] {
     filter: var(--swap-green-to-blue) brightness(1.5);
 }
 
