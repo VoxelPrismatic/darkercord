@@ -77,9 +77,11 @@ foreignObject[mask*="url(#svg-mask-avatar-status-"][mask$="80)"] img,
 } .wrapper-129saQ {
     border-radius: 9px;
 }
-.role-2irmRk.flex-1O1GKY.alignCenter-1dQNNs,
+.role-2irmRk.flex-1O1GKY.alignCenter-1dQNNs {
+    border-radius: 4px;
+}
 .roleCircle-3xAZ1j.flex-1O1GKY.alignCenter-1dQNNs.justifyCenter-3D2jYp {
-    border-radius: 3px;
+    border-radius: 2px;
 }
 
 .wrapper-1BJsBx.selected-bZ3Lue img,

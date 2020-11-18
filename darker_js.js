@@ -20,7 +20,7 @@ var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
 var __block_wheel = false;
-var __version_number = "2.7.2";
+var __version_number = "2.8";
 var __darker_modules = {
     __process__: process,
     __require__: required
@@ -412,10 +412,14 @@ function __listen_to_channel_change() {
         var y = pos["bottom"];
         y += 8;
         // Make sure hover text is visible
+        if([null, "Direct Message", "Group DM"].includes(button.getAttribute("aria-label")))
+            stt = "DMs List"
+        else
+            stt = "Channels List"
         var innerHTML =
         `<div id="thething" class="layer-v9HyYc disabledPointerEvents-1ptgTB" style="position: absolute; left: ${x}px; top: ${y}px;">` +
         `<div class="tooltip-2QfLtc tooltipBottom-3ARrEK tooltipBlack-PPG47z tooltipDisablePointerEvents-3eaBGN" style="opacity: 1; transform: none;">` +
-        `<div class="tooltipPointer-3ZfirK"></div><div class="tooltipContent-bqVLWK">Channel List</div></div></div>`;
+        `<div class="tooltipPointer-3ZfirK"></div><div class="tooltipContent-bqVLWK">${stt}</div></div></div>`;
         if(!_$.c("customContainer_NEW").length)
             _$.i("app-mount").children[0].outerHTML += `<div class="customContainer_NEW"></div>`; // Prevent crash
         _$.c("customContainer_NEW")[0].innerHTML = innerHTML;

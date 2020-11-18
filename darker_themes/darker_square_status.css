@@ -93,12 +93,19 @@ div.wrapper-3t9DeA[aria-label*="Online via mobile"] rect[fill="rgba(67, 181, 129
     y: 0 !important;
 }
 
-rect[fill="rgba(240, 71, 71, 1)"]:last-child, rect[fill="#f04747"]:last-child {
+rect[fill="rgba(240, 71, 71, 1)"]:last-child,
+rect[fill="#f04747"]:last-child {
     mask: url(#priz-mask-status-dnd);
-} rect[fill="rgba(116, 127, 141, 1)"]:last-child, rect[fill="#747f8d"]:last-child {
+} rect[fill="rgba(116, 127, 141, 1)"]:last-child,
+rect[fill="#747f8d"]:last-child {
     mask: url(#priz-mask-status-offline);
 } rect[fill="rgba(89, 54, 149, 1)"]:last-child {
     mask: url(#priz-mask-status-offline);
+} rect[fill="#faa61a"]:last-child {
+    mask: url(#priz-mask-status-idle);
+} .layer-v9HyYc div.wrapper-3t9DeA[aria-label*="Online via mobile"] rect[fill="#43b581"]:last-child:not([mask="url(#svg-mask-status-online-mobile)"]) {
+    height: 40px;
+    y: 0;
 }
 
 :-webkit-any(svg.cursorDefault-dsQJ1n, svg.svg-2V3M55) mask:first-child rect:first-child {
@@ -147,8 +154,12 @@ div.avatarWrapperNormal-3wFMbf.avatarWrapper-3H_478.focusable-1YV_-H {
 svg.cursorDefault-dsQJ1n[viewBox="0 0 40 24"][x="48"][y="52"][width="40"][height="24"] > rect[height="24"][width="40"] {
     height: 16px;
     width: 16px;
-    x: 10;
-    y: 7;
+    x: 12;
+    y: 8;
+    rx: 4;
 }
 
-div.wrapper-3t9DeA[aria-label*="Online cia mobile"] > svg.mask-1l8v16.svg-2V3M55[width="40"][height="42"] > svg[width="25"][height="25"]
+.avatar-3uk_u9 .wrapper-3t9DeA[aria-label*="Online via mobile"] foreignObject + svg.cursorDefault-dsQJ1n[viewBox="0 0 25 15"] > rect {
+    height: 15px;
+    y: 0;
+}
