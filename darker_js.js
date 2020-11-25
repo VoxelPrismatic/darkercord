@@ -20,7 +20,7 @@ var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
 var __block_wheel = false;
-var __version_number = "2.8";
+var __version_number = "2.9.0";
 var __darker_modules = {
     __process__: process,
     __require__: required
@@ -50,7 +50,16 @@ var __darker_conf = {
     "darker_color": "cyan",
     "hide_help": false,
     "strike_match_theme": false,
-    "tray": true
+    "tray": true,
+    "ext_norm_font_name": "",
+    "ext_mono_font_name": "",
+    "ext_font_enabled": false,
+    "ext_norm_height": "",
+    "ext_norm_size": "",
+    "ext_mono_height": "",
+    "ext_mono_size": "",
+    "ext_mono_font_file": "",
+    "ext_norm_font_file": ""
 };
 
 _$ = {
@@ -126,20 +135,43 @@ function __add_masks() {
         return;
     }
     e.after(_$.html(dir + "darker_html/darker_masks.html").body.children[0]);
+
 }
 
 var fs = required("fs");
 var requests = required("request");
 
 var cwd = process.cwd();
+var dir;
 console.log(cwd)
-if(cwd.startsWith("C:\\"))
+if(cwd.startsWith("C:\\")) {
+    switch(DiscordNative.app.getReleaseChannel()) {
+        case "stable":
+            dir = cwd + "\\..\\..\\..\\Roaming\\discord\\";
+            break;
+        case "canary":
+            dir = cwd + "\\..\\..\\..\\Roaming\\discordcanary\\";
+            break;
+        case "ptb":
+            dir = wd + "\\..\\..\\..\\Roaming\\discordptb\\";
+            break;
+    }
     var dir = cwd + "\\..\\..\\..\\Roaming\\discord\\";
-else if(cwd.startsWith("/usr/bin"))
-    var dir = process.env.PWD + "/.config/discord/"
-else
+} else if(cwd.startsWith("/usr/bin")) {
+    switch(DiscordNative.app.getReleaseChannel()) {
+        case "stable":
+            dir = process.env.PWD + "/.config/discord/";
+            break;
+        case "canary":
+            dir = process.env.PWD + "/.config/discordcanary/";
+            break;
+        case "ptb":
+            dir = process.env.PWD + "/.config/discordptb/";
+            break;
+    }
+} else {
     var dir = cwd.split("/", 3).join("/") + "/snap/discord/current/";
-
+}
 
 function __write_settings() {
     fs.writeFileSync(dir + "darker_conf.json", JSON.stringify(__darker_conf, null, "    "), {flag: "w+"});
@@ -176,6 +208,8 @@ function __add_css(file, id) {
     } catch(err) {
         var newcss = file;
     }
+    if(_$.i(id) && _$.i(id).innerHTML == st)
+        return
     __clear_css(id);
     var style = document.createElement("style");
     style.id = id;
@@ -194,6 +228,8 @@ function __new_rng_theme() {
     )
     style.setAttribute("data-theme", __darker_conf["darker_color"]);
 }
+
+var __darker_start = true
 
 function __apply_settings() {
     __darker_conf = JSON.parse(fs.readFileSync(dir + "darker_conf.json"));
@@ -217,18 +253,20 @@ function __apply_settings() {
         __clear_css("__darker_global", "__darker_theme");
     }
 
-    __square_styles = [
-        "square",
-        "square_status",
-        "square_toggle",
-        "square_vc",
-        "square_bubble"
-    ];
-    for(var style of __square_styles) {
-        if(!__darker_conf["square"] || !__darker_conf[style])
-            __clear_css("__darker_" + style);
-        else if(!_$.i("__darker_" + style))
-            __add_css(dir + "darker_themes/" + "darker_" + style + ".css", "__darker_" + style)
+    if(__darker_conf["square"]) {
+        __square_styles = [
+            "square",
+            "square_status",
+            "square_toggle",
+            "square_vc",
+            "square_bubble"
+        ];
+        for(var style of __square_styles) {
+            if(!__darker_conf[style])
+                __clear_css("__darker_" + style);
+            else if(!_$.i("__darker_" + style))
+                __add_css(dir + "darker_themes/" + "darker_" + style + ".css", "__darker_" + style)
+        }
     }
 
     if(__darker_conf["clyde"])
@@ -248,6 +286,36 @@ function __apply_settings() {
     else if(!_$.i("__darker_strikes"))
         __add_css(dir + "darker_themes/darker_strike.css", "__darker_strikes");
 
+    if(__darker_conf["ext_font_enabled"]) {
+        st = ""
+        f = __darker_conf["ext_norm_font_file"]
+        n = __darker_conf["ext_norm_font_name"]
+        if(f)
+            st += `@font-face { font-family: "${n}"; src: local("${f}"); }\n`;
+        if(n)
+            st += `:root { --norm-font-custom: "${n}"; }\n`;
+        f = __darker_conf["ext_mono_font_file"]
+        n = __darker_conf["ext_mono_font_name"]
+        if(f)
+            st += `@font-face { font-family: "${n}"; src: local("${f}"); }\n`;
+        if(n)
+            st += `:root { --mono-font-custom: "${n}"; }\n`
+        __add_css(st, "__custom_font_face")
+        st = ":root {\n"
+        if(__darker_conf["ext_mono_height"])
+            st += "--adjust-mono-height: " + __darker_conf["ext_mono_height"] + ";\n"
+        if(__darker_conf["ext_mono_size"])
+            st += "--adjust-mono-size: " + __darker_conf["ext_mono_size"] + ";\n"
+        if(__darker_conf["ext_norm_height"])
+            st += "--adjust-norm-height: " + __darker_conf["ext_norm_height"] + ";\n"
+        if(__darker_conf["ext_norm_size"])
+            st += "--adjust-norm-size: " + __darker_conf["ext_norm_size"] + ";\n"
+        st += "}";
+        __add_css(st, "__custom_font_size")
+    } else {
+        __clear_css("__custom_font_size", "__custom_font_face")
+    }
+
     if(__darker_conf["ext_theme_enabled"]) {
         if(__darker_conf["ext_theme_refresh"]) {
             __clear_css("__darker_custom");
@@ -264,43 +332,46 @@ function __apply_settings() {
         __clear_css("__darker_custom");
     }
 
-    images = [
-        "tray-connected.png",
-        "tray-deafened.png",
-        "tray-muted.png",
-        "tray-speaking.png",
-        "tray-unread.png",
-        "tray.png"
-    ];
-    win_images = [
-        "badge-1.ico",
-        "badge-2.ico",
-        "badge-3.ico",
-        "badge-4.ico",
-        "badge-5.ico",
-        "badge-6.ico",
-        "badge-7.ico",
-        "badge-8.ico",
-        "badge-9.ico",
-        "badge-10.ico",
-        "badge-11.ico"
-    ];
-    //yanderedev would approve, case/switch wouldnt work here anyway
-    if(dir.startsWith("/home")) {
-        fol = ["apt", "snap"];
-        if(dir.includes("/snap/"))
-            loc = dir + ".config/discord/";
-        else
-            loc = dir
-    } else {
-        fol = ["win", "win_blue"];
-        images.push(...win_images);
-        loc = dir;
-    }
+    if(__darker_start) {
+        images = [
+            "tray-connected.png",
+            "tray-deafened.png",
+            "tray-muted.png",
+            "tray-speaking.png",
+            "tray-unread.png",
+            "tray.png"
+        ];
+        win_images = [
+            "badge-1.ico",
+            "badge-2.ico",
+            "badge-3.ico",
+            "badge-4.ico",
+            "badge-5.ico",
+            "badge-6.ico",
+            "badge-7.ico",
+            "badge-8.ico",
+            "badge-9.ico",
+            "badge-10.ico",
+            "badge-11.ico"
+        ];
+        //yanderedev would approve, case/switch wouldnt work here anyway
+        if(dir.startsWith("/home")) {
+            fol = ["apt", "snap"];
+            if(dir.includes("/snap/"))
+                loc = dir + ".config/discord/";
+            else
+                loc = dir
+        } else {
+            fol = ["win", "win_blue"];
+            images.push(...win_images);
+            loc = dir;
+        }
 
-    fol = "darker_tray/" + fol[Number(__darker_conf["tray"])] + "/";
-    for(var img of images) {
-        fs.copyFileSync(dir + fol + img, loc + img);
+        fol = "darker_tray/" + fol[Number(__darker_conf["tray"])] + "/";
+        for(var img of images) {
+            fs.copyFileSync(dir + fol + img, loc + img);
+        }
+        __darker_start = false
     }
     __toggle_channels(false);
 }
@@ -541,6 +612,75 @@ function __guild_listen() {
 
 /* -More UI fixing- */
 
+function __arrow_size(evt, thing) {
+    if(thing.className.includes("bad-font"))
+        return
+    if(evt.key) {
+        elem = thing
+        if(evt.key == "ArrowUp")
+            d = 1
+        else if(evt.key == "ArrowDown")
+            d = -1
+        else
+            return
+    } else {
+        elem = thing.parentElement.previousElementSibling
+        if(thing.parentElement.children[0] == thing)
+            d = 1
+        else
+            d = -1
+    }
+    f = elem.value.trim() || "0px";
+    if(f.endsWith("pt") || f.endsWith("px")) {
+        t = f.slice(-2);
+        f = Number(f.slice(0, -2))
+    } else {
+        f = Number(f)
+        t = ""
+    }
+    elem.value = (f + d) + t
+    __check_size(elem)
+}
+
+function __check_size(elem) {
+    f = elem.value.trim() || "0px";
+    if(/-?\d+(px|pt)?/i.test(f)) {
+        elem.classList.remove("bad-font");
+        elem.nextElementSibling.children[0].classList.remove("bad-font")
+        elem.nextElementSibling.children[2].classList.remove("bad-font")
+        __darker_conf["ext" + elem.id.slice(3)] = f
+        __write_settings();
+        __apply_settings();
+    } else {
+        elem.classList.add("bad-font");
+        elem.nextElementSibling.children[0].classList.add("bad-font")
+        elem.nextElementSibling.children[2].classList.add("bad-font")
+    }
+}
+
+async function __check_font(elem) {
+    f = elem.value.trim();
+    if(/^(https?:\/\/|file:\/\/|\/)/i.test(f)) {
+        elem.classList.remove("bad-font");
+        __darker_conf["ext" + elem.id.slice(3) + "_name"] = f
+        __write_settings();
+        __apply_settings();
+    } else {
+        font = new FontFace(f, `local("${f}")`)
+        try {
+            if(f)
+                await font.load()
+            elem.classList.remove("bad-font");
+            __darker_conf["ext" + elem.id.slice(3) + "_name"] = f
+            __write_settings();
+        } catch(err) {
+            elem.classList.add("bad-font");
+            __darker_conf["ext" + elem.id.slice(3) + "_name"] = f
+            __write_settings();
+        }
+    }
+}
+
 function __darker_toggle(that, skip_anim = false) {
 
     svg = that.previousElementSibling;
@@ -601,6 +741,7 @@ function __relay_settings_html() {
         "uid_DARKER_clyde",
         "uid_FULL_embed",
         "uid_hide_help",
+        "uid_font_enable",
         "uid_loop_vid",
         "uid_strikes",
         "uid_theme_enable",
@@ -621,7 +762,6 @@ function __relay_settings_html() {
                 toggle_elem.checked = __darker_conf[toggle_elem.getAttribute("data-conf")];
                 try {
                     __darker_toggle(toggle_elem, true);
-
                 } catch(err) {
                     console.warn(toggle_elem);
                     console.error(err);
@@ -633,30 +773,42 @@ function __relay_settings_html() {
         }
     }
 
-    // yanderedev would approve of this...
-
-    elem = _$.i("value_theme_file");
-    if(elem)
-        elem.innerHTML = __darker_conf["ext_theme_file"].split("/").slice(-1)[0];
-    elem = _$.i("uid_theme_file");
-    if(elem)
-        elem.onclick = function() { __check_css_file(this); }
-    elem = _$.i("__check_for_darker_updates");
-    if(elem)
-        elem.onclick = __check_for_darker_updates;
-    elem = _$.i("restart_app__");
-    if(elem)
-        elem.onclick = () => {window.location = "discord.com"};
-    elem = _$.i("__nav_square");
-    if(elem)
-        elem.onclick = () => {_$.q("div#darker_panel div[data-html='square']").click()};
-    elem = _$.i("_DARKER_rng_make");
-    if(elem)
-        elem.onclick = __new_rng_theme;
-
-    // sanity has been brought back kinda
-
     if(_$.i("theme_select")) {
+        _$.i("value_theme_file").innerHTML = __darker_conf["ext_theme_file"].split("/").slice(-1)[0];
+        _$.i("uid_theme_file").onclick = function() { __check_css_file(this); }
+        _$.i("__nav_square").onclick = () => {_$.q("div#darker_panel div[data-html='square']").click()};
+        _$.i("_DARKER_rng_make").onclick = __new_rng_theme;
+        elem = _$.i("uid_norm_font");
+        elem.value = __darker_conf["ext_norm_font_name"]
+        elem.addEventListener("keyup", function(evt) { __check_font(this); })
+        elem.addEventListener("change", function(evt) { __apply_settings(); })
+        elem = _$.i("uid_mono_font");
+        elem.value = __darker_conf["ext_mono_font_name"]
+        elem.addEventListener("keyup", function(evt) { __check_font(this); })
+        elem.addEventListener("change", function(evt) { __apply_settings(); })
+        elem = _$.i("uid_mono_size");
+        elem.value = __darker_conf["ext_mono_size"]
+        elem.addEventListener("keyup", function(evt) { __check_size(this); })
+        elem.addEventListener("keydown", function(evt) { __arrow_size(evt, this); })
+        elem = _$.i("uid_mono_height");
+        elem.value = __darker_conf["ext_mono_height"]
+        elem.addEventListener("keyup", function(evt) { __check_size(this); })
+        elem.addEventListener("keydown", function(evt) { __arrow_size(evt, this); })
+        elem = _$.i("uid_norm_size");
+        elem.value = __darker_conf["ext_norm_size"]
+        elem.addEventListener("keyup", function(evt) { __check_size(this); })
+        elem.addEventListener("keydown", function(evt) { __arrow_size(evt, this); })
+        elem = _$.i("uid_norm_height");
+        elem.value = __darker_conf["ext_norm_height"]
+        elem.addEventListener("keyup", function(evt) { __check_size(this); })
+        elem.addEventListener("keydown", function(evt) { __arrow_size(evt, this); })
+        for(var clicky of _$.qALL("button.input-number-button"))
+            clicky.addEventListener("click", function(evt) { __arrow_size(evt, this);} )
+        _$.i("uid_mono_font_file").onclick = function() { __check_mono_file(this); }
+        _$.i("ext_mono_font").innerHTML = (__darker_conf["ext_mono_font_file"] || "Point to font").split("/").slice(-1)[0];
+        _$.i("uid_norm_font_file").onclick = function() { __check_norm_file(this); }
+        _$.i("ext_norm_font").innerHTML = (__darker_conf["ext_norm_font_file"] || "Point to font").split("/").slice(-1)[0];
+
         for(var clicky of _$.i("theme_select").children) {
             clicky.onclick = function() {
                 for(var e of _$.c("css-12o7ek3-option custom-select"))
@@ -679,6 +831,11 @@ function __relay_settings_html() {
             }
         }
         _$.i("theme-select-" + __darker_conf["darker_color"]).click();
+    }
+    elem = _$.i("__check_for_darker_updates");
+    if(elem) {
+        elem.onclick = __check_for_darker_updates;
+        _$.i("restart_app__").onclick = () => {window.location = "discord.com"};
     }
 }
 
@@ -737,31 +894,52 @@ function __add_info(evt) {
                 __relay_settings_html();
             }
         }
-        for(var b of _$.c("item-PXvHYJ themed-OHr7kt")) {
+        for(var b of _$.qALL("div.item-PXvHYJ.themed-OHr7kt, div.item-PXvHYJ[aria-controls='Discord Nitro-tab']")) {
             b.addEventListener("mouseup", function() {
                 if(this.textContent.includes("Change Log"))
                     return
-                try {
-                    _$.q(".selected-3s45Ha").classList.remove("selected-3s45Ha");
-                } catch(err) {
-                    e = _$.q("div.item-PXvHYJ[style='color: rgb(255, 255, 255); background-color: rgb(114, 137, 218);']")
+                e = _$.q("div.item-PXvHYJ[style='color: rgb(255, 255, 255); background-color: rgb(114, 137, 218);']")
+                if(e) {
                     e.style.backgroundColor = "";
                     e.style.color = "rgb(134, 137, 218)";
                 }
+                for(var e of _$.qALL(".selected-3s45Ha"))
+                    e.classList.remove("selected-3s45Ha");
                 this.classList.add("selected-3s45Ha");
                 if(this.parentElement.id != "darker_panel" && _$.i("__darker_window")) {
                     _$.i("__darker_window").remove();
-                    _$.tmr.s.o(() => this.previousElementSibling.click(), 5);
-                    _$.tmr.s.o(() => this.nextElementSibling.click(), 7);
-                    _$.tmr.s.o(() => this.click(), 10);
+                    if(this.previousElementSibling && this.previousElementSibling.className.includes("item-PXvHYJ"))
+                        _$.tmr.s.o(() => this.previousElementSibling.click(), 10);
+                    else
+                        _$.tmr.s.o(() => this.nextElementSibling.click(), 10);
+                    _$.tmr.s.o(() => this.click(), 20);
                 }
             });
         }
     }
 }
 
+async function __check_norm_file(elem) {
+    var file = await globalThis.DiscordNative.fileManager.showOpenDialog("");
+    file = file[0];
+    __darker_conf["ext_norm_font_file"] = file;
+    _$.i("ext_norm_font").innerHTML = file.split("/").slice(-1)[0];
+    __write_settings();
+    _$.tmr.s.o(__apply_settings, 100);
+    return;
+}
+async function __check_mono_file(elem) {
+    var file = await globalThis.DiscordNative.fileManager.showOpenDialog("");
+    file = file[0];
+    __darker_conf["ext_mono_font_file"] = file;
+    _$.i("ext_mono_font").innerHTML = file.split("/").slice(-1)[0];
+    __write_settings();
+    _$.tmr.s.o(__apply_settings, 100);
+    return;
+}
+
 async function __check_css_file(elem) {
-    var file = await globalThis.DiscordNative.fileManager.showOpenDialog();
+    var file = await globalThis.DiscordNative.fileManager.showOpenDialog(".css");
     file = file[0];
     console.log(file)
     if(file == undefined) {
@@ -1046,7 +1224,8 @@ if(__darker_conf["load"]) {
     _$.tmr.s.o(__fix_ui, 1000);
 }
 
-__add_css(dir + "darker_themes/darker_emotion.css", "__darker_emotion")
+__add_css(dir + "darker_themes/darker_emotion.css", "__darker_emotion");
+__add_css(dir + "darker_themes/darker_font_adjust.css", "__darker_font_adjust");
 __add_masks();
 __apply_settings();
 

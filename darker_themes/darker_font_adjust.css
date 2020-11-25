@@ -1,0 +1,201 @@
+html {
+    --norm-font-default:
+        Whitney,
+        Helvetica Neue,
+        Helvetica,
+        Arial,
+        sans-serif;
+}
+
+html:lang(ja) {
+    --norm-font-default:
+        Whitney,
+        Hiragino Sans,
+        ヒラギノ角ゴ ProN W3,
+        Hiragino Kaku Gothic ProN,
+        メイリオ,
+        Meiryo,
+        Osaka,
+        MS PGothic,
+        Helvetica Neue,
+        Helvetica,
+        Arial,
+        sans-serif;
+}
+
+html:lang(ko) {
+    --norm-font-default:
+        Whitney,
+        Apple SD Gothic Neo,
+        NanumBarunGothic,
+        맑은 고딕,
+        Malgun Gothic,
+        Gulim,
+        굴림,
+        Dotum,
+        돋움,
+        Helvetica Neue,
+        Helvetica,
+        Arial,
+        sans-serif;
+}
+
+html:lang(zh-CN) {
+    --norm-font-defualt:
+        Whitney,
+        Microsoft YaHei New,
+        微软雅黑,
+        Microsoft Yahei,
+        Microsoft JhengHei,
+        宋体,
+        SimSun,
+        Helvetica Neue,
+        Helvetica,
+        Arial,
+        sans-serif;
+}
+
+html:lang(zh-HK) {
+    --norm-font-default:
+        Whitney,
+        Microsoft JhengHei,
+        微軟正黑體,
+        Microsoft JhengHei UI,
+        Microsoft YaHei,
+        微軟雅黑,
+        宋体,
+        SimSun,
+        Helvetica Neue,
+        Helvetica,
+        Arial,
+        sans-serif;
+}
+
+:root {
+    --mono-font-default:
+        Consolas,
+        Andale Mono WT,
+        Andale Mono,
+        Lucida Console,
+        Lucida Sans Typewriter,
+        DejaVu Sans Mono,
+        Bitstream Vera Sans Mono,
+        Liberation Mono,
+        Nimbus Mono L,
+        Monaco,
+        Courier New,
+        Courier,
+        monospace;
+    --mono-font-custom: "";
+    --norm-font-custom: "";
+}
+
+body,
+.regionSelect-3lf4eE button,
+input,
+select,
+textarea,
+button {
+    font-family: var(--norm-font-custom), var(--norm-font-default);
+}
+
+/* Platform specific */
+::-webkit-input-placeholder {
+    font-family: var(--norm-font-custom), var(--norm-font-default);
+} ::-moz-placeholder {
+    font-family: var(--norm-font-custom), var(--norm-font-default);
+} :-ms-input-placeholder {
+    font-family: var(--norm-font-custom), var(--norm-font-default);
+} ::placeholder {
+    font-family: var(--norm-font-custom), var(--norm-font-default);
+}
+
+
+code,
+.maxLength-39QFBo,
+.durationTimeDisplay-jww5fr,
+.durationTimeSeparator-2_xpJ7,
+.markup-2BOw-j pre,
+.markup-2BOw-j code.inline,
+.monospace-2wHjP3,
+.countdownText-3tHeVw,
+.after_inlineCode-1KfVgj,
+.before_inlineCode-1G9rTK,
+.inlineCode-2ngu6Y,
+.codeBlockText-9TnoxQ,
+.codeLine-14BKbG,
+.prefix-24L010,
+.inviteCode-202N0U,
+.countdown-3GoVpq,
+.uses-mYuoF0,
+.errorDetails-qKU8eS,
+.code-16ahh6,
+.countdown-2VKTMl,
+.multiInputLast-33BbRU input,
+.secret-VW-wXa,
+.userSettingsSecurity-3IYeMF .checkboxGroup-3_9osm .code-2d9-2m,
+.autocompleteQuerySymbol-1kyGZ5,
+.pinNumber-2Y-fxV,
+.stackTraceCode-h5MUsb,
+.use_monospace {
+    font-family: var(--mono-font-custom), var(--mono-font-default);
+}
+
+.activity-2Gy-9S,
+.membersGroup-v9BXpm,
+.container-2ax-kl,
+.h5-18_1nd {
+    font-size: calc(12px + var(--adjust-norm-size)) !important;
+    line-height: calc(16px + var(--adjust-norm-height)) !important;
+}
+
+code:not(.ignore-this-one-tyvm), code:not(.ignore-this-one-tyvm) * {
+    font-size: calc(14px + var(--adjust-mono-size)) !important;
+    line-height: calc(16px + var(--adjust-mono-height)) !important;
+}
+
+.timestamp-3ZCmNB {
+    font-size: calc(0.75rem + var(--adjust-norm-size)) !important;
+    line-height: calc(1.375rem + var(--adjust-norm-height)) !important;
+}
+
+.username-1A80Iy,
+.markup-2BOw-j {
+    font-size: calc(1rem + var(--adjust-norm-size)) !important;
+    line-height: calc(1.375rem + var(--adjust-norm-height)) !important;
+}
+
+.name-uJV0GL,
+.size16-1P40sf,
+.name-23GUGE,
+.h2-2gWE-o {
+    font-size: calc(16px + var(--adjust-norm-size)) !important;
+    line-height: calc(20px + var(--adjust-norm-height)) !important;
+}
+
+.title-31JmR4 {
+    font-size: calc(16px + var(--adjust-norm-size)) !important;
+    line-height: calc(24px + var(--adjust-norm-height)) !important;
+}
+
+.topic-TCb_qw,
+.usernameFont-23TX-h,
+.size14-e6ZScH,
+.desc-2Dttbk {
+    font-size: calc(14px + var(--adjust-norm-size)) !important;
+    line-height: calc(18px + var(--adjust-norm-height)) !important;
+}
+
+.description-3_Ncsb {
+    font-size: calc(14px + var(--adjust-norm-size)) !important;
+    line-height: calc(20px + var(--adjust-norm-height)) !important;
+}
+
+.markup-2BOw-j code {
+    font-size: calc(0.875rem + var(--adjust-mono-size)) !important;
+    line-height: calc(1.125rem + var(--adjust-mono-height)) !important;
+}
+
+.subtext-3CDbHg {
+    line-height: calc(13px + var(--adjust-norm-height)) !important;
+}

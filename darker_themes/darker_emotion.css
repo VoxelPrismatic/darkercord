@@ -341,3 +341,42 @@ input[disabled],
 div.container-3auIfb[style*="opacity: 0.3"] {
     cursor: no-drop !important;
 }
+
+.darker-input-number {
+    width: 30% !important;
+}
+
+.input-number-button:first-child {
+    transform: scaleY(-1);
+}
+
+.input-number-button {
+    height: 19px;
+    border: 1px solid var(--deprecated-text-input-border);
+    background-color: var(--deprecated-text-input-bg);
+    color: var(--white) !important;
+    border-radius: 3px;
+    font-size: smaller;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    transition: border-color .2s ease-in-out;
+} .input-number-button:hover {
+    border-color: var(--turquoise-ultra-dark);
+} .number-button-sep {
+    height: 2px;
+} .number-button-thing {
+    display: inline-block;
+    margin-left: -4px;
+    vertical-align: bottom;
+}
+
+.bad-font:hover, .bad-font:focus {
+    border-color: rgb(240, 71, 71) !important;
+}
+
+:root {
+    --adjust-norm-height: 0px;
+    --adjust-norm-size: 0px;
+    --adjust-mono-height: 0px;
+    --adjust-mono-size: 0px;
+}

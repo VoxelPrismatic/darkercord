@@ -4,6 +4,7 @@
     --text-normal: var(--standard);
     --text-muted: var(--button-clicky);
     --text-link: var(--neon-cyan);
+    --radio-group-dot-foreground: var(--turquoise-dark);
     --channels-default: var(--standard-half);
     --interactive-normal:  var(--other-standard);
     --interactive-hover: var(--standard);
