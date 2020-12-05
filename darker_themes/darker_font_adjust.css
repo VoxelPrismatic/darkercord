@@ -199,3 +199,7 @@ code:not(.ignore-this-one-tyvm), code:not(.ignore-this-one-tyvm) * {
 .subtext-3CDbHg {
     line-height: calc(13px + var(--adjust-norm-height)) !important;
 }
+
+a.anchor-3Z-8Bb.anchorUnderlineOnHover-2ESHQB.fileNameLink-9GuxCo {
+    font-size: calc(16px + var(--adjust-norm-size)) !important;
+}

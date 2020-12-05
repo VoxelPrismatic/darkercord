@@ -20,7 +20,7 @@ var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
 var __block_wheel = false;
-var __version_number = "2.10.0";
+var __version_number = "2.10.1";
 var __darker_modules = {
     __process__: process,
     __require__: required
@@ -134,7 +134,8 @@ function __add_masks() {
         _$.tmr.s.o(__add_masks, 100);
         return;
     }
-    e.after(_$.html(dir + "darker_html/darker_masks.html").body.children[0]);
+    for(var c of _$.html(dir + "darker_html/darker_masks.html").body.children)
+        e.after(c);
 
 }
 
@@ -402,8 +403,9 @@ function __listen_emoji(elem) {
     __emoji_timeout += 1
 
     // Open
-    if(__emoji_timeout == 3) {
+    if(__emoji_timeout >= 3) {
         var url = ""
+        __emoji_timeout = 0
         if(elem.className.includes("emoji"))
             url = elem.src;
         else if(elem.className.includes("avatar-3EQepX wrapper-3t9DeA"))
@@ -1062,12 +1064,12 @@ function __fix_emojis(evt) {
     if(__darker_conf["emoji"] && evt) {
         window.setTimeout(() => {
             add_timer = 0;
-            for(var group of ["div.avatar-3EQepX.wrapper-3t9DeA", "img.emoji", "a.wrapper-1BJsBx"]) {
-                for(var elem of _$.qALL(group)) {
-                    if(!elem.onclick || elem.onclick.toString() == "function Kn(){}") {
-                        elem.onclick = function () { __listen_emoji(this) };
-                        add_timer = 1;
-                    }
+            group = "div.avatar-3EQepX.wrapper-3t9DeA, img.emoji, " +
+                    "a.wrapper-1BJsBx, div.wrapper-1BJsBx"
+            for(var elem of _$.qALL(group)) {
+                if(!elem.onclick || elem.onclick.toString() == "function Kn(){}") {
+                    elem.onclick = function () { __listen_emoji(this) };
+                    add_timer = 1;
                 }
             }
             __emoji_timeout += add_timer;
@@ -1121,6 +1123,7 @@ function __fix_ui(evt) {
             }
         }
     }
+
     og_light = __darker_conf["light"];
     __darker_conf["light"] = document.documentElement.className.includes("theme-light");
     if(og_light != __darker_conf["light"]) {
@@ -1141,6 +1144,13 @@ function __wheel_listener(evt) {
     //console.log(evt);
     __fix_emojis(true);
     __fix_images();
+    if(!__darker_conf["clyde"]) {
+        for(var img of _$.qALL(`img[src="/assets/f78426a064bc9dd24847519259bc42af.png"]`))
+            img.parentElement.parentElement.style.display = "none";
+    } else {
+        for(var img of _$.qALL(`img[src="/assets/f78426a064bc9dd24847519259bc42af.png"]`))
+            img.parentElement.parentElement.style.display = "";
+    }
     globalThis.__block_wheel = true;
     window.setTimeout(() => globalThis.__block_wheel = false, 500)
 }
@@ -1229,8 +1239,8 @@ __add_css(dir + "darker_themes/darker_font_adjust.css", "__darker_font_adjust");
 __add_masks();
 __apply_settings();
 
-window.onclick = __fix_ui;
-window.onresize = __fix_images;
+window.addEventListener("click", __fix_ui)
+window.addEventListener("resize", __fix_images)
 
 ___startup_time___ = new Date() - ___timer___;
 console.timeEnd("PRIZcord - Finished in");

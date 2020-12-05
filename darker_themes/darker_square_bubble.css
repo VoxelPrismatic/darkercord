@@ -1,4 +1,9 @@
 .unread-3zKkbm,
-.item-2hkk8m {
+.item-2hkk8m,
+.unread-2lAfLh {
     border-radius: 0 2px 2px 0;
+}
+
+.auto-Ge5KZx::-webkit-scrollbar-thumb, .auto-Ge5KZx::-webkit-scrollbar-track {
+    border-radius: 6px;
 }

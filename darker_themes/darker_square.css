@@ -41,7 +41,9 @@ img.avatar-VxgULZ,
 div.avatarUploaderIndicator-2G-aIZ,
 .tier-2c9-hT,
 .activeCircle-1486wp.iconCircle-36YzEX,
-.tierUnlocked-27DwHo {
+.tierUnlocked-27DwHo,
+.wrapper-2tAnRe,
+.button-2CgfFz.filled-1iCBCZ {
     border-radius: 4px;
 }
 
@@ -77,7 +79,8 @@ foreignObject[mask*="url(#svg-mask-avatar-status-"][mask$="80)"] img,
 } .wrapper-129saQ {
     border-radius: 9px;
 }
-.role-2irmRk.flex-1O1GKY.alignCenter-1dQNNs {
+.role-2irmRk.flex-1O1GKY.alignCenter-1dQNNs,
+.avatarMasked-3y6o4j.wrapper-3t9DeA {
     border-radius: 4px;
 }
 .roleCircle-3xAZ1j.flex-1O1GKY.alignCenter-1dQNNs.justifyCenter-3D2jYp {
@@ -146,7 +149,7 @@ svg.detailsIcon-2LZ7Bq path[d="M12 2C6.4764 2 2 6.4764 2 12C2 17.5236 6.4764 22 
 }
 
 path[d="M10 0C4.486 0 0 4.486 0 10C0 15.515 4.486 20 10 20C15.514 20 20 15.515 20 10C20 4.486 15.514 0 10 0ZM9 4H11V11H9V4ZM10 15.25C9.31 15.25 8.75 14.691 8.75 14C8.75 13.31 9.31 12.75 10 12.75C10.69 12.75 11.25 13.31 11.25 14C11.25 14.691 10.69 15.25 10 15.25Z"] {
-    d: path("M 4,0 C 4,0 0,0 0,4 C 0,16 0,20 4,20 C 16,20 20,20 20,16 C 20,4 20,0 16,0 Z M 9 4H11V11H9V4ZM10 15.25C9.31 15.25 8.75 14.691 8.75 14C8.75 13.31 9.31 12.75 10 12.75C10.69 12.75 11.25 13.31 11.25 14C11.25 14.691 10.69 15.25 10 15.25Z")
+    d: path("M 4,0 C 4,0 0,0 0,4 v 12 C 0,16 0,20 4,20 h 12 C 16,20 20,20 20,16 v -12 C 20,4 20,0 16,0 Z M 9 4H11V11H9V4ZM10 15.25C9.31 15.25 8.75 14.691 8.75 14C8.75 13.31 9.31 12.75 10 12.75C10.69 12.75 11.25 13.31 11.25 14C11.25 14.691 10.69 15.25 10 15.25Z")
 }
 
 div[aria-label="Servers"] div.wrapper-25eVIn > svg.svg-1X37T1 > mask:nth-child(2) > use:nth-child(1) {
@@ -170,3 +173,15 @@ div[aria-label="Servers"] div.wrapper-25eVIn > svg.svg-1X37T1 > mask:nth-child(2
     border-radius: 8px;
 }
 
+.avatarMasked-3y6o4j {
+    -webkit-mask-image: none;
+}
+
+.avatarMasked-3y6o4j foreignObject {
+    mask: url(#priz-mask-avatar-masked);
+}
+
+.moreSubscribers-1cuWDE,
+.avatarContainer-28iYmV.avatar-3tNQiO.avatarSmall-1PJoGO {
+    border-radius: 5px;
+}

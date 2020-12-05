@@ -13,6 +13,20 @@ CLS
 
 ECHO Installing PRIZcord...
 
+SET "DISCORDSTABLE=0"
+SET "DISCORDCANARY=0"
+SET "DISCORDPTB=0"
+
+IF EXIST %APPDATA%\discord (
+    SET "DISCORDSTABLE=1"
+)
+IF EXIST %APPDATA%\discordcanary (
+    SET "DISCORDCANARY=1"
+)
+IF EXIST %APPDATA%\discordptb (
+    SET "DISCORDPTB=1"
+)
+
 SET "DISCORD=%APPDATA%\discord\"
 SET "INDEXJS=%APPDATA%\discord\0.0.308\modules\discord_utils\index.js"
 

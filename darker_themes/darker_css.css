@@ -61,7 +61,8 @@
 .reactionMe-wv5HKu .reactionCount-2mvXRV,
 .reactionMe-wv5HKu:hover .reactionCount-2mvXRV,
 .theme-dark .mentioned-xhSam7 .mention.interactive:hover,
-.theme-light .mentioned-xhSam7 .mention.interactive:hover {
+.theme-light .mentioned-xhSam7 .mention.interactive:hover,
+.ephemeralMessage-1fEWtQ a {
     color: var(--neon-cyan);
 }
 
@@ -443,7 +444,7 @@
 }
 
 .theme-dark .card-FDVird:before {
-    background-color: var(--bg-cyan-damn-near-black); /*#33363c*/
+    background-color: var(--bg-cyan-dark-lucent); /*#33363c*/
     border-color: var(--bg-dark); /*#2b2e32*/
 }
 
@@ -781,4 +782,10 @@ html.reduce-motion div#thething {
 
 .bar-2Qqk5Z {
     background: var(--button-hover-bright) !important;
+}
+
+.ephemeral-1PsL1r {
+    background-color: var(--neon-cyan-invis);
+} .ephemeral-1PsL1r:before {
+    background-color: var(--neon-cyan);
 }
