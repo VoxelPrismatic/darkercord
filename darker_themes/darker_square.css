@@ -178,7 +178,7 @@ div[aria-label="Servers"] div.wrapper-25eVIn > svg.svg-1X37T1 > mask:nth-child(2
 }
 
 .avatarMasked-3y6o4j foreignObject {
-    mask: url(#priz-mask-avatar-masked);
+    mask: url(#priz-mask-avatar-masked) !important;
 }
 
 .moreSubscribers-1cuWDE,
