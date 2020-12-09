@@ -20,7 +20,7 @@ var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
 var __block_wheel = false;
-var __version_number = "2.10.1";
+var __version_number = "2.10.2";
 var __darker_modules = {
     __process__: process,
     __require__: required
@@ -254,19 +254,23 @@ function __apply_settings() {
         __clear_css("__darker_global", "__darker_theme");
     }
 
+    __square_styles = [
+        "square",
+        "square_status",
+        "square_toggle",
+        "square_vc",
+        "square_bubble"
+    ];
     if(__darker_conf["square"]) {
-        __square_styles = [
-            "square",
-            "square_status",
-            "square_toggle",
-            "square_vc",
-            "square_bubble"
-        ];
         for(var style of __square_styles) {
             if(!__darker_conf[style])
                 __clear_css("__darker_" + style);
             else if(!_$.i("__darker_" + style))
                 __add_css(dir + "darker_themes/" + "darker_" + style + ".css", "__darker_" + style)
+        }
+    } else {
+        for(var style of __square_styles) {
+            __clear_css("__darker_" + style)
         }
     }
 
@@ -1150,6 +1154,16 @@ function __wheel_listener(evt) {
     } else {
         for(var img of _$.qALL(`img[src="/assets/f78426a064bc9dd24847519259bc42af.png"]`))
             img.parentElement.parentElement.style.display = "";
+    } if(__darker_conf["square"]) {
+        for(var edt of _$.qALL("time.edited-3sfAzf:not(.bracket)")) {
+            edt.innerHTML = "[edited]"
+            edt.classList.add("bracket")
+        }
+    } else {
+        for(var edt of _$.qALL("time.edited-3sfAzf.bracket")) {
+            edt.innerHTML = "(edited)"
+            edt.classList.remove("bracket")
+        }
     }
     globalThis.__block_wheel = true;
     window.setTimeout(() => globalThis.__block_wheel = false, 500)

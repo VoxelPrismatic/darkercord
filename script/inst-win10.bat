@@ -4,8 +4,70 @@ CLS
 
 CALL :BLUEBOLD & ECHO Installing PRIZcord... & CALL :CLR
 
-SET "DISCORD=%APPDATA%\discord\"
-SET "INDEXJS=%APPDATA%\discord\0.0.308\modules\discord_utils\index.js"
+SET "DISCORDSTABLE=0"
+SET "DISCORDCANARY=0"
+SET "DISCORDPTB=0"
+
+IF EXIST %APPDATA%\discord (
+    SET "DISCORDSTABLE=1"
+)
+IF EXIST %APPDATA%\discordcanary (
+    SET "DISCORDCANARY=1"
+)
+IF EXIST %APPDATA%\discordptb (
+    SET "DISCORDPTB=1"
+)
+
+REM BASH is much superior, I'm in pain
+IF %DISCORDSTABLE% EQU 1 (
+    IF %DISCORDCANARY% EQU 1 (
+        CALL :GREENBOLD & ECHO Multiple installations found & CALL :CLR
+        IF %DISCORDPTB% EQU 1 (
+            ECHO 1] Stable
+            ECHO 2] Canary
+            ECHO 3] PTB
+            ECHO.
+            CHOICE /C 123 /M Where do you want to install?
+            IF %ERRORLEVEL% 1 (
+                SET "DISCORD=%APPDATA%\discord\"
+                SET "INDEXJS=%APPDATA%\discord\0.0.*\modules\discord_utils\index.js"
+            ) ELSE IF %ERRORLEVEL% 2 (
+                SET "DISCORD=%APPDATA%\discordcanary\"
+                SET "INDEXJS=%APPDATA%\discordcanary\0.0.*\modules\discord_utils\index.js"
+            ) ELSE IF %ERRORLEVEL% 3 (
+                SET "DISCORD=%APPDATA%\discordptb\"
+                SET "INDEXJS=%APPDATA%\discordptb\0.0.*\modules\discord_utils\index.js"
+            )
+        ) ELSE (
+            ECHO 1] Stable
+            ECHO 2] Canary
+            ECHO.
+            CHOICE /C 12 /M Where do you want to install?
+            IF %ERRORLEVEL% 1 (
+                SET "DISCORD=%APPDATA%\discord\"
+                SET "INDEXJS=%APPDATA%\discord\0.0.*\modules\discord_utils\index.js"
+            ) ELSE IF %ERRORLEVEL% 2 (
+                SET "DISCORD=%APPDATA%\discordcanary\"
+                SET "INDEXJS=%APPDATA%\discordcanary\0.0.*\modules\discord_utils\index.js"
+            )
+        )
+    ) ELSE IF %DISCORDPTB% EQU 1 (
+        ECHO 1] Stable
+        ECHO 2] PTB
+        ECHO.
+        CHOICE /C 12 /M Where do you want to install?
+        IF %ERRORLEVEL% 1 (
+            SET "DISCORD=%APPDATA%\discord\"
+            SET "INDEXJS=%APPDATA%\discord\0.0.*\modules\discord_utils\index.js"
+        ) ELSE IF %ERRORLEVEL% 2 (
+            SET "DISCORD=%APPDATA%\discordptb\"
+            SET "INDEXJS=%APPDATA%\discordptb\0.0.*\modules\discord_utils\index.js"
+        )
+    ) ELSE (
+        SET "DISCORD=%APPDATA%\discord\"
+        SET "INDEXJS=%APPDATA%\discord\0.0.*\modules\discord_utils\index.js"
+    )
+)
 
 IF EXIST "..\darker_js.js" (
     CALL :GREY & ECHO ^> Copying files & CALL :CLR
@@ -39,12 +101,17 @@ DEL __DARKER_VERSION__.TXT
 
 CALL :BLUEBOLD & ECHO PRIZcord v%VNUM% installed & CALL :CLR
 PAUSE
+COLOR
 EXIT
 
 REM -- COLOR ESCAPING CODE --
 
 :BLUEBOLD
 TYPE ESC.TXT & ECHO [94;1m & CALL :MOVE
+EXIT /B
+
+:GREENBOLD
+TYPE ESC.TXT & ECHO [92;1m & CALL :MOVE
 EXIT /B
 
 :GREY

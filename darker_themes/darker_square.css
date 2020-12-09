@@ -185,3 +185,8 @@ div[aria-label="Servers"] div.wrapper-25eVIn > svg.svg-1X37T1 > mask:nth-child(2
 .avatarContainer-28iYmV.avatar-3tNQiO.avatarSmall-1PJoGO {
     border-radius: 5px;
 }
+
+div.wrapper-3t9DeA[aria-label*="Online via mobile"] > svg > svg > rect {
+    height: 24px;
+    y: 0;
+}
