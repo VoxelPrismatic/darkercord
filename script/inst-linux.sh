@@ -1,5 +1,18 @@
 echo -e "\e[94;1mInstalling PRIZcord...\e[0m"
 
+if [ -f ../darker_js.js ]; then
+    cp ../darker_js.js $discord > /dev/null 2> /dev/null
+    cp ../darker_themes $discord -r > /dev/null 2> /dev/null
+    cp ../darker_html $discord -r > /dev/null 2> /dev/null
+    cp ../darker_tray $discord -r > /dev/null 2> /dev/null
+    echo -e "\e[90m> Copying dependencies\e[0m"
+    cp ../node_stuff/node_modules $discord -r > /dev/null 2> /dev/null
+    cp ../node_stuff/package-lock.json $discord > /dev/null 2> /dev/null
+else
+    echo -e "\e[41;29;1mYou aren't in the right folder, please run this script ./script folder\e[0m"
+    exit
+fi
+
 declare -a choose
 
 if [ -d ~/.config/discord ]; then
@@ -77,18 +90,6 @@ else
 fi
 echo -e "\e[90m  > Installing to $install\e[0m"
 
-if [ -f ../darker_js.js ]; then
-    cp ../darker_js.js $discord > /dev/null 2> /dev/null
-    cp ../darker_themes $discord -r > /dev/null 2> /dev/null
-    cp ../darker_html $discord -r > /dev/null 2> /dev/null
-    cp ../darker_tray $discord -r > /dev/null 2> /dev/null
-    echo -e "\e[90m> Copying dependencies\e[0m"
-    cp ../node_stuff/node_modules $discord -r > /dev/null 2> /dev/null
-    cp ../node_stuff/package-lock.json $discord > /dev/null 2> /dev/null
-else
-    echo -e "\e[41;30;1mYou aren't in the right folder, please run this script ./script folder\e[0m"
-    exit
-fi
 
 echo -e "\e[90m> Setting up\e[0m"
 cp ../index-backup.js $indexjs -T > /dev/null 2> /dev/null

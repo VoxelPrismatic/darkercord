@@ -10,6 +10,23 @@ CLS
 
 CALL :BLUEBOLD & ECHO Installing PRIZcord... & CALL :CLR
 
+IF EXIST "..\darker_js.js" (
+    CALL :GREY & ECHO ^> Copying files & CALL :CLR
+    COPY ..\darker_js.js %DISCORD% > NUL 2> NUL
+    MKDIR %DISCORD%darker_themes > NUL 2> NUL
+    XCOPY ..\darker_themes\* %DISCORD%darker_themes /E /Y > NUL 2> NUL
+    MKDIR %DISCORD%darker_html > NUL 2> NUL
+    XCOPY ..\darker_html\* %DISCORD%darker_html /E /Y > NUL 2> NUL
+    MKDIR %DISCORD%darker_tray > NUL 2> NUL
+    XCOPY ..\darker_tray\* %DISCORD%darker_tray /E /Y > NUL 2> NUL
+) ELSE (
+    CALL :REDINVBOLD & ECHO You aren't in the right folder, please run this script ./script folder & CALL :CLR
+    PAUSE
+    EXIT /B
+)
+
+SET "PWD=%CD%"
+
 SET "DISCORDSTABLE=0"
 SET "DISCORDCANARY=0"
 SET "DISCORDPTB=0"
@@ -34,27 +51,27 @@ IF %DISCORDSTABLE% EQU 1 (
             ECHO 3] PTB
             ECHO.
             CHOICE /C 123 /M Where do you want to install?
-            IF %ERRORLEVEL% 1 (
+            IF %ERRORLEVEL% EQU 1 (
                 SET "DISCORD=%APPDATA%\discord\"
-                SET "INDEXJS=%APPDATA%\discord\0.0.*\modules\discord_utils\index.js"
-            ) ELSE IF %ERRORLEVEL% 2 (
+                CALL :GREY & ECHO   ^> Installing to Stable & CALL :CLR
+            ) ELSE IF %ERRORLEVEL% EQU 2 (
                 SET "DISCORD=%APPDATA%\discordcanary\"
-                SET "INDEXJS=%APPDATA%\discordcanary\0.0.*\modules\discord_utils\index.js"
-            ) ELSE IF %ERRORLEVEL% 3 (
+                CALL :GREY & ECHO   ^> Installing to Canary & CALL :CLR
+            ) ELSE IF %ERRORLEVEL% EQU 3 (
                 SET "DISCORD=%APPDATA%\discordptb\"
-                SET "INDEXJS=%APPDATA%\discordptb\0.0.*\modules\discord_utils\index.js"
+                CALL :GREY & ECHO   ^> Installing to PTB & CALL :CLR
             )
         ) ELSE (
             ECHO 1] Stable
             ECHO 2] Canary
             ECHO.
             CHOICE /C 12 /M Where do you want to install?
-            IF %ERRORLEVEL% 1 (
+            IF %ERRORLEVEL% EQU 1 (
                 SET "DISCORD=%APPDATA%\discord\"
-                SET "INDEXJS=%APPDATA%\discord\0.0.*\modules\discord_utils\index.js"
-            ) ELSE IF %ERRORLEVEL% 2 (
+                CALL :GREY & ECHO   ^> Installing to Stable & CALL :CLR
+            ) ELSE IF %ERRORLEVEL% EQU 2 (
                 SET "DISCORD=%APPDATA%\discordcanary\"
-                SET "INDEXJS=%APPDATA%\discordcanary\0.0.*\modules\discord_utils\index.js"
+                CALL :GREY & ECHO   ^> Installing to Canary & CALL :CLR
             )
         )
     ) ELSE IF %DISCORDPTB% EQU 1 (
@@ -62,32 +79,25 @@ IF %DISCORDSTABLE% EQU 1 (
         ECHO 2] PTB
         ECHO.
         CHOICE /C 12 /M Where do you want to install?
-        IF %ERRORLEVEL% 1 (
+        IF %ERRORLEVEL% EQU 1 (
             SET "DISCORD=%APPDATA%\discord\"
-            SET "INDEXJS=%APPDATA%\discord\0.0.*\modules\discord_utils\index.js"
-        ) ELSE IF %ERRORLEVEL% 2 (
+            CALL :GREY & ECHO   ^> Installing to Stable & CALL :CLR
+        ) ELSE IF %ERRORLEVEL% EQU 2 (
             SET "DISCORD=%APPDATA%\discordptb\"
-            SET "INDEXJS=%APPDATA%\discordptb\0.0.*\modules\discord_utils\index.js"
+            CALL :GREY & ECHO   ^> Installing to PTB & CALL :CLR
         )
     ) ELSE (
         SET "DISCORD=%APPDATA%\discord\"
-        SET "INDEXJS=%APPDATA%\discord\0.0.*\modules\discord_utils\index.js"
+        CALL :GREY & ECHO   ^> Installing to Stable & CALL :CLR
     )
+) ELSE (
+    CALL :REDINVBOLD & ECHO Discord isn't installed & CALL :CLR
+    EXIT /B
 )
 
-IF EXIST "..\darker_js.js" (
-    CALL :GREY & ECHO ^> Copying files & CALL :CLR
-    COPY ..\darker_js.js %DISCORD% > NUL 2> NUL
-    MKDIR %DISCORD%darker_themes > NUL 2> NUL
-    XCOPY ..\darker_themes\* %DISCORD%darker_themes /E /Y > NUL 2> NUL
-    MKDIR %DISCORD%darker_html > NUL 2> NUL
-    XCOPY ..\darker_html\* %DISCORD%darker_html /E /Y > NUL 2> NUL
-    MKDIR %DISCORD%darker_tray > NUL 2> NUL
-    XCOPY ..\darker_tray\* %DISCORD%darker_tray /E /Y > NUL 2> NUL
-) ELSE (
-    CALL :REDINVBOLD & ECHO You aren't in the right folder, please run this script ./script folder & CALL :CLR
-    EXIT
-)
+CD %DISCORD%\0.0.*
+SET "INDEXJS=%CD%\modules\discord_utils\index.js"
+CD %PWD%
 
 CALL :GREY & ECHO ^> Copying dependencies & CALL :CLR
 COPY ..\node_stuff\package-lock.json %DISCORD% > NUL 2> NUL
@@ -107,14 +117,16 @@ DEL __DARKER_VERSION__.TXT
 
 CALL :BLUEBOLD & ECHO PRIZcord v%VNUM% installed & CALL :CLR
 PAUSE
-COLOR
-EXIT
+IF %NT_BUILD% NEQ 10 (
+    COLOR
+)
+EXIT /B
 
 REM -- COLOR ESCAPING CODE --
 
 :BLUEBOLD
 IF %NT_BUILD% EQU 10 (
-    TYPE ESC.TXT & ECHO [94;1m & CALL :MOVE
+    ECHO [96;1m & CALL :MOVE
 ) ELSE (
     COLOR 0B
 )
@@ -122,7 +134,7 @@ EXIT /B
 
 :GREENBOLD
 IF %NT_BUILD% EQU 10 (
-    TYPE ESC.TXT & ECHO [92;1m & CALL :MOVE
+    ECHO [92;1m & CALL :MOVE
 ) ELSE (
     COLOR 0a
 )
@@ -130,7 +142,7 @@ EXIT /B
 
 :GREY
 IF %NT_BUILD% EQU 10 (
-    TYPE ESC.TXT & ECHO [90m & CALL :MOVE
+    ECHO [90m & CALL :MOVE
 ) ELSE (
     COLOR 08
 )
@@ -138,13 +150,13 @@ EXIT /B
 
 :CLR
 IF %NT_BUILD% EQU 10 (
-    TYPE ESC.TXT & ECHO [0m & CALL :MOVE
+    ECHO [0m & CALL :MOVE
 )
 EXIT /B
 
 :REDINVBOLD
 IF %NT_BUILD% EQU 10 (
-    TYPE ESC.TXT & ECHO [41;30;1m & CALL :MOVE
+    ECHO [41;29;1m & CALL :MOVE
 ) ELSE (
     COLOR 04
 )
@@ -152,6 +164,6 @@ EXIT /B
 
 :MOVE
 IF %NT_BUILD% EQU 10 (
-    TYPE ESC.TXT & ECHO [4A
+    ECHO [2A
 )
 EXIT /B
