@@ -20,7 +20,7 @@ var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
 var __block_wheel = false;
-var __version_number = "2.10.2";
+var __version_number = "2.10.3";
 var __darker_modules = {
     __process__: process,
     __require__: required
@@ -857,7 +857,7 @@ function __add_info(evt) {
         var buttons = _$.q("div[aria-label=\"USER_SETTINGS\"]");
         buttons = _$.c("item-PXvHYJ selected-3s45Ha themed-OHr7kt");
         var button = buttons.item(buttons.length - 1);
-        var sep = button.parentElement.children.item(button.parentElement.childElementCount - 7);
+        var sep = button.parentElement.children.item(button.parentElement.childElementCount - 8);
 
         info[0].innerHTML += `<div class="colorMuted-HdFt4q size12-3cLvbJ">PRIZcord v${__version_number} by PRIZ ;]</div>`;
         info[0].innerHTML +=
