@@ -20,7 +20,7 @@ var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
 var __block_wheel = false;
-var __version_number = "2.10.3";
+var __version_number = "2.10.4";
 var __darker_modules = {
     __process__: process,
     __require__: required
@@ -1170,17 +1170,20 @@ function __wheel_listener(evt) {
 }
 
 /* Check for updates */
-function __check_for_darker_updates() {
+function __check_for_darker_updates(auto = 0) {
     var main = _$.i("app-mount");
     var html = fs.readFileSync(dir + "darker_html/darker_update.html");
     html = (new DOMParser()).parseFromString(html, "text/html");
     _$.i("current_version__", html).innerHTML = __version_number;
+    if(auto)
+        _$.q("h4", html).innerHTML = "PRIZcord Auto Update"
     var resp = requests.get("https://github.com/VoxelPrismatic/prizcord/releases/latest", (e , resp , b) => {
         var version = resp.req.path.split("/tag/")[1];
         try {
             if(globalThis.view_spinner)
                 return
         } catch(err) {
+            console.log(err)
         }
         _$.i("latest_version__").innerHTML = version;
     });
@@ -1255,6 +1258,12 @@ __apply_settings();
 
 window.addEventListener("click", __fix_ui)
 window.addEventListener("resize", __fix_images)
+requests.get("https://github.com/VoxelPrismatic/prizcord/releases/latest", (e , resp , b) => {
+    var version = resp.req.path.split("/tag/")[1];
+    if(version != __version_number)
+        window.setTimeout(__check_for_darker_updates, 5000, 1)
+});
+
 
 ___startup_time___ = new Date() - ___timer___;
 console.timeEnd("PRIZcord - Finished in");
