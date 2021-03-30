@@ -18,8 +18,13 @@ img[alt] {
 div[data-ref-id*="guildsnav-"] defs path,
 div.wrapper-21YSNc defs path,
 defs ~ foreignObject > div.circleIconButton-jET_ig.selected-ugP_am,
-div.listItemWrapper-3X98Pc defs path {
-    d: path("M 0 8 C 0 8 0 0 8 0 L 40 0 C 40 0 48 0 48 8 L 48 40 C 48 40 48 48 40 48 L 8 48 C 8 48 0 48 0 40 Z")
+defs ~ foreignObject > div.circleIconButton-1QV--U.selected-1JjBPm,
+div.listItemWrapper-3X98Pc defs path,
+.tutorialContainer-2sGCg9 .listItemWrapper-KhRmzM defs g:first-child path {
+    d: path("M 0 8 C 0 8 0 0 8 0 L 40 0 C 40 0 48 0 48 8 L 48 40 C 48 40 48 48 40 48 L 8 48 C 8 48 0 48 0 40 Z");
+}
+.wrapper-1BJsBx.selected-bZ3Lue[data-list-item-id="guildsnav___home"] {
+    border-radius: 4px;
 }
 
 .mask-1l8v16.svg-2V3M55 > mask:first-child circle[cx="40"][cy="40"][r="40"] {
@@ -35,6 +40,7 @@ foreignObject[mask*="url(#svg-mask-avatar-status-"][mask$="32)"] img,
 .bar-30k2ka,
 .button-1-5Aqk,
 .badge-_BgAUQ,
+.badge-2l0o8g,
 .planOptionDiscount-cS8uaO,
 .blob-2w7iIK,
 img.avatar-VxgULZ,
@@ -90,6 +96,7 @@ foreignObject[mask*="url(#svg-mask-avatar-status-"][mask$="80)"] img,
 
 .wrapper-1BJsBx.selected-bZ3Lue img,
 .folderIconWrapper-226oVY,
+.folderIconWrapper-1_bOZe,
 img.avatar-1BDn8e.clickable-1bVtEA,
 .perkArt-1SGWbA,
 div.avatarUploaderInner-3UNxY3.avatarUploaderInner-2EvNMg {
@@ -97,7 +104,8 @@ div.avatarUploaderInner-3UNxY3.avatarUploaderInner-2EvNMg {
 } .wrapper-1BJsBx img {
     transition: border-radius 0.15s linear 0s;
     border-radius: 24px;
-} .expandedFolderBackground-2sPsd- {
+} .expandedFolderBackground-2sPsd-,
+.expandedFolderBackground-1cujaW {
     border-radius: 8px;
 }
 
@@ -171,7 +179,8 @@ div[aria-label="Servers"] div.wrapper-25eVIn > svg.svg-1X37T1 > mask:nth-child(2
 .wrapper-1BJsBx.selected-bZ3Lue > .childWrapper-anI2G9.acronym-2mOFsV,
 .wrapper-1BJsBx.selected-bZ3Lue > .icon-27yU2q,
 .wrapper-1BJsBx[data-list-item-id="guildsnav___home"].selected-bZ3Lue,
-.folder-21wGz3 {
+.folder-21wGz3,
+.folder-1hbNCn {
     border-radius: 8px;
 }
 
@@ -191,4 +200,9 @@ div[aria-label="Servers"] div.wrapper-25eVIn > svg.svg-1X37T1 > mask:nth-child(2
 div.wrapper-3t9DeA[aria-label*="Online via mobile"] > svg > svg > rect {
     height: 24px;
     y: 0;
+}
+
+.activeButton-rvKcqq,
+.emojiCounter-1BHDd2 {
+    border-radius: 4px;
 }

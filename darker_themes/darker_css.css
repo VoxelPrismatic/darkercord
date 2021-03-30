@@ -142,6 +142,7 @@
 .css-1o55ng5-control,
 .css-123uooi-menu,
 .css-3vaxre-menu,
+.css-dwar6a-menu,
 .css-1b86x2o-control,
 .css-9wh895-control {
     background-color: var(--bg-dark) !important;
@@ -173,6 +174,7 @@
 .container-3auIfb[style="opacity: 1; background-color: rgb(67, 181, 129);"],
 .panel-UE8sQC .checkedIcon-251AcY,
 .iconBadge-2wi9r4.participating-NBGDkr,
+.badge-2l0o8g,
 .button-1YfofB.buttonColor-7qQbGO.buttonActive-3FrkXp,
 .selectorButton-EEUWed:not(.selectorButtonPremiumRequired-mKMbIu):hover,
 .selectorButtonSelected-t5V9On {
@@ -278,6 +280,7 @@
 .circleIconButton-jET_ig,
 .defaultValue-3gC7yw .markValue-2DwdXI,
 .verified-1eC5dy,
+.circleIconButton-1QV--U,
 .partnered-3nJayh,
 .colorBrand-ROmMP1,
 .lookInverted-2D7oAl.colorBrand-3pXr91,
@@ -310,6 +313,7 @@
 
 .css-n57xjs-menu,
 .css-3vaxre-menu,
+.css-dwar6a-menu,
 .theme-dark .popout-2sKjHu {
     background-color: var(--bg-cyan-dark) !important; /*#2f3136*/
     box-shadow: var(--bg-dark-kinda) /*#20222588*/ 0px 1px 5px 0px !important;
@@ -343,6 +347,7 @@
 .wrapper-1BJsBx:hover .childWrapper-anI2G9,
 .lookFilled-1Gx00P.colorBrand-3pXr91,
 .circleIconButton-jET_ig.selected-ugP_am,
+.circleIconButton-1QV--U.selected-1JjBPm,
 .checkmark-35U2vf,
 .colorDefault-2K3EoJ.focused-3afm-j,
 .theme-dark .questionMark-CWEQZn,
@@ -428,7 +433,8 @@
     background-color: var(--button-normal); /*#4f545c*/
 }
 
-.theme-dark .reactionSelected-1pqISm {
+.theme-dark .reactionSelected-1pqISm,
+.theme-dark .selected-1Tbx07 {
     background-color: var(--button-normal-invis); /*#4f545c4d*/
 }
 
@@ -788,4 +794,12 @@ html.reduce-motion div#thething {
     background-color: var(--neon-cyan-invis);
 } .ephemeral-1PsL1r:before {
     background-color: var(--neon-cyan);
+}
+
+.activeButton-rvKcqq {
+    background-color: var(--turquoise-ultra-dark);
+}
+
+.active-2awTSY {
+    background-color: var(--turquoise-ultra-dark) !important;
 }

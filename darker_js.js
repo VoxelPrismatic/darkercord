@@ -20,7 +20,7 @@ var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
 var __block_wheel = false;
-var __version_number = "2.10.4.1";
+var __version_number = "2.11";
 var __darker_modules = {
     __process__: process,
     __require__: required
@@ -482,14 +482,15 @@ function __listen_to_channel_change() {
     button.onmouseenter = () => {
         if(!__darker_conf["collapse"])
             return
-        var pos = button.getClientRects()[0];
+        var pos = __channel_button.getClientRects()[0];
+        __channel_button.style.cursor = "pointer";
         var x = pos["x"];
         x += pos["width"] / 2;
         x -= 50;
         var y = pos["bottom"];
         y += 8;
         // Make sure hover text is visible
-        if([null, "Direct Message", "Group DM"].includes(button.getAttribute("aria-label")))
+        if([null, "Direct Message", "Group DM"].includes(__channel_button.getAttribute("aria-label")))
             stt = "DMs List"
         else
             stt = "Channels List"
@@ -516,6 +517,7 @@ function __listen_to_channel_change() {
     }
     button.onmouseleave = () => {
         // Hide the text
+        __channel_button.style.cursor = ""
         try {
             style = _$.i("thething").style;
             style.transform = "scale(0.7)";
@@ -1263,7 +1265,7 @@ requests.get("https://github.com/VoxelPrismatic/prizcord/releases/latest", (e , 
     if(version != "v" + __version_number)
         window.setTimeout(__check_for_darker_updates, 5000, 1)
 });
-
+window.setInterval(__listen_to_channel_change, 10000);
 
 ___startup_time___ = new Date() - ___timer___;
 console.timeEnd("PRIZcord - Finished in");
