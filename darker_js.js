@@ -20,7 +20,7 @@ var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
 var __block_wheel = false;
-var __version_number = "2.12";
+var __version_number = "2.12.1";
 var __darker_modules = {
     __process__: process,
     __require__: required
@@ -1262,7 +1262,17 @@ window.addEventListener("click", __fix_ui)
 window.addEventListener("resize", __fix_images)
 requests.get("https://github.com/VoxelPrismatic/prizcord/releases/latest", (e , resp , b) => {
     var version = resp.req.path.split("/tag/")[1];
-    if(version != "v" + __version_number && version != __version_number)
+    var v1 = version.startsWith("v") ? version.slice(1) : version
+    var v2 = __version_number.startswith("v") ? __version_number.slice(1) : __version_number
+    var vv1 = 10000;
+    var vv2 = 10000;
+
+    for(var x1 of v1.split("."))
+        vv1 /= x1
+    for(var x2 of v2.split("."))
+        vv2 /= x2
+
+    if(vv1 > vv2)
         window.setTimeout(__check_for_darker_updates, 5000, 1)
 });
 window.setInterval(__listen_to_channel_change, 10000);
