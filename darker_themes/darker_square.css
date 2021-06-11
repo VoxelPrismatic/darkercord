@@ -20,7 +20,8 @@ div.wrapper-21YSNc defs path,
 defs ~ foreignObject > div.circleIconButton-jET_ig.selected-ugP_am,
 defs ~ foreignObject > div.circleIconButton-1QV--U.selected-1JjBPm,
 div.listItemWrapper-3X98Pc defs path,
-.tutorialContainer-2sGCg9 .listItemWrapper-KhRmzM defs g:first-child path {
+.listItemWrapper-KhRmzM:hover defs path[id*="blob_mask"]:first-child:last-child,
+path[d="M0 24C0 16.5449 0 12.8174 1.21793 9.87706C2.84183 5.95662 5.95662 2.84183 9.87706 1.21793C12.8174 0 16.5449 0 24 0C31.4551 0 35.1826 0 38.1229 1.21793C42.0434 2.84183 45.1582 5.95662 46.7821 9.87706C48 12.8174 48 16.5449 48 24C48 31.4551 48 35.1826 46.7821 38.1229C45.1582 42.0434 42.0434 45.1582 38.1229 46.7821C35.1826 48 31.4551 48 24 48C16.5449 48 12.8174 48 9.87706 46.7821C5.95662 45.1582 2.84183 42.0434 1.21793 38.1229C0 35.1826 0 31.4551 0 24Z"] {
     d: path("M 0 8 C 0 8 0 0 8 0 L 40 0 C 40 0 48 0 48 8 L 48 40 C 48 40 48 48 40 48 L 8 48 C 8 48 0 48 0 40 Z");
 }
 .wrapper-1BJsBx.selected-bZ3Lue[data-list-item-id="guildsnav___home"] {
@@ -61,7 +62,7 @@ foreignObject[mask*="url(#svg-mask-avatar-status-"][mask$="80)"] img,
 .avatarUploaderInner-3UNxY3.avatarUploaderInner-3Mrx2N,
 .wrapper-3t9DeA,
 .userPopout-3XzG_A .avatar-VxgULZ {
-    border-radius: 16px;
+    border-radius: 16px !important;
 }
 
 .icon-3o6xvg.iconSizeLarge-161qtT.iconInactive-98JN5i,
@@ -113,6 +114,10 @@ div.avatarUploaderInner-3UNxY3.avatarUploaderInner-2EvNMg {
 .iconBadge-qZ4Ksk,
 .editCircle-y9c7xP.iconCircle-JEgPhb {
     border-radius: 2px;
+}
+
+.baseShapeRound-1Mm1YW {
+    border-radius: 3px;
 }
 
 svg.badge-1JXQev {
@@ -205,4 +210,18 @@ div.wrapper-3t9DeA[aria-label*="Online via mobile"] > svg > svg > rect {
 .activeButton-rvKcqq,
 .emojiCounter-1BHDd2 {
     border-radius: 4px;
+}
+
+foreignObject[width="120"] > .avatarStack-2Dr8S9 > img.avatar-VxgULZ {
+    border-radius: 8px !important;
+}
+
+foreignObject[width="80"] > .avatarStack-2Dr8S9 > img.avatar-VxgULZ {
+    border-radius: 10px !important;
+}
+
+
+.mask-1l8v16.svg-2V3M55 > foreignObject[width="120"] + rect {
+    x: 96;
+    y: 96;
 }

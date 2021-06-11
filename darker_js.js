@@ -20,7 +20,7 @@ var __emoji_clicked = null;
 var __last_count = 0;
 var __stop_guild_listen = false;
 var __block_wheel = false;
-var __version_number = "2.11.1";
+var __version_number = "2.12";
 var __darker_modules = {
     __process__: process,
     __require__: required
@@ -298,7 +298,7 @@ function __apply_settings() {
         if(f)
             st += `@font-face { font-family: "${n}"; src: local("${f}"); }\n`;
         if(n)
-            st += `:root { --norm-font-custom: "${n}"; }\n`;
+            st += `:root { --norm-font-custom: "${n}"; --font-display: "${n}" !important; }\n`;
         f = __darker_conf["ext_mono_font_file"]
         n = __darker_conf["ext_mono_font_name"]
         if(f)
@@ -1157,7 +1157,7 @@ function __wheel_listener(evt) {
         for(var img of _$.qALL(`img[src="/assets/f78426a064bc9dd24847519259bc42af.png"]`))
             img.parentElement.parentElement.style.display = "";
     } if(__darker_conf["square"]) {
-        for(var edt of _$.qALL("time.edited-3sfAzf:not(.bracket)")) {
+        for(var edt of _$.qALL(".edited-3sfAzf:not(.bracket)")) {
             edt.innerHTML = "[edited]"
             edt.classList.add("bracket")
         }

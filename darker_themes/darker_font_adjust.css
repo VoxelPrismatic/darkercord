@@ -203,3 +203,7 @@ code:not(.ignore-this-one-tyvm), code:not(.ignore-this-one-tyvm) * {
 a.anchor-3Z-8Bb.anchorUnderlineOnHover-2ESHQB.fileNameLink-9GuxCo {
     font-size: calc(16px + var(--adjust-norm-size)) !important;
 }
+
+:root {
+    --font-display: var(--norm-font-custom), Ginto, "Helvetica Neue";
+}
